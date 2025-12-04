@@ -5,11 +5,11 @@
 	import Editor from '../lib/components/Editor/Editor.svelte';
 </script>
 
-<div class="flex flex-col">
+<div class="flex flex-col h-screen">
 	<Navbar />
-	<main class="flex">
+	<main class="flex h-full">
 		<Sidebar />
-		<Agent />
 		<Editor />
+		<Agent />
 	</main>
 </div>
