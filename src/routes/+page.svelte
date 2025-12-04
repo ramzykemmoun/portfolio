@@ -5,9 +5,9 @@
 	import Editor from '../lib/components/Editor/Editor.svelte';
 </script>
 
-<div class="flex flex-col h-screen">
+<div class="flex flex-col h-screen w-full">
 	<Navbar />
-	<main class="flex h-full">
+	<main class="flex flex-1 h-full">
 		<Sidebar />
 		<Editor />
 		<Agent />

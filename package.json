@@ -21,7 +21,9 @@
 	"devDependencies": {
 		"@eslint/compat": "^1.4.0",
 		"@eslint/js": "^9.39.1",
+		"@fontsource/ibm-plex-mono": "^5.2.7",
 		"@playwright/test": "^1.56.1",
+		"@shikijs/transformers": "^3.19.0",
 		"@storybook/addon-svelte-csf": "^5.0.10",
 		"@storybook/sveltekit": "10.1.0",
 		"@sveltejs/adapter-auto": "^7.0.0",
@@ -38,10 +40,12 @@
 		"eslint-plugin-svelte": "^3.13.0",
 		"globals": "^16.5.0",
 		"mdsvex": "^0.12.6",
+		"node-html-parser": "^7.0.1",
 		"playwright": "^1.56.1",
 		"prettier": "^3.6.2",
 		"prettier-plugin-svelte": "^3.4.0",
 		"prettier-plugin-tailwindcss": "^0.7.1",
+		"shiki": "^3.19.0",
 		"storybook": "10.1.0",
 		"svelte": "^5.43.8",
 		"svelte-check": "^4.3.4",
@@ -55,9 +59,11 @@
 	},
 	"dependencies": {
 		"@lucide/svelte": "^0.555.0",
+		"@monaco-editor/loader": "^1.7.0",
 		"@skeletonlabs/skeleton": "^4.7.2",
 		"@skeletonlabs/skeleton-svelte": "^4.7.2",
 		"clsx": "^2.1.1",
+		"monaco-editor": "^0.55.1",
 		"tailwind-merge": "^3.4.0"
 	}
 }
