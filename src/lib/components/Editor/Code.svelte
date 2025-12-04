@@ -1,8 +1,9 @@
 <script lang="ts">
 	import loader from '@monaco-editor/loader';
 	import { onMount, onDestroy } from 'svelte';
-	import { sidebar } from '$lib/stores/sidebar.svelte';
+	import { sidebar, file } from '$lib/stores/index.svelte';
 	import { browser } from '$app/environment';
+	import { sectionCodes } from '$lib/data/codes';
 
 	let editor: monaco.editor.IStandaloneCodeEditor | undefined;
 	let monaco: typeof import('monaco-editor') | undefined;
@@ -14,7 +15,7 @@
 		monaco = await loader.init();
 
 		editor = monaco.editor.create(editorContainer, {
-			value: 'const x = 5;',
+			value: sectionCodes[file.section],
 			language: 'javascript',
 			theme: 'vs-dark',
 			automaticLayout: true,
@@ -31,9 +32,12 @@
 	});
 
 	$effect(() => {
-		sidebar.isOpen;
+		sidebar.open;
 		sidebar.width;
+		file.section;
+
 		if (editor) {
+			editor.setValue(sectionCodes[file.section]);
 			editor.layout({ width: 0, height: 0 });
 			window.requestAnimationFrame(() => {
 				const rect = editorContainer.getBoundingClientRect();

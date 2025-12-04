@@ -1,13 +1,13 @@
 <script lang="ts">
-	import { section } from '$lib/stores/section.svelte';
 	import { onMount } from 'svelte';
-	import { sidebar } from '$lib/stores/sidebar.svelte';
+	import { sidebar } from '$lib/stores/index.svelte';
+	import Folders from './Folders.svelte';
 
 	/** @type {{ isResizing: boolean }} */
 	let { isResizing = $bindable() } = $props();
 
-	let minWidth = 150;
-	let maxWidth = 1200;
+	let minWidth = 200;
+	let maxWidth = 900;
 
 	const resize = (e: MouseEvent) => {
 		if (!isResizing) return;
@@ -40,6 +40,6 @@
 
 <div class="flex overflow-hidden">
 	<div class="bg-blue-500 overflow-y-scroll flex flex-col" style="width: {sidebar.width}px;">
-		<p>Slm {section.tag}</p>
+		<Folders />
 	</div>
 </div>

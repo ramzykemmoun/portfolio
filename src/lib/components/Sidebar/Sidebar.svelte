@@ -1,23 +1,8 @@
 <script lang="ts">
-	import { Skull, Activity, FileSymlink } from '@lucide/svelte';
 	import Explorer from './Explorer.svelte';
-	import { section } from '$lib/stores/section.svelte';
+	import { sidebar } from '$lib/stores/index.svelte';
 	import { cn } from '$lib/utils';
-	import { sidebar } from '$lib/stores/sidebar.svelte';
-	const links = {
-		main: {
-			label: 'Dashboard',
-			icon: Skull
-		},
-		search: {
-			label: 'Search',
-			icon: FileSymlink
-		},
-		settings: {
-			label: 'Settings',
-			icon: Activity
-		}
-	};
+	import { sections } from '$lib/data/index.ts';
 
 	let isResizing = $state(false);
 
@@ -26,12 +11,12 @@
 		isResizing = true;
 	};
 
-	const changeSection = (tag: string) => {
-		if (sidebar.open && section.tag === tag) {
+	const changeSection = (section: string) => {
+		if (sidebar.open && sidebar.section === section) {
 			sidebar.open = false;
 		} else {
 			sidebar.open = true;
-			section.tag = tag;
+			sidebar.section = section;
 		}
 	};
 </script>
@@ -39,17 +24,17 @@
 <div class="bg-green-500 flex-col">
 	<div class="flex flex-1 h-full">
 		<ul class="w-12 px-4 py-2">
-			{#each Object.entries(links) as [key, link]}
+			{#each Object.entries(sections) as [key, section]}
 				<li class="flex items-center justify-center">
 					<button
 						type="button"
 						class={cn(
 							'btn-icon',
-							section.tag === key && sidebar.open && 'preset-filled-surface-500'
+							sidebar.section === key && sidebar.open && 'preset-filled-surface-500'
 						)}
 						onclick={() => changeSection(key)}
 					>
-						<link.icon />
+						<section.icon />
 					</button>
 				</li>
 			{/each}
