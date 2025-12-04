@@ -18,27 +18,25 @@
 			base: 'vs-dark',
 			inherit: true,
 			rules: [
-				// Règles de coloration (syntax highlighting)
-				{ token: 'comment', foreground: '5c6370' }, // Gris ardoise doux
-				{ token: 'number', foreground: 'd19a66' }, // Marron/Orange (Chiffres)
-				{ token: 'string', foreground: '98c379' }, // Vert menthe doux (Strings)
-				{ token: 'keyword', foreground: 'c678dd' }, // Violet clair (Mots-clés: function, let, const, etc.)
-				{ token: 'variable', foreground: 'e06c75' }, // Rouge rosé (Variables non assignées)
-				{ token: 'identifier', foreground: '61afef' }, // Bleu ciel (Noms de fonction/classe)
-				{ token: 'type', foreground: '56b6c2' }, // Cyan
-				{ token: 'tag', foreground: 'e06c75' }, // Rouge rosé (Tags HTML)
-				{ token: 'attribute.name', foreground: 'd19a66' } // Marron/Orange (Noms d'attributs)
+				{ token: 'comment', foreground: '5c6370' },
+				{ token: 'number', foreground: 'd19a66' },
+				{ token: 'string', foreground: '98c379' },
+				{ token: 'keyword', foreground: 'c678dd' },
+				{ token: 'variable', foreground: 'e06c75' },
+				{ token: 'identifier', foreground: '61afef' },
+				{ token: 'type', foreground: '56b6c2' },
+				{ token: 'tag', foreground: 'e06c75' },
+				{ token: 'attribute.name', foreground: 'd19a66' }
 			],
 			colors: {
-				// Couleurs de l'interface
-				'editor.foreground': '#abb2bf', // Texte général (Gris clair)
-				'editor.background': '#1A1B26', // Fond général de l'éditeur (Noir/Bleu Nuit)
-				'editorCursor.foreground': '#abb2bf', // Curseur
-				'editor.selectionBackground': '#3e4451', // Sélection de texte
-				'editorLineNumber.foreground': '#4b5263', // Numéros de ligne (Gris foncé)
-				'editorLineNumber.activeForeground': '#abb2bf', // Numéro de ligne actif
-				'editorWhitespace.foreground': '#3e4451', // Espaces blancs
-				'editorBracketMatch.border': '#61afef' // Bordure de la paire de crochets (Bleu)
+				'editor.foreground': '#abb2bf',
+				'editor.background': '#1e1e1e',
+				'editorCursor.foreground': '#abb2bf',
+				'editor.selectionBackground': '#3e4451',
+				'editorLineNumber.foreground': '#4b5263',
+				'editorLineNumber.activeForeground': '#abb2bf',
+				'editorWhitespace.foreground': '#3e4451',
+				'editorBracketMatch.border': '#61afef'
 			}
 		});
 
@@ -50,12 +48,10 @@
 			autoClosingQuotes: 'always',
 			autoClosingBrackets: 'always',
 			autoClosingTags: 'always',
-			autoClosingPairs: [
-				{ open: '{', close: '}' },
-				{ open: '[', close: ']' },
-				{ open: '(', close: ')' },
-				{ open: '<', close: '>' }
-			]
+			minimap: { enabled: true },
+			scrollBeyondLastLine: false,
+			fontSize: 14,
+			lineHeight: 22
 		});
 	});
 
@@ -66,11 +62,7 @@
 
 		if (editor) {
 			editor.setValue(sectionCodes[file.section]);
-			editor.layout({ width: 0, height: 0 });
-			window.requestAnimationFrame(() => {
-				const rect = editorContainer.getBoundingClientRect();
-				editor.layout({ width: rect.width, height: rect.height });
-			});
+			editor.layout();
 		}
 	});
 
@@ -80,6 +72,12 @@
 	});
 </script>
 
-<div class="flex-1">
-	<div bind:this={editorContainer} class="h-full"></div>
-</div>
+<div class="code-container" bind:this={editorContainer}></div>
+
+<style>
+	.code-container {
+		width: 100%;
+		height: 100%;
+		min-height: 100px;
+	}
+</style>

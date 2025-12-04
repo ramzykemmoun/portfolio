@@ -1,64 +1,253 @@
 <script lang="ts">
-	import { FileIcon, FolderIcon } from '@lucide/svelte';
-	import { TreeView, createTreeViewCollection, useTreeView } from '@skeletonlabs/skeleton-svelte';
-	import { sidebar, file } from '$lib/stores/index.svelte';
+	import { ChevronRight, ChevronDown, File, Folder, FolderOpen } from '@lucide/svelte';
+	import { file } from '$lib/stores/index.svelte';
 	import { rootNode } from '$lib/data/explorer';
 
-	const collection = createTreeViewCollection({
-		nodeToValue: (node) => node.id,
-		nodeToString: (node) => node.name,
-		rootNode,
-		defaultExpanded: true
-	});
+	interface TreeNode {
+		id: string;
+		name: string;
+		icon?: string;
+		isClickable?: boolean;
+		children?: TreeNode[];
+	}
 
-	const treeView = useTreeView({
-		id: 'explorer',
-		defaultExpandedValue: [
-			'root',
-			'node_modules',
-			'public',
-			'public/assets',
-			'src',
-			'src/sections'
-		],
-		collection
-	});
+	let expandedFolders = $state<Set<string>>(new Set(['root', 'src', 'src/sections', 'public']));
+
+	let selectedFile = $state<string | null>(null);
+
+	const toggleFolder = (id: string) => {
+		const newSet = new Set(expandedFolders);
+		if (newSet.has(id)) {
+			newSet.delete(id);
+		} else {
+			newSet.add(id);
+		}
+		expandedFolders = newSet;
+	};
+
+	const selectFile = (node: TreeNode) => {
+		selectedFile = node.id;
+		if (node.isClickable) {
+			file.section = node.id;
+		}
+	};
+
+	const getFileIcon = (name: string): string => {
+		const ext = name.split('.').pop()?.toLowerCase();
+		switch (ext) {
+			case 'ts':
+			case 'tsx':
+				return '🔷';
+			case 'js':
+			case 'jsx':
+				return '🟨';
+			case 'svelte':
+				return '🔶';
+			case 'css':
+				return '🎨';
+			case 'json':
+				return '📋';
+			case 'md':
+				return '📝';
+			case 'html':
+				return '🌐';
+			default:
+				return '📄';
+		}
+	};
 </script>
 
-<div class="w-full flex flex-col items-center gap-4 p-4">
-	<TreeView.Provider value={treeView}>
-		<TreeView.Label>Ramzy-KEMMOUN-Portfolio</TreeView.Label>
-		<TreeView.Tree>
-			{#each collection.rootNode.children || [] as node, index (node)}
-				{@render treeNode(node, [index])}
-			{/each}
-		</TreeView.Tree>
-	</TreeView.Provider>
+<div class="vscode-explorer">
+	<div class="explorer-header">
+		<span class="header-title">EXPLORER</span>
+	</div>
+
+	<div class="project-header">
+		<ChevronDown class="w-3 h-3" />
+		<span class="project-name">RAMZY-KEMMOUN-PORTFOLIO</span>
+	</div>
+
+	<div class="file-tree">
+		{#each rootNode.children || [] as node}
+			{@render treeNode(node, 0)}
+		{/each}
+	</div>
 </div>
 
-{#snippet treeNode(node: Node, indexPath: number[])}
-	<TreeView.NodeProvider value={{ node, indexPath }}>
-		{#if node.children}
-			<TreeView.Branch>
-				<TreeView.BranchControl>
-					<TreeView.BranchIndicator />
-					<TreeView.BranchText>
-						<FolderIcon class="size-4" />
-						{node.name}
-					</TreeView.BranchText>
-				</TreeView.BranchControl>
-				<TreeView.BranchContent>
-					<TreeView.BranchIndentGuide />
-					{#each node.children as childNode, childIndex (childNode)}
-						{@render treeNode(childNode, [...indexPath, childIndex])}
-					{/each}
-				</TreeView.BranchContent>
-			</TreeView.Branch>
-		{:else}
-			<TreeView.Item value={node.id} onclick={() => node.isClickable && (file.section = node.id)}>
-				<FileIcon class="size-4" />
-				{node.name}
-			</TreeView.Item>
+{#snippet treeNode(node: TreeNode, depth: number)}
+	{#if node.children !== undefined}
+		<button
+			class="tree-item folder"
+			class:expanded={expandedFolders.has(node.id)}
+			style="padding-left: {12 + depth * 16}px"
+			onclick={() => toggleFolder(node.id)}
+		>
+			<span class="chevron">
+				{#if expandedFolders.has(node.id)}
+					<ChevronDown class="w-4 h-4" />
+				{:else}
+					<ChevronRight class="w-4 h-4" />
+				{/if}
+			</span>
+			<span class="folder-icon">
+				{#if expandedFolders.has(node.id)}
+					<FolderOpen class="w-4 h-4" />
+				{:else}
+					<Folder class="w-4 h-4" />
+				{/if}
+			</span>
+			<span class="item-name">{node.name}</span>
+		</button>
+
+		{#if expandedFolders.has(node.id) && node.children}
+			<div class="folder-children">
+				{#each node.children as child}
+					{@render treeNode(child, depth + 1)}
+				{/each}
+			</div>
 		{/if}
-	</TreeView.NodeProvider>
+	{:else}
+		<button
+			class="tree-item file"
+			class:selected={selectedFile === node.id}
+			style="padding-left: {12 + depth * 16 + 20}px"
+			onclick={() => selectFile(node)}
+		>
+			<span class="file-icon">{getFileIcon(node.name)}</span>
+			<span class="item-name">{node.name}</span>
+		</button>
+	{/if}
 {/snippet}
+
+<style>
+	.vscode-explorer {
+		width: 100%;
+		height: 100%;
+		background: #1e1e1e;
+		color: #cccccc;
+		font-family: 'Segoe UI', 'SF Pro Text', sans-serif;
+		font-size: 13px;
+		user-select: none;
+	}
+
+	.explorer-header {
+		padding: 10px 20px;
+		font-size: 11px;
+		font-weight: 400;
+		letter-spacing: 0.04em;
+		color: #bbbbbb;
+		text-transform: uppercase;
+	}
+
+	.project-header {
+		display: flex;
+		align-items: center;
+		gap: 4px;
+		padding: 6px 10px;
+		font-size: 11px;
+		font-weight: 700;
+		letter-spacing: 0.02em;
+		color: #cccccc;
+		background: transparent;
+		cursor: pointer;
+	}
+
+	.project-header:hover {
+		background: rgba(255, 255, 255, 0.04);
+	}
+
+	.project-name {
+		text-transform: uppercase;
+	}
+
+	.file-tree {
+		padding-bottom: 20px;
+	}
+
+	.tree-item {
+		display: flex;
+		align-items: center;
+		gap: 4px;
+		width: 100%;
+		padding: 4px 8px;
+		border: none;
+		background: transparent;
+		color: #cccccc;
+		font-size: 13px;
+		text-align: left;
+		cursor: pointer;
+		transition: background 0.1s ease;
+	}
+
+	.tree-item:hover {
+		background: rgba(255, 255, 255, 0.06);
+	}
+
+	.tree-item:focus {
+		outline: none;
+		background: rgba(255, 255, 255, 0.06);
+	}
+
+	.tree-item.selected {
+		background: rgba(255, 255, 255, 0.1);
+	}
+
+	.tree-item.selected:hover {
+		background: rgba(255, 255, 255, 0.12);
+	}
+
+	.chevron {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 16px;
+		height: 16px;
+		color: #858585;
+		flex-shrink: 0;
+	}
+
+	.folder-icon {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: #dcb67a;
+		flex-shrink: 0;
+	}
+
+	.file-icon {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 16px;
+		font-size: 14px;
+		flex-shrink: 0;
+	}
+
+	.item-name {
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	.folder-children {
+		position: relative;
+	}
+
+	.folder-children::before {
+		content: '';
+		position: absolute;
+		left: 23px;
+		top: 0;
+		bottom: 0;
+		width: 1px;
+		background: rgba(255, 255, 255, 0.1);
+	}
+
+	.folder.expanded .folder-icon {
+		color: #e8ab6a;
+	}
+
+	.tree-item.file:hover .item-name {
+		color: #ffffff;
+	}
+</style>

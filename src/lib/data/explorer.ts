@@ -27,8 +27,8 @@ export const rootNode = {
 			icon: 'Folder',
 			children: [
 				{
-					id: 'src/sections',
-					name: 'sections',
+					id: 'src/components',
+					name: 'components',
 					icon: 'Folder',
 					children: [
 						{

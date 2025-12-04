@@ -7,7 +7,7 @@
 
 <div class="flex flex-col h-screen overflow-hidden w-full">
 	<Navbar />
-	<main class="flex flex-1 h-full">
+	<main class="flex flex-1 overflow-hidden">
 		<Sidebar />
 		<Editor />
 		<Agent />

@@ -8,22 +8,33 @@
 	import Skills from './Sections/Skills.svelte';
 </script>
 
-{#if file.section === 'aboutMe'}
-	<AboutMe />
-{/if}
+<div class="preview-container">
+	{#if file.section === 'aboutMe'}
+		<AboutMe />
+	{/if}
 
-{#if file.section === 'education'}
-	<Education />
-{/if}
+	{#if file.section === 'education'}
+		<Education />
+	{/if}
 
-{#if file.section === 'experiences'}
-	<Experiences />
-{/if}
+	{#if file.section === 'experiences'}
+		<Experiences />
+	{/if}
 
-{#if file.section === 'projects'}
-	<Projects />
-{/if}
+	{#if file.section === 'projects'}
+		<Projects />
+	{/if}
 
-{#if file.section === 'skills'}
-	<Skills />
-{/if}
+	{#if file.section === 'skills'}
+		<Skills />
+	{/if}
+</div>
+
+<style>
+	.preview-container {
+		width: 100%;
+		height: 100%;
+		overflow: auto;
+		background: #1e1e1e;
+	}
+</style>
