@@ -14,10 +14,38 @@
 
 		monaco = await loader.init();
 
+		monaco.editor.defineTheme('cursor', {
+			base: 'vs-dark',
+			inherit: true,
+			rules: [
+				// Règles de coloration (syntax highlighting)
+				{ token: 'comment', foreground: '5c6370' }, // Gris ardoise doux
+				{ token: 'number', foreground: 'd19a66' }, // Marron/Orange (Chiffres)
+				{ token: 'string', foreground: '98c379' }, // Vert menthe doux (Strings)
+				{ token: 'keyword', foreground: 'c678dd' }, // Violet clair (Mots-clés: function, let, const, etc.)
+				{ token: 'variable', foreground: 'e06c75' }, // Rouge rosé (Variables non assignées)
+				{ token: 'identifier', foreground: '61afef' }, // Bleu ciel (Noms de fonction/classe)
+				{ token: 'type', foreground: '56b6c2' }, // Cyan
+				{ token: 'tag', foreground: 'e06c75' }, // Rouge rosé (Tags HTML)
+				{ token: 'attribute.name', foreground: 'd19a66' } // Marron/Orange (Noms d'attributs)
+			],
+			colors: {
+				// Couleurs de l'interface
+				'editor.foreground': '#abb2bf', // Texte général (Gris clair)
+				'editor.background': '#1A1B26', // Fond général de l'éditeur (Noir/Bleu Nuit)
+				'editorCursor.foreground': '#abb2bf', // Curseur
+				'editor.selectionBackground': '#3e4451', // Sélection de texte
+				'editorLineNumber.foreground': '#4b5263', // Numéros de ligne (Gris foncé)
+				'editorLineNumber.activeForeground': '#abb2bf', // Numéro de ligne actif
+				'editorWhitespace.foreground': '#3e4451', // Espaces blancs
+				'editorBracketMatch.border': '#61afef' // Bordure de la paire de crochets (Bleu)
+			}
+		});
+
 		editor = monaco.editor.create(editorContainer, {
 			value: sectionCodes[file.section],
 			language: 'javascript',
-			theme: 'vs-dark',
+			theme: 'cursor',
 			automaticLayout: true,
 			autoClosingQuotes: 'always',
 			autoClosingBrackets: 'always',

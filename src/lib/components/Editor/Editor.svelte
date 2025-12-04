@@ -7,7 +7,7 @@
 	import { file } from '$lib/stores/index.svelte';
 </script>
 
-<div class="bg-yellow-500 flex-1 flex flex-col shrink-0">
+<div class="flex-1 flex flex-col shrink-0">
 	<Pages />
 	<Routes />
 	{#if file.view === 'code'}

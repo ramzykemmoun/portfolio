@@ -39,7 +39,7 @@
 </script>
 
 <div class="flex overflow-hidden">
-	<div class="bg-blue-500 overflow-y-scroll flex flex-col" style="width: {sidebar.width}px;">
+	<div class="bg-surface-900 overflow-y-scroll flex flex-col" style="width: {sidebar.width}px;">
 		<Folders />
 	</div>
 </div>

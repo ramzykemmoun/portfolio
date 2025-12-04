@@ -1,4 +1,4 @@
 <script lang="ts">
 </script>
 
-<header class="bg-red-500 flex">Header</header>
+<header class="bg-surface-900 flex px-2">Header</header>

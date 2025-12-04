@@ -5,6 +5,6 @@ export const sidebar = $state({
 });
 
 export const file = $state({
-	view: 'code',
+	view: 'live',
 	explorer: 'about-me'
 });

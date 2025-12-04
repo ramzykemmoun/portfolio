@@ -16,9 +16,9 @@
 	];
 </script>
 
-<div class="bg-cyan-500 h-8 flex border border-cyan-600">
+<div class="bg-surface-900 h-8 flex border border-surface-950">
 	{#each routes as route}
-		<button class="flex items-center hover:bg-cyan-600 pl-2"
+		<button class="flex items-center hover:bg-surface-950 pl-2"
 			>{route.label}<ChevronRight class="w-5 h-5" /></button
 		>
 	{/each}

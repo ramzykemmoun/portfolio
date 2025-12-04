@@ -16,10 +16,10 @@
 	import { file } from '$lib/stores/index.svelte';
 </script>
 
-<div class="bg-cyan-500 h-8 flex border-r border-t border-cyan-600">
+<div class="bg-surface-900 h-8 flex border-r border-t border-surface-950">
 	{#each pages as page}
 		<button
-			class="flex items-center hover:bg-cyan-600 border-l border-r border-cyan-600 px-4"
+			class="flex items-center hover:bg-surface-950 border-l border-r border-surface-950 px-4"
 			onclick={() => {
 				file.view = page.id;
 			}}>{page.label}</button

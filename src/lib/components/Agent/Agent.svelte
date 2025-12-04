@@ -1,4 +1,4 @@
 <script lang="ts">
 </script>
 
-<div class="bg-blue-500 w-50">Agent</div>
+<div class="bg-surface-900 w-50">Agent</div>

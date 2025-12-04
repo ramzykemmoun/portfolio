@@ -21,17 +21,14 @@
 	};
 </script>
 
-<div class="bg-green-500 flex-col">
+<div class="bg-surface-900 flex-col">
 	<div class="flex flex-1 h-full">
 		<ul class="w-12 px-4 py-2">
 			{#each Object.entries(sections) as [key, section]}
 				<li class="flex items-center justify-center">
 					<button
 						type="button"
-						class={cn(
-							'btn-icon',
-							sidebar.section === key && sidebar.open && 'preset-filled-surface-500'
-						)}
+						class={cn('btn-icon', sidebar.section === key && sidebar.open && 'bg-surface-800')}
 						onclick={() => changeSection(key)}
 					>
 						<section.icon />
@@ -47,7 +44,7 @@
 				tabindex="0"
 				aria-label="Back"
 				onmousedown={startResize}
-				class="w-1 cursor-col-resize bg-blue-700 hover:bg-blue-900 shrink-0"
+				class="w-1 cursor-col-resize bg-surface-900 hover:bg-surface-700 shrink-0"
 			></div>
 		{/if}
 	</div>
