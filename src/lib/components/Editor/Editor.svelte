@@ -5,11 +5,10 @@
 	import Preview from './Preview.svelte';
 	import Terminal from '../Terminal/Terminal.svelte';
 	import { Terminal as TerminalIcon } from '@lucide/svelte';
-	import { file } from '$lib/stores/index.svelte';
+	import { file, terminal } from '$lib/stores/index.svelte';
 
 	let editorHeight = $state(70);
 	let isResizing = $state(false);
-	let terminalOpen = $state(true);
 	let containerRef: HTMLDivElement;
 
 	const startResize = (e: MouseEvent) => {
@@ -34,17 +33,17 @@
 	};
 
 	const closeTerminal = () => {
-		terminalOpen = false;
+		terminal.open = false;
 	};
 
 	const openTerminal = () => {
-		terminalOpen = true;
+		terminal.open = true;
 	};
 </script>
 
 <div class="editor-container" bind:this={containerRef}>
 	<!-- Editor Section -->
-	<div class="editor-section" style="height: {terminalOpen ? editorHeight + '%' : '100%'}">
+	<div class="editor-section" style="height: {terminal.open ? editorHeight + '%' : '100%'}">
 		<Pages />
 		<Routes />
 		<div class="editor-content">
@@ -57,7 +56,7 @@
 		</div>
 	</div>
 
-	{#if terminalOpen}
+	{#if terminal.open}
 		<!-- Resize Handle -->
 		<div
 			class="resize-handle"

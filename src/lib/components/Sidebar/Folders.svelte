@@ -2,6 +2,7 @@
 	import { ChevronRight, ChevronDown, File, Folder, FolderOpen } from '@lucide/svelte';
 	import { file } from '$lib/stores/index.svelte';
 	import { rootNode } from '$lib/data/explorer';
+	import { getFileIcon } from '$lib/utils/icons';
 
 	interface TreeNode {
 		id: string;
@@ -29,30 +30,6 @@
 		selectedFile = node.id;
 		if (node.isClickable) {
 			file.section = node.id;
-		}
-	};
-
-	const getFileIcon = (name: string): string => {
-		const ext = name.split('.').pop()?.toLowerCase();
-		switch (ext) {
-			case 'ts':
-			case 'tsx':
-				return '🔷';
-			case 'js':
-			case 'jsx':
-				return '🟨';
-			case 'svelte':
-				return '🔶';
-			case 'css':
-				return '🎨';
-			case 'json':
-				return '📋';
-			case 'md':
-				return '📝';
-			case 'html':
-				return '🌐';
-			default:
-				return '📄';
 		}
 	};
 </script>

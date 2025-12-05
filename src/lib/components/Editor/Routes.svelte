@@ -7,8 +7,8 @@
 		const section = file.section || 'aboutMe';
 		return [
 			{ label: 'src', icon: FolderOpen },
-			{ label: 'sections', icon: FolderOpen },
-			{ label: `${section}.svelte`, icon: null }
+			{ label: 'components', icon: FolderOpen },
+			{ label: `${section[0].toUpperCase() + section.slice(1)}.tsx`, icon: null }
 		];
 	};
 

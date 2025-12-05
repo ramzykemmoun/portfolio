@@ -6,5 +6,13 @@ export const sidebar = $state({
 
 export const file = $state({
 	view: 'live',
-	explorer: 'about-me'
+	section: 'aboutMe'
+});
+
+export const terminal = $state({
+	open: true
+});
+
+export const agent = $state({
+	open: false
 });

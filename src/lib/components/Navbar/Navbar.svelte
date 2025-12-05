@@ -13,20 +13,34 @@
 		Settings,
 		ChevronDown
 	} from '@lucide/svelte';
+	import SearchDialog from './SearchDialog.svelte';
+	let searchDialogOpen = $state<boolean>(false);
+
+	import { terminal } from '$lib/stores/index.svelte';
 
 	const menuItems = [
 		{ label: 'File', shortcut: '' },
 		{ label: 'Edit', shortcut: '' },
 		{ label: 'Selection', shortcut: '' },
-		{ label: 'View', shortcut: '' },
+		{
+			label: 'View',
+			shortcut: '',
+			action: () => {
+				searchDialogOpen = !searchDialogOpen;
+			}
+		},
 		{ label: 'Go', shortcut: '' },
 		{ label: 'Run', shortcut: '' },
-		{ label: 'Terminal', shortcut: '' },
+		{ label: 'Terminal', shortcut: '', action: () => (terminal.open = !terminal.open) },
 		{ label: 'Help', shortcut: '' }
 	];
 
 	let activeMenu = $state<string | null>(null);
 </script>
+
+{#if searchDialogOpen}
+	<SearchDialog bind:searchDialogOpen />
+{/if}
 
 <header class="vscode-titlebar">
 	<!-- App Icon -->
@@ -41,14 +55,16 @@
 				class="menu-item"
 				class:active={activeMenu === item.label}
 				onmouseenter={() => activeMenu && (activeMenu = item.label)}
-				onclick={() => (activeMenu = activeMenu === item.label ? null : item.label)}
+				onclick={() => {
+					activeMenu = activeMenu === item.label ? null : item.label;
+					item.action && item.action();
+				}}
 			>
 				{item.label}
 			</button>
 		{/each}
 	</nav>
 
-	<!-- Window Title (Draggable Area) -->
 	<div class="window-title">
 		<span class="title-text">Ramzy KEMMOUN - Portfolio</span>
 		<span class="title-separator">—</span>
@@ -58,7 +74,7 @@
 	<!-- Right Side Actions -->
 	<div class="right-actions">
 		<!-- Search -->
-		<button class="action-btn search-btn">
+		<button class="action-btn search-btn" onclick={() => (searchDialogOpen = true)}>
 			<Search class="w-4 h-4" />
 			<span>Search</span>
 			<span class="shortcut">Ctrl+Shift+F</span>
@@ -103,7 +119,7 @@
 	.vscode-titlebar {
 		display: flex;
 		align-items: center;
-		height: 30px;
+		height: 38px;
 		background: #1f1f1f;
 		border-bottom: 1px solid #252526;
 		font-family: 'Segoe UI', sans-serif;

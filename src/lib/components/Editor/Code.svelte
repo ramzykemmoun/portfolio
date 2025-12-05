@@ -9,6 +9,8 @@
 	let monaco: typeof import('monaco-editor') | undefined;
 	let editorContainer: HTMLElement;
 
+	$inspect(file);
+
 	onMount(async () => {
 		if (!browser) return;
 
@@ -42,7 +44,7 @@
 
 		editor = monaco.editor.create(editorContainer, {
 			value: sectionCodes[file.section],
-			language: 'javascript',
+			language: 'typescript',
 			theme: 'cursor',
 			automaticLayout: true,
 			autoClosingQuotes: 'always',

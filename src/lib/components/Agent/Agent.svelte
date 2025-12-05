@@ -13,7 +13,8 @@
 		PanelRightOpen
 	} from '@lucide/svelte';
 
-	let isOpen = $state(false);
+	import { agent } from '$lib/stores/index.svelte';
+
 	let inputValue = $state('');
 	let isTyping = $state(false);
 
@@ -34,7 +35,7 @@
 	]);
 
 	export const toggleAgent = () => {
-		isOpen = !isOpen;
+		agent.open = !agent.open;
 	};
 
 	const sendMessage = () => {
@@ -78,21 +79,21 @@
 	const suggestions = ['Explain this code', 'Fix the bug', 'Add comments', 'Optimize'];
 </script>
 
-<div class="agent-sidebar" class:open={isOpen}>
+<div class="agent-sidebar" class:open={agent.open}>
 	<!-- Toggle Button -->
 	<button
 		class="toggle-btn"
 		onclick={toggleAgent}
-		title={isOpen ? 'Close AI Panel' : 'Open AI Panel'}
+		title={agent.open ? 'Close AI Panel' : 'Open AI Panel'}
 	>
-		{#if isOpen}
+		{#if agent.open}
 			<PanelRightClose class="w-5 h-5" />
 		{:else}
 			<PanelRightOpen class="w-5 h-5" />
 		{/if}
 	</button>
 
-	{#if isOpen}
+	{#if agent.open}
 		<div class="agent-panel">
 			<!-- Header -->
 			<div class="agent-header">
