@@ -38,8 +38,8 @@ export const rootNode = {
 							isClickable: true
 						},
 						{
-							id: 'projects',
-							name: 'Projects.tsx',
+							id: 'education',
+							name: 'Education.tsx',
 							icon: 'Code',
 							isClickable: true
 						},
@@ -50,17 +50,24 @@ export const rootNode = {
 							isClickable: true
 						},
 						{
+							id: 'projects',
+							name: 'Projects.tsx',
+							icon: 'Code',
+							isClickable: true
+						},
+						{
+							id: 'testimonials',
+							name: 'Testimonials.tsx',
+							icon: 'Code',
+							isClickable: true
+						},
+						{
 							id: 'skills',
 							name: 'Skills.tsx',
 							icon: 'Code',
 							isClickable: true
 						},
-						{
-							id: 'education',
-							name: 'Education.tsx',
-							icon: 'Code',
-							isClickable: true
-						}
+
 					]
 				},
 

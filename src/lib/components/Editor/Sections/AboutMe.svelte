@@ -10,28 +10,10 @@
 		Terminal,
 		Coffee,
 		Code2,
-		Rocket
+		Rocket,
+		Instagram
 	} from '@lucide/svelte';
-
-	// Profile data
-	const profile = {
-		name: 'Ramzy KEMMOUN',
-		title: 'Full-Stack Developer',
-		location: 'France',
-		email: 'contact@ramzy.dev',
-		github: 'github.com/ramzykemmoun',
-		linkedin: 'linkedin.com/in/ramzykemmoun',
-		bio: `> Passionate developer who turns coffee into code.
-> Building the future, one commit at a time.
-> "First, solve the problem. Then, write the code."`,
-		stats: [
-			{ label: 'Years Coding', value: '5+' },
-			{ label: 'Projects Built', value: '30+' },
-			{ label: 'Coffee Consumed', value: '∞' },
-			{ label: 'Bugs Fixed', value: '9999' }
-		],
-		interests: ['Open Source', 'System Design', 'Cloud Architecture', 'UI/UX', 'DevOps']
-	};
+	import { aboutMeData } from '$lib/data/sections/about-me';
 
 	let mounted = $state(false);
 	let terminalText = $state('');
@@ -39,29 +21,17 @@
 	let currentLineIndex = $state(0);
 	let matrixCanvas: HTMLCanvasElement;
 
-	const terminalLines = [
-		'$ whoami',
-		`ramzy@dev:~$ ${profile.name}`,
-		'$ cat skills.txt',
-		'Loading skills... [████████████] 100%',
-		'> TypeScript, Svelte, React, Node.js',
-		'> Python, Go, Rust, PostgreSQL',
-		'$ echo $STATUS',
-		'> Ready to build something amazing 🚀'
-	];
-
 	onMount(() => {
 		if (!browser) return;
 
 		setTimeout(() => (mounted = true), 100);
 
-		// Terminal typing effect
 		let lineIndex = 0;
 		let charIndex = 0;
 
 		const typeWriter = () => {
-			if (lineIndex < terminalLines.length) {
-				const currentLine = terminalLines[lineIndex];
+			if (lineIndex < aboutMeData.terminalLines.length) {
+				const currentLine = aboutMeData.terminalLines[lineIndex];
 				if (charIndex < currentLine.length) {
 					terminalText += currentLine[charIndex];
 					charIndex++;
@@ -78,12 +48,10 @@
 
 		setTimeout(typeWriter, 800);
 
-		// Cursor blink
 		const cursorInterval = setInterval(() => {
 			showCursor = !showCursor;
 		}, 530);
 
-		// Matrix rain effect
 		initMatrix();
 
 		return () => clearInterval(cursorInterval);
@@ -133,23 +101,19 @@
 	<!-- Matrix Background -->
 	<canvas bind:this={matrixCanvas} class="matrix-bg"></canvas>
 
-	<!-- Scanlines -->
 	<div class="scanlines"></div>
 
-	<!-- Glitch overlay -->
 	<div class="glitch-overlay"></div>
 
-	<!-- Main Content -->
 	<div class="content-wrapper" class:mounted>
-		<!-- Header Section -->
 		<header class="header-section">
 			<div class="photo-container">
 				<div class="photo-frame">
 					<div class="photo-glitch" data-text="RK">
 						<img
-							src="/images/profile.jpg"
+							src={aboutMeData.profilePicture}
 							alt="Ramzy KEMMOUN"
-							class="profile-photo"
+							class="aboutMeData-photo"
 							onerror={(e) => {
 								const target = e.currentTarget as HTMLImageElement;
 								target.style.display = 'none';
@@ -170,30 +134,37 @@
 			</div>
 
 			<div class="info-section">
-				<div class="name-glitch" data-text={profile.name}>
-					<h1>{profile.name}</h1>
+				<div class="name-glitch" data-text={aboutMeData.fullName}>
+					<h1>{aboutMeData.fullName}</h1>
 				</div>
-				<p class="title">&lt;{profile.title} /&gt;</p>
+				<p class="title">&lt;{aboutMeData.title} /&gt;</p>
 
 				<div class="contact-links">
 					<a href="/" class="contact-item">
 						<MapPin class="w-4 h-4" />
-						<span>{profile.location}</span>
+						<span>{aboutMeData.location}</span>
 					</a>
-					<a href="mailto:{profile.email}" class="contact-item">
+					<a href="mailto:{aboutMeData.email}" class="contact-item">
 						<Mail class="w-4 h-4" />
-						<span>{profile.email}</span>
+						<span>{aboutMeData.email}</span>
 					</a>
-					<a href="https://{profile.github}" target="_blank" class="contact-item">
-						<Github class="w-4 h-4" />
-						<span>GitHub</span>
-						<ExternalLink class="w-3 h-3" />
-					</a>
-					<a href="https://{profile.linkedin}" target="_blank" class="contact-item">
-						<Linkedin class="w-4 h-4" />
-						<span>LinkedIn</span>
-						<ExternalLink class="w-3 h-3" />
-					</a>
+					<div class="flex gap-4">
+						<a href={aboutMeData.github} target="_blank" class="contact-item">
+							<Github class="w-4 h-4" />
+							<span>GitHub</span>
+							<ExternalLink class="w-3 h-3" />
+						</a>
+						<a href={aboutMeData.linkedin} target="_blank" class="contact-item">
+							<Linkedin class="w-4 h-4" />
+							<span>LinkedIn</span>
+							<ExternalLink class="w-3 h-3" />
+						</a>
+						<a href={aboutMeData.instagram} target="_blank" class="contact-item">
+							<Instagram class="w-4 h-4" />
+							<span>Instagram</span>
+							<ExternalLink class="w-3 h-3" />
+						</a>
+					</div>
 				</div>
 			</div>
 		</header>
@@ -220,7 +191,7 @@
 
 		<!-- Stats Grid -->
 		<section class="stats-grid">
-			{#each profile.stats as stat, i}
+			{#each aboutMeData.stats as stat, i}
 				<div class="stat-card" style="--delay: {i * 100}ms">
 					<span class="stat-value">{stat.value}</span>
 					<span class="stat-label">{stat.label}</span>
@@ -229,37 +200,29 @@
 			{/each}
 		</section>
 
-		<!-- Bio Section -->
 		<section class="bio-section">
 			<div class="section-header">
 				<Code2 class="w-5 h-5" />
 				<span>README.md</span>
 			</div>
 			<div class="bio-content">
-				<pre>{profile.bio}</pre>
+				<pre>{aboutMeData.bio}</pre>
 			</div>
 		</section>
 
-		<!-- Interests -->
 		<section class="interests-section">
 			<div class="section-header">
 				<Rocket class="w-5 h-5" />
 				<span>interests.json</span>
 			</div>
 			<div class="interests-grid">
-				{#each profile.interests as interest, i}
+				{#each aboutMeData.interests as interest, i}
 					<span class="interest-tag" style="--delay: {i * 80}ms">
 						#{interest.replace(/\s+/g, '')}
 					</span>
 				{/each}
 			</div>
 		</section>
-
-		<!-- Footer Quote -->
-		<footer class="footer-quote">
-			<Coffee class="w-5 h-5" />
-			<span>/* Powered by caffeine and curiosity */</span>
-		</footer>
 	</div>
 </div>
 
@@ -393,7 +356,7 @@
 		border-radius: 4px;
 	}
 
-	.profile-photo {
+	.aboutMeData-photo {
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
@@ -401,7 +364,7 @@
 		transition: filter 0.3s ease;
 	}
 
-	.photo-frame:hover .profile-photo {
+	.photo-frame:hover .aboutMeData-photo {
 		filter: grayscale(0%) contrast(1);
 	}
 
@@ -760,19 +723,6 @@
 		box-shadow: 0 5px 20px rgba(0, 255, 0, 0.2);
 	}
 
-	/* Footer */
-	.footer-quote {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		gap: 0.75rem;
-		padding: 1.5rem;
-		color: #444;
-		font-size: 0.85rem;
-		font-style: italic;
-	}
-
-	/* Responsive */
 	@media (max-width: 768px) {
 		.header-section {
 			flex-direction: column;

@@ -3,7 +3,7 @@
 	import { onMount, onDestroy } from 'svelte';
 	import { sidebar, file } from '$lib/stores/index.svelte';
 	import { browser } from '$app/environment';
-	import { sectionCodes } from '$lib/data/codes';
+	import { sectionCodes } from '$lib/data/sections';
 
 	let editor: monaco.editor.IStandaloneCodeEditor | undefined;
 	let monaco: typeof import('monaco-editor') | undefined;

@@ -12,90 +12,7 @@
 		Target,
 		Crown
 	} from '@lucide/svelte';
-
-	interface Experience {
-		id: number;
-		title: string;
-		company: string;
-		location: string;
-		period: string;
-		duration: string;
-		description: string;
-		achievements: string[];
-		rank: 'general' | 'commander' | 'captain' | 'lieutenant';
-		technologies: string[];
-	}
-
-	const experiences: Experience[] = [
-		{
-			id: 1,
-			title: 'Lead Software Architect',
-			company: 'TechCorp International',
-			location: 'Paris, France',
-			period: '2023 - Present',
-			duration: '2 years',
-			description:
-				'Leading a team of 12 engineers in developing next-generation cloud infrastructure and microservices architecture.',
-			achievements: [
-				'Reduced system latency by 60%',
-				'Architected multi-region deployment',
-				'Led migration to Kubernetes'
-			],
-			rank: 'general',
-			technologies: ['Go', 'Kubernetes', 'AWS', 'Terraform']
-		},
-		{
-			id: 2,
-			title: 'Senior Full-Stack Developer',
-			company: 'Innovation Labs',
-			location: 'Lyon, France',
-			period: '2021 - 2023',
-			duration: '2 years',
-			description:
-				'Developed high-performance web applications and led the frontend architecture modernization initiative.',
-			achievements: [
-				'Built real-time analytics dashboard',
-				'Implemented CI/CD pipeline',
-				'Mentored 5 junior developers'
-			],
-			rank: 'commander',
-			technologies: ['React', 'Node.js', 'PostgreSQL', 'Docker']
-		},
-		{
-			id: 3,
-			title: 'Full-Stack Developer',
-			company: 'StartupVenture',
-			location: 'Marseille, France',
-			period: '2019 - 2021',
-			duration: '2 years',
-			description:
-				'Core member of the founding engineering team, building the product from ground zero to 100K+ users.',
-			achievements: [
-				'Developed MVP in 3 months',
-				'Scaled to 100K users',
-				'Integrated payment systems'
-			],
-			rank: 'captain',
-			technologies: ['Vue.js', 'Python', 'MongoDB', 'Redis']
-		},
-		{
-			id: 4,
-			title: 'Junior Developer',
-			company: 'Digital Agency',
-			location: 'Toulouse, France',
-			period: '2018 - 2019',
-			duration: '1 year',
-			description:
-				'Started my professional journey building client websites and learning enterprise development practices.',
-			achievements: [
-				'Delivered 15+ client projects',
-				'Learned agile methodologies',
-				'First open source contribution'
-			],
-			rank: 'lieutenant',
-			technologies: ['JavaScript', 'PHP', 'MySQL', 'WordPress']
-		}
-	];
+	import { experiencesData } from '$lib/data/sections/experience';
 
 	let mounted = $state(false);
 	let activeExp = $state<number | null>(null);
@@ -121,13 +38,13 @@
 	const getRankTitle = (rank: string) => {
 		switch (rank) {
 			case 'general':
-				return '大将 (Taishō)';
+				return '大将';
 			case 'commander':
-				return '中将 (Chūjō)';
+				return '中将';
 			case 'captain':
-				return '大尉 (Taii)';
+				return '大尉';
 			default:
-				return '少尉 (Shōi)';
+				return '少尉';
 		}
 	};
 </script>
@@ -150,8 +67,7 @@
 			<Swords class="w-8 h-8" />
 		</div>
 		<div class="header-kanji">戦歴</div>
-		<h1 class="header-title">Battle Records</h1>
-		<p class="header-subtitle">Experience • 経験</p>
+		<h1 class="header-title">Experiences</h1>
 		<div class="header-divider">
 			<span></span>
 			<Target class="w-4 h-4" />
@@ -165,7 +81,7 @@
 			<div class="timeline-glow"></div>
 		</div>
 
-		{#each experiences as exp, index}
+		{#each experiencesData as exp, index}
 			<article
 				class="experience-card"
 				class:active={activeExp === exp.id}
@@ -175,7 +91,6 @@
 				onmouseenter={() => (activeExp = exp.id)}
 				onmouseleave={() => (activeExp = null)}
 			>
-				<!-- Timeline Node -->
 				<div class="timeline-node">
 					<div class="node-ring"></div>
 					<div class="node-core">
@@ -219,7 +134,6 @@
 							<Calendar class="w-4 h-4" />
 							<span>{exp.period}</span>
 						</div>
-						<div class="meta-duration">{exp.duration}</div>
 					</div>
 
 					<!-- Description -->
@@ -254,14 +168,6 @@
 			</article>
 		{/each}
 	</div>
-
-	<!-- Footer Banner -->
-	<footer class="footer-banner" class:mounted>
-		<div class="banner-content">
-			<span class="banner-kanji">武士道</span>
-			<span class="banner-text">The way of the warrior</span>
-		</div>
-	</footer>
 </div>
 
 <style>
@@ -660,25 +566,12 @@
 		font-size: 0.85rem;
 	}
 
-	.meta-duration {
-		margin-left: auto;
-		padding: 0.25rem 0.75rem;
-		background: rgba(59, 130, 246, 0.15);
-		border-radius: 100px;
-		color: #93c5fd;
-		font-size: 0.8rem;
-		font-weight: 500;
-	}
-
-	/* Description */
 	.card-desc {
 		color: rgba(255, 255, 255, 0.7);
 		font-size: 0.9rem;
 		line-height: 1.6;
 		margin-bottom: 1rem;
 	}
-
-	/* Achievements */
 	.achievements {
 		margin-bottom: 1rem;
 	}

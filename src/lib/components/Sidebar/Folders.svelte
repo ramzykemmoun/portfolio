@@ -12,9 +12,9 @@
 		children?: TreeNode[];
 	}
 
-	let expandedFolders = $state<Set<string>>(new Set(['root', 'src', 'src/sections', 'public']));
+	let expandedFolders = $state<Set<string>>(new Set(['root', 'src', 'src/components', 'public']));
 
-	let selectedFile = $state<string | null>(null);
+	let selectedFile = $state<string | null>('aboutMe');
 
 	const toggleFolder = (id: string) => {
 		const newSet = new Set(expandedFolders);

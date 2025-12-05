@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { GraduationCap, Calendar, MapPin, Award, BookOpen, Star } from '@lucide/svelte';
 	import { onMount } from 'svelte';
-	import { educationData } from '$lib/data/codes/education';
+	import { educationData } from '$lib/data/sections/education';
 	let mounted = $state(false);
 	let activeCard = $state<string | null>(null);
 	let mouseX = $state(0);
@@ -59,7 +59,6 @@
 </script>
 
 <div class="education-container">
-	<!-- Animated Background -->
 	<div class="background-effects">
 		<div class="gradient-orb orb-1"></div>
 		<div class="gradient-orb orb-2"></div>
@@ -67,16 +66,13 @@
 		<div class="grid-overlay"></div>
 	</div>
 
-	<!-- Header -->
 	<header class="education-header" class:mounted>
 		<div class="header-icon">
 			<GraduationCap class="w-10 h-10" />
 		</div>
 		<h1 class="header-title">Education Journey</h1>
-		<p class="header-subtitle">My academic path from high school to doctoral research</p>
 	</header>
 
-	<!-- Timeline -->
 	<div class="timeline">
 		<div class="timeline-line"></div>
 
@@ -131,26 +127,34 @@
 						<span>{edu.location}</span>
 					</div>
 
-					<!-- Description -->
 					<p class="description">{edu.description}</p>
 
-					<!-- Achievements -->
-					{#if edu.achievements && edu.achievements.length > 0}
-						<div class="achievements">
+					{#if edu.coreModules && edu.coreModules.length > 0}
+						<div class="core-modules">
 							<div class="achievements-header">
-								<Award class="w-4 h-4" />
-								<span>Achievements</span>
+								<BookOpen class="w-4 h-4" /> <span>Core Modules</span>
 							</div>
-							<div class="achievements-list">
-								{#each edu.achievements as achievement}
-									<div class="achievement-tag">
-										<Star class="w-3 h-3" />
-										<span>{achievement}</span>
+							<div class="core-modules-list">
+								{#each edu.coreModules as module}
+									<div class="core-module-tag">
+										<span>{module}</span>
 									</div>
 								{/each}
 							</div>
 						</div>
 					{/if}
+					<div class="achievements">
+						<div class="achievements-header">
+							<Award class="w-4 h-4" />
+							<span>{edu.thesis ? 'Thesis' : edu.grad ? 'Final Grad' : ''}</span>
+						</div>
+						<div class="achievements-list">
+							<div class="achievement-tag">
+								<Star class="w-3 h-3" />
+								<span>{edu.thesis || edu.grad || ''}</span>
+							</div>
+						</div>
+					</div>
 
 					<!-- 3D Floating Elements -->
 					<div class="floating-elements">
@@ -542,7 +546,25 @@
 		font-weight: 500;
 	}
 
-	/* Floating Elements */
+	.core-modules {
+		margin-top: 1rem;
+		padding-top: 1rem;
+		border-top: 1px solid rgba(255, 255, 255, 0.1);
+	}
+
+	.core-modules-list {
+		margin-top: 0.75rem;
+	}
+
+	.core-module-tag {
+		background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(96, 165, 250, 0.1));
+		border: 1px solid rgba(59, 130, 246, 0.3);
+		color: #60a5fa;
+		padding: 0 8px;
+		margin: 8px;
+		border-radius: 8px;
+	}
+
 	.floating-elements {
 		position: absolute;
 		inset: 0;

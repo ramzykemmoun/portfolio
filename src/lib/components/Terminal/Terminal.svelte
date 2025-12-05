@@ -34,7 +34,7 @@
 	let commandHistory = $state<string[]>([]);
 	let historyIndex = $state(-1);
 	let inputRef: HTMLInputElement;
-	let terminalRef: HTMLDivElement;
+	let terminalRef: HTMLButtonElement;
 
 	const commands: Record<string, () => string[]> = {
 		help: () => [
@@ -195,8 +195,7 @@
 		</div>
 	</div>
 
-	<!-- Terminal Body -->
-	<div
+	<button
 		class="terminal-body"
 		bind:this={terminalRef}
 		onclick={focusInput}
@@ -227,7 +226,7 @@
 				autocomplete="off"
 			/>
 		</div>
-	</div>
+	</button>
 </div>
 
 <style>
@@ -280,10 +279,6 @@
 	.tab-close {
 		opacity: 0;
 		transition: opacity 0.1s ease;
-	}
-
-	.tab:hover .tab-close {
-		opacity: 0.7;
 	}
 
 	.tab-add {

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Explorer from './Explorer.svelte';
 	import { sidebar } from '$lib/stores/index.svelte';
-	import { sections } from '$lib/data/index.ts';
+	import { sections } from '$lib/data/index';
 
 	let isResizing = $state(false);
 
