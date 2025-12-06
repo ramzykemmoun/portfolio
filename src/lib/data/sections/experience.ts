@@ -20,22 +20,6 @@ export const experiencesData = [
 	},
 	{
 		id: 2,
-		title: 'AI Intern',
-		company: 'Zad AI',
-		location: 'Kouba, Algiers, Algeria',
-		period: 'Nov 2024 - Jul 2025',
-		description:
-			'Developed high-performance web applications and led the frontend architecture modernization initiative.',
-		achievements: [
-			'Built real-time analytics dashboard',
-			'Implemented CI/CD pipeline',
-			'Mentored 5 junior developers'
-		],
-		rank: 'commander',
-		technologies: ['React', 'Node.js', 'PostgreSQL', 'Docker']
-	},
-	{
-		id: 3,
 		title: 'Back-end Developer',
 		company: 'SlickPay',
 		location: 'Marseille, France',
@@ -50,6 +34,23 @@ export const experiencesData = [
 		rank: 'captain',
 		technologies: ['Vue.js', 'Python', 'MongoDB', 'Redis']
 	},
+	{
+		id: 3,
+		title: 'AI Intern',
+		company: 'Zad AI',
+		location: 'Kouba, Algiers, Algeria',
+		period: 'Nov 2024 - Jul 2025',
+		description:
+			'Developed high-performance web applications and led the frontend architecture modernization initiative.',
+		achievements: [
+			'Built real-time analytics dashboard',
+			'Implemented CI/CD pipeline',
+			'Mentored 5 junior developers'
+		],
+		rank: 'commander',
+		technologies: ['React', 'Node.js', 'PostgreSQL', 'Docker']
+	},
+
 	{
 		id: 4,
 		title: 'Fullstack JS Instructor',

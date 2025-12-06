@@ -6,6 +6,7 @@
 	import Experiences from './Sections/Experiences.svelte';
 	import Projects from './Sections/Projects.svelte';
 	import Skills from './Sections/Skills.svelte';
+	import Testimonials from './Sections/Testimonials.svelte';
 
 	$inspect(file.section);
 </script>
@@ -25,6 +26,10 @@
 
 	{#if file.section === 'projects'}
 		<Projects />
+	{/if}
+
+	{#if file.section === 'testimonials'}
+		<Testimonials />
 	{/if}
 
 	{#if file.section === 'skills'}

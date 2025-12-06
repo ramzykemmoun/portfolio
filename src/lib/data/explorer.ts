@@ -74,12 +74,13 @@ export const rootNode = {
 				{ id: 'src/global.css', name: 'global.css', icon: 'Settings' }
 			]
 		},
-		{ id: 'package.json', name: 'package.json', icon: 'Package' },
-		{ id: 'tsconfig.json', name: 'tsconfig.json', icon: 'Package' },
-		{ id: 'vite.config.ts', name: 'vite.config.ts', icon: 'Package' },
-		{ id: 'README.md', name: 'README.md', icon: 'Book' },
-		{ id: 'tailwind.config.js', name: 'tailwind.config.js', icon: 'Settings' },
-		{ id: 'postcss.config.js', name: 'postcss.config.js', icon: 'Settings' },
-		{ id: 'package-lock.json', name: 'package-lock.json', icon: 'Package' }
+		{ id: 'gitignore', name: '.gitignore', icon: 'Package' },
+		{ id: 'packageJson', name: 'package.json', icon: 'Package' },
+		{ id: 'tsconfigJson', name: 'tsconfig.json', icon: 'Package' },
+		{ id: 'nextConfig', name: 'next.config.ts', icon: 'Package' },
+		{ id: 'postcssConfig', name: 'postcss.config.mjs', icon: 'Package' },
+		{ id: 'readme', name: 'README.md', icon: 'Book' },
+		{ id: 'tailwindConfig', name: 'tailwind.config.js', icon: 'Settings' },
+		{ id: 'packageLockJson', name: 'package-lock.json', icon: 'Package' }
 	]
 };

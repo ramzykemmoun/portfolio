@@ -144,15 +144,14 @@
 		const opacity = Math.abs(adjustedDiff) > 2 ? 0 : 1 - Math.abs(adjustedDiff) * 0.25;
 
 		return `
-			transform: translateX(${translateX}px) translateZ(${translateZ}px) rotateY(${rotateY}deg) scale(${scale});
-			opacity: ${opacity};
-			z-index: ${100 - Math.abs(adjustedDiff)};
-		`;
+            transform: translateX(${translateX}px) translateZ(${translateZ}px) rotateY(${rotateY}deg) scale(${scale});
+            opacity: ${opacity};
+            z-index: ${100 - Math.abs(adjustedDiff)};
+        `;
 	};
 </script>
 
-<div class="projects-container">
-	<!-- Animated Background -->
+<div class="projects-container relative">
 	<div class="bg-effects">
 		<div
 			class="grid-floor"
@@ -171,7 +170,6 @@
 		<div class="scan-line"></div>
 	</div>
 
-	<!-- Header -->
 	<header class="header" class:mounted>
 		<div class="header-badge">
 			<Layers class="w-4 h-4" />
@@ -183,7 +181,6 @@
 		<p class="header-desc">Hover to explore • Click for details</p>
 	</header>
 
-	<!-- Carousel -->
 	<div class="carousel-wrapper" class:mounted>
 		<div class="carousel" bind:this={carouselRef}>
 			{#each projects as project, index}
@@ -204,13 +201,10 @@
 					role="button"
 					tabindex="0"
 				>
-					<!-- Card Glow -->
 					<div class="card-glow"></div>
 
-					<!-- Card Border Animation -->
 					<div class="card-border"></div>
 
-					<!-- Image Section -->
 					<div class="card-image">
 						<div class="image-placeholder">
 							<Zap class="w-12 h-12" />
@@ -225,19 +219,16 @@
 						{/if}
 					</div>
 
-					<!-- Content -->
 					<div class="card-content">
 						<h3 class="card-title">{project.title}</h3>
 						<p class="card-desc">{project.description}</p>
 
-						<!-- Tags -->
 						<div class="card-tags">
 							{#each project.tags as tag}
 								<span class="tag">{tag}</span>
 							{/each}
 						</div>
 
-						<!-- Links -->
 						<div class="card-links">
 							{#if project.github}
 								<a href={project.github} target="_blank" rel="noopener" class="card-link">
@@ -254,7 +245,6 @@
 						</div>
 					</div>
 
-					<!-- Hover Effects -->
 					<div class="card-shine"></div>
 					<div class="card-particles">
 						{#each Array(6) as _, i}
@@ -265,7 +255,6 @@
 			{/each}
 		</div>
 
-		<!-- Navigation -->
 		<button class="nav-btn prev" onclick={prevSlide} aria-label="Previous project">
 			<ChevronLeft class="w-6 h-6" />
 		</button>
@@ -273,7 +262,6 @@
 			<ChevronRight class="w-6 h-6" />
 		</button>
 
-		<!-- Indicators -->
 		<div class="indicators">
 			{#each projects as project, index}
 				<button
@@ -288,7 +276,6 @@
 		</div>
 	</div>
 
-	<!-- Project Counter -->
 	<div class="counter" class:mounted>
 		<span class="current">{String(currentIndex + 1).padStart(2, '0')}</span>
 		<span class="separator">/</span>
@@ -297,17 +284,19 @@
 </div>
 
 <style>
+	/* New Blue Accent Color: #007BFF (RGB: 0, 123, 255) */
 	.projects-container {
 		position: relative;
 		min-height: 100%;
-		background: linear-gradient(135deg, #0a0000 0%, #1a0505 50%, #0f0000 100%);
+		/* Adjusted background to a dark blue/black theme */
+		background: linear-gradient(135deg, #00001a 0%, #00052a 50%, #00000f 100%);
 		overflow: hidden;
 		padding: 2rem;
 	}
 
 	/* Background Effects */
 	.bg-effects {
-		position: fixed;
+		position: absolute;
 		inset: 0;
 		pointer-events: none;
 		overflow: hidden;
@@ -320,8 +309,9 @@
 		right: -50%;
 		height: 200%;
 		background-image:
-			linear-gradient(rgba(255, 0, 50, 0.1) 1px, transparent 1px),
-			linear-gradient(90deg, rgba(255, 0, 50, 0.1) 1px, transparent 1px);
+            /* Changed grid lines to a blue tone */
+			linear-gradient(rgba(0, 123, 255, 0.1) 1px, transparent 1px),
+			linear-gradient(90deg, rgba(0, 123, 255, 0.1) 1px, transparent 1px);
 		background-size: 60px 60px;
 		transform-origin: center;
 		animation: gridPulse 4s ease-in-out infinite;
@@ -344,7 +334,8 @@
 		transform: translateX(-50%);
 		width: 800px;
 		height: 600px;
-		background: radial-gradient(ellipse, rgba(255, 0, 50, 0.15) 0%, transparent 60%);
+		/* Changed glow to blue */
+		background: radial-gradient(ellipse, rgba(0, 123, 255, 0.15) 0%, transparent 60%);
 		filter: blur(60px);
 		animation: glowPulse 6s ease-in-out infinite;
 	}
@@ -372,11 +363,12 @@
 		top: calc(var(--y) * 1%);
 		width: calc(var(--size) * 1px);
 		height: calc(var(--size) * 1px);
-		background: #ff0032;
+		/* Changed particle color to blue */
+		background: #007bff;
 		border-radius: 50%;
 		box-shadow:
-			0 0 10px #ff0032,
-			0 0 20px #ff0032;
+			0 0 10px #007bff,
+			0 0 20px #007bff;
 		animation: particleFloat var(--duration) ease-in-out infinite;
 		animation-delay: calc(var(--i) * -0.5s);
 	}
@@ -407,7 +399,8 @@
 		left: 0;
 		right: 0;
 		height: 4px;
-		background: linear-gradient(90deg, transparent, rgba(255, 0, 50, 0.8), transparent);
+		/* Changed scan line color to blue */
+		background: linear-gradient(90deg, transparent, rgba(0, 123, 255, 0.8), transparent);
 		animation: scanMove 3s linear infinite;
 	}
 
@@ -441,10 +434,11 @@
 		align-items: center;
 		gap: 0.5rem;
 		padding: 0.5rem 1rem;
-		background: rgba(255, 0, 50, 0.1);
-		border: 1px solid rgba(255, 0, 50, 0.3);
+		/* Changed badge colors to blue */
+		background: rgba(0, 123, 255, 0.1);
+		border: 1px solid rgba(0, 123, 255, 0.3);
+		color: #66aaff;
 		border-radius: 100px;
-		color: #ff3366;
 		font-size: 0.85rem;
 		margin-bottom: 1rem;
 	}
@@ -457,8 +451,9 @@
 	}
 
 	.title-accent {
-		color: #ff0032;
-		text-shadow: 0 0 30px rgba(255, 0, 50, 0.5);
+		/* Changed accent text color to blue */
+		color: #007bff;
+		text-shadow: 0 0 30px rgba(0, 123, 255, 0.5);
 	}
 
 	.header-desc {
@@ -499,8 +494,10 @@
 	.project-card {
 		position: absolute;
 		width: 320px;
-		background: rgba(20, 0, 5, 0.9);
-		border: 1px solid rgba(255, 0, 50, 0.2);
+		/* Adjusted card background to a dark blue tone */
+		background: rgba(0, 5, 20, 0.9);
+		/* Changed border color to blue */
+		border: 1px solid rgba(0, 123, 255, 0.2);
 		border-radius: 20px;
 		overflow: hidden;
 		cursor: pointer;
@@ -509,22 +506,25 @@
 	}
 
 	.project-card.hovered {
-		border-color: rgba(255, 0, 50, 0.6);
+		/* Changed hover border color to blue */
+		border-color: rgba(0, 123, 255, 0.6);
 	}
 
 	.project-card.active {
-		border-color: rgba(255, 0, 50, 0.4);
+		/* Changed active border color to blue */
+		border-color: rgba(0, 123, 255, 0.4);
 	}
 
 	/* Card Glow */
 	.card-glow {
 		position: absolute;
 		inset: -2px;
+		/* Changed card glow to blue */
 		background: linear-gradient(
 			135deg,
-			rgba(255, 0, 50, 0.4),
+			rgba(0, 123, 255, 0.4),
 			transparent,
-			rgba(255, 100, 100, 0.3)
+			rgba(100, 150, 255, 0.3)
 		);
 		border-radius: 22px;
 		opacity: 0;
@@ -543,7 +543,8 @@
 		inset: 0;
 		border-radius: 20px;
 		padding: 2px;
-		background: linear-gradient(135deg, #ff0032, #ff6644, #ff0032, #ff3366);
+		/* Changed border animation gradient to blue tones */
+		background: linear-gradient(135deg, #007bff, #44aaff, #007bff, #3366ff);
 		background-size: 300% 300%;
 		-webkit-mask:
 			linear-gradient(#fff 0 0) content-box,
@@ -575,7 +576,8 @@
 	.card-image {
 		position: relative;
 		height: 180px;
-		background: linear-gradient(135deg, #1a0505 0%, #2a0a0a 100%);
+		/* Adjusted image background to a dark blue tone */
+		background: linear-gradient(135deg, #0a0a1a 0%, #1a1a2a 100%);
 		overflow: hidden;
 	}
 
@@ -587,7 +589,8 @@
 		align-items: center;
 		justify-content: center;
 		gap: 0.5rem;
-		color: rgba(255, 0, 50, 0.3);
+		/* Changed placeholder icon color to blue */
+		color: rgba(0, 123, 255, 0.3);
 		font-size: 0.9rem;
 		font-weight: 600;
 	}
@@ -595,7 +598,8 @@
 	.image-overlay {
 		position: absolute;
 		inset: 0;
-		background: linear-gradient(180deg, transparent 0%, rgba(20, 0, 5, 0.9) 100%);
+		/* Adjusted image overlay gradient to dark blue */
+		background: linear-gradient(180deg, transparent 0%, rgba(0, 5, 20, 0.9) 100%);
 	}
 
 	.featured-badge {
@@ -606,14 +610,15 @@
 		align-items: center;
 		gap: 0.3rem;
 		padding: 0.3rem 0.6rem;
-		background: linear-gradient(135deg, #ff0032, #ff3366);
+		/* Changed featured badge background and shadow to blue */
+		background: linear-gradient(135deg, #007bff, #3366ff);
 		border-radius: 100px;
 		color: white;
 		font-size: 0.7rem;
 		font-weight: 600;
 		text-transform: uppercase;
 		letter-spacing: 0.5px;
-		box-shadow: 0 4px 15px rgba(255, 0, 50, 0.4);
+		box-shadow: 0 4px 15px rgba(0, 123, 255, 0.4);
 	}
 
 	/* Card Content */
@@ -649,10 +654,11 @@
 
 	.tag {
 		padding: 0.25rem 0.6rem;
-		background: rgba(255, 0, 50, 0.1);
-		border: 1px solid rgba(255, 0, 50, 0.2);
+		/* Changed tag colors to blue */
+		background: rgba(0, 123, 255, 0.1);
+		border: 1px solid rgba(0, 123, 255, 0.2);
 		border-radius: 4px;
-		color: #ff6666;
+		color: #66aaff;
 		font-size: 0.7rem;
 		font-weight: 500;
 	}
@@ -683,15 +689,16 @@
 	}
 
 	.card-link.primary {
-		background: linear-gradient(135deg, rgba(255, 0, 50, 0.3), rgba(255, 50, 80, 0.2));
-		border-color: rgba(255, 0, 50, 0.3);
-		color: #ff6666;
+		/* Changed primary link button to blue */
+		background: linear-gradient(135deg, rgba(0, 123, 255, 0.3), rgba(50, 150, 255, 0.2));
+		border-color: rgba(0, 123, 255, 0.3);
+		color: #66aaff;
 	}
 
 	.card-link.primary:hover {
-		background: linear-gradient(135deg, rgba(255, 0, 50, 0.5), rgba(255, 50, 80, 0.3));
+		background: linear-gradient(135deg, rgba(0, 123, 255, 0.5), rgba(50, 150, 255, 0.3));
 		color: white;
-		box-shadow: 0 5px 20px rgba(255, 0, 50, 0.3);
+		box-shadow: 0 5px 20px rgba(0, 123, 255, 0.3);
 	}
 
 	/* Card Shine */
@@ -733,10 +740,11 @@
 		position: absolute;
 		width: 4px;
 		height: 4px;
-		background: #ff0032;
+		/* Changed card particle color to blue */
+		background: #007bff;
 		border-radius: 50%;
 		opacity: 0;
-		box-shadow: 0 0 10px #ff0032;
+		box-shadow: 0 0 10px #007bff;
 	}
 
 	.project-card.hovered .card-particles span {
@@ -791,10 +799,11 @@
 		transform: translateY(-50%);
 		width: 50px;
 		height: 50px;
-		background: rgba(255, 0, 50, 0.1);
-		border: 1px solid rgba(255, 0, 50, 0.3);
+		/* Changed nav button colors to blue */
+		background: rgba(0, 123, 255, 0.1);
+		border: 1px solid rgba(0, 123, 255, 0.3);
+		color: #66aaff;
 		border-radius: 50%;
-		color: #ff3366;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -804,10 +813,11 @@
 	}
 
 	.nav-btn:hover {
-		background: rgba(255, 0, 50, 0.2);
-		border-color: #ff0032;
+		/* Changed nav button hover to blue */
+		background: rgba(0, 123, 255, 0.2);
+		border-color: #007bff;
 		color: white;
-		box-shadow: 0 0 30px rgba(255, 0, 50, 0.4);
+		box-shadow: 0 0 30px rgba(0, 123, 255, 0.4);
 		transform: translateY(-50%) scale(1.1);
 	}
 
@@ -844,14 +854,16 @@
 	}
 
 	.indicator.active {
-		background: rgba(255, 0, 50, 0.3);
+		/* Changed active indicator background to blue */
+		background: rgba(0, 123, 255, 0.3);
 	}
 
 	.indicator-fill {
 		display: block;
 		width: 0;
 		height: 100%;
-		background: linear-gradient(90deg, #ff0032, #ff3366);
+		/* Changed indicator fill gradient to blue */
+		background: linear-gradient(90deg, #007bff, #3366ff);
 		border-radius: 2px;
 		transition: width 0.3s ease;
 	}
@@ -892,8 +904,9 @@
 	.current {
 		font-size: 3rem;
 		font-weight: 700;
-		color: #ff0032;
-		text-shadow: 0 0 20px rgba(255, 0, 50, 0.5);
+		/* Changed current number color to blue */
+		color: #007bff;
+		text-shadow: 0 0 20px rgba(0, 123, 255, 0.5);
 	}
 
 	.separator {
@@ -907,7 +920,7 @@
 		color: rgba(255, 255, 255, 0.5);
 	}
 
-	/* Responsive */
+	/* Responsive - no color changes needed here */
 	@media (max-width: 1024px) {
 		.carousel-wrapper {
 			height: 450px;

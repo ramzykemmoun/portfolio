@@ -57,21 +57,19 @@
 	</div>
 
 	{#if terminal.open}
-		<!-- Resize Handle -->
 		<div
 			class="resize-handle"
 			class:active={isResizing}
 			onmousedown={startResize}
 			role="separator"
 			tabindex="0"
+			aria-label="Resize"
 		></div>
 
-		<!-- Terminal Section -->
 		<div class="terminal-section" style="height: calc({100 - editorHeight}% - 4px)">
 			<Terminal onclose={closeTerminal} />
 		</div>
 	{:else}
-		<!-- Terminal Toggle Button -->
 		<button class="terminal-toggle" onclick={openTerminal} title="Open Terminal">
 			<TerminalIcon class="w-4 h-4" />
 			<span>Terminal</span>

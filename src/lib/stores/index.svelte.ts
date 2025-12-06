@@ -14,5 +14,5 @@ export const terminal = $state({
 });
 
 export const agent = $state({
-	open: false
+	open: true
 });

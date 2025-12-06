@@ -65,11 +65,13 @@
 		{ name: 'global.css', action: () => {} },
 		{ name: 'package.json', action: () => {} },
 		{ name: 'tsconfig.json', action: () => {} },
-		{ name: 'vite.config.ts', action: () => {} },
 		{ name: 'README.md', action: () => {} },
 		{ name: 'tailwind.config.js', action: () => {} },
-		{ name: 'postcss.config.js', action: () => {} },
-		{ name: 'package-lock.json', action: () => {} }
+		{ name: 'package-lock.json', action: () => {} },
+		{ name: '.gitignore', action: () => {} },
+		{ name: 'tsconfig.json', action: () => {} },
+		{ name: 'next.config.ts', action: () => {} },
+		{ name: 'postcss.config.mjs', action: () => {} }
 	];
 
 	let filteredFiles = $derived(
@@ -134,6 +136,9 @@
 	<div class="flex flex-col gap-1 mt-2 max-h-60 overflow-y-auto">
 		{#each buttons as button}
 			<div
+				role="button"
+				tabindex="2"
+				aria-label="Toggle"
 				class="flex items-center gap-3 hover:bg-surface-200/20 px-2 py-1 cursor-pointer rounded-md text-color-primary-500 font-semibold transition-colors duration-150"
 				on:click={button.action}
 			>
@@ -145,6 +150,9 @@
 	<div class="flex flex-col gap-1 mt-2 max-h-40 overflow-y-auto border-t border-surface-200 pt-2">
 		{#each filteredFiles as file}
 			<div
+				role="button"
+				aria-label="Toggle"
+				tabindex="3"
 				class="flex items-center gap-3 hover:bg-surface-200/20 px-2 py-1 cursor-pointer rounded-md text-white transition-colors duration-150"
 				on:click={file.action}
 			>

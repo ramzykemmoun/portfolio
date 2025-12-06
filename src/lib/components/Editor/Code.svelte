@@ -49,7 +49,6 @@
 			automaticLayout: true,
 			autoClosingQuotes: 'always',
 			autoClosingBrackets: 'always',
-			autoClosingTags: 'always',
 			minimap: { enabled: true },
 			scrollBeyondLastLine: false,
 			fontSize: 14,

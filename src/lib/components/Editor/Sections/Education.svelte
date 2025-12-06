@@ -58,7 +58,7 @@
 	};
 </script>
 
-<div class="education-container">
+<div class="education-container relative">
 	<div class="background-effects">
 		<div class="gradient-orb orb-1"></div>
 		<div class="gradient-orb orb-2"></div>

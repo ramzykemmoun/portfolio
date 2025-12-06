@@ -97,7 +97,7 @@
 	};
 </script>
 
-<div class="about-container">
+<div class="about-container relative">
 	<!-- Matrix Background -->
 	<canvas bind:this={matrixCanvas} class="matrix-bg"></canvas>
 
@@ -238,7 +238,7 @@
 
 	/* Matrix Background */
 	.matrix-bg {
-		position: fixed;
+		position: absolute;
 		inset: 0;
 		opacity: 0.15;
 		pointer-events: none;

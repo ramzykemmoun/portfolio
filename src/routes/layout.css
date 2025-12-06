@@ -5,24 +5,21 @@
 @plugin '@tailwindcss/typography';
 
 @theme {
-	--color-surface-50: #abb2bf; /* Gris clair (pour le texte) */
-	--color-surface-100: #1a1b26; /* Le Fond Principal (BG PRIMARY) */
-	--color-surface-200: #3e4451; /* Fond des cartes / Sélection */
-	--color-surface-900: #1a1b26; /* Fond de l'éditeur */
-	--color-surface-950: rgb(19, 23, 43); /* Le noir le plus profond */
+	--color-surface-50: #abb2bf;
+	--color-surface-100: #1a1b26;
+	--color-surface-200: #3e4451;
+	--color-surface-900: #1a1b26;
+	--color-surface-950: rgb(19, 23, 43);
 
-	/* TEXTE & FOREGROUND (FG) */
-	--color-text-100: var(--color-surface-50); /* Texte clair par défaut */
+	--color-text-100: var(--color-surface-50);
 	--color-text-500: var(--color-surface-50);
-	--color-text-900: #1a1b26; /* Texte sombre */
+	--color-text-900: #1a1b26;
 
-	/* BORDURES & LIGNES */
-	--color-border-100: #4b5263; /* Bordures douces (Numéros de ligne) */
-	--color-border-500: #61afef; /* Bordures/Lignes de focus (Bleu primaire) */
+	--color-border-100: #4b5263;
+	--color-border-500: #61afef;
 
-	/* ACCENTS DE SYNTAXE (Pour la coloration syntaxique) */
-	--color-accent-comment: #5c6370; /* Gris Ardoise (Commentaires) */
-	--color-accent-keyword: #c678dd; /* Violet (Mots-clés) */
-	--color-accent-string: #98c379; /* Vert Menthe (Chaînes) */
-	--color-accent-number: #d19a66; /* Orange (Nombres) */
+	--color-accent-comment: #5c6370;
+	--color-accent-keyword: #c678dd;
+	--color-accent-string: #98c379;
+	--color-accent-number: #d19a66;
 }

@@ -45,7 +45,6 @@
 			<Explorer bind:isResizing />
 		</div>
 
-		<!-- Resize Handle -->
 		<div
 			role="button"
 			tabindex="0"
