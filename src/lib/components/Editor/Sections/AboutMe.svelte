@@ -246,7 +246,7 @@
 
 	/* Scanlines */
 	.scanlines {
-		position: fixed;
+		position: absolute;
 		inset: 0;
 		pointer-events: none;
 		background: repeating-linear-gradient(
