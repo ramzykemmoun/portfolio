@@ -2,7 +2,7 @@
 	import { ChevronRight, ChevronDown, File, Folder, FolderOpen } from '@lucide/svelte';
 	import { file } from '$lib/stores/index.svelte';
 	import { rootNode } from '$lib/data/explorer';
-	import { getFileIcon } from '$lib/utils/icons';
+	import Icon from '$lib/components/Icon.svelte';
 
 	interface TreeNode {
 		id: string;
@@ -29,7 +29,14 @@
 	const selectFile = (node: TreeNode) => {
 		selectedFile = node.id;
 		if (node.isClickable) {
-			file.section = node.id;
+			if (node.id === 'contact') {
+				file.view = 'contact';
+				file.section = 'contact';
+			} else {
+				file.view = 'code';
+				file.section = node.id;
+				file.sectionFileName = node.name;
+			}
 		}
 	};
 </script>
@@ -88,9 +95,11 @@
 			class="tree-item file"
 			class:selected={selectedFile === node.id}
 			style="padding-left: {12 + depth * 16 + 20}px"
-			onclick={() => selectFile(node)}
+			onclick={() => {
+				selectFile(node);
+			}}
 		>
-			<span class="file-icon">{getFileIcon(node.name)}</span>
+			<Icon icon={node.name.split('.').pop()?.toLowerCase() || ''} />
 			<span class="item-name">{node.name}</span>
 		</button>
 	{/if}
@@ -204,6 +213,7 @@
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
+		margin-left: 4px;
 	}
 
 	.folder-children {

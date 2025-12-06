@@ -9,8 +9,6 @@
 	let monaco: typeof import('monaco-editor') | undefined;
 	let editorContainer: HTMLElement;
 
-	$inspect(file);
-
 	onMount(async () => {
 		if (!browser) return;
 

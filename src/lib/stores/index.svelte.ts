@@ -6,7 +6,8 @@ export const sidebar = $state({
 
 export const file = $state({
 	view: 'live',
-	section: 'aboutMe'
+	section: 'aboutMe',
+	sectionFileName: 'AboutMe.tsx'
 });
 
 export const terminal = $state({

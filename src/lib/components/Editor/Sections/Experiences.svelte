@@ -53,7 +53,7 @@
 	};
 </script>
 
-<div class="experiences-container">
+<div class="experiences-container relative">
 	<div class="bg-pattern"></div>
 
 	<div class="fog fog-1"></div>
@@ -191,7 +191,7 @@
 
 	/* Japanese Pattern Background */
 	.bg-pattern {
-		position: fixed;
+		position: absolute;
 		inset: 0;
 		opacity: 0.03;
 		background-image:
@@ -214,7 +214,7 @@
 
 	/* Fog Effects */
 	.fog {
-		position: fixed;
+		position: absolute;
 		width: 100%;
 		height: 30%;
 		pointer-events: none;
@@ -233,7 +233,7 @@
 
 	/* Ink Splatters */
 	.ink-splatter {
-		position: fixed;
+		position: absolute;
 		width: 300px;
 		height: 300px;
 		border-radius: 50%;

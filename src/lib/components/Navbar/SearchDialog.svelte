@@ -7,78 +7,167 @@
 	let { searchDialogOpen = $bindable() }: { searchDialogOpen: boolean } = $props();
 
 	let commandPalette: HTMLDivElement;
-	let searchInput: HTMLInputElement; // Reste pour le bind:this pour le focus
+	let searchInput: HTMLInputElement;
 
 	let searchTerm = $state('');
+	let selectedIndex = $state(0);
 
-	const buttons = [
+	const commands = [
 		{
-			label: 'Toggle Terminal',
+			label: 'Terminal: Toggle Terminal',
+			shortcut: 'Ctrl+`',
+			icon: '󰆍',
 			action: () => {
 				terminal.open = !terminal.open;
+				searchDialogOpen = false;
 			}
 		},
 		{
-			label: 'Toggle AI Chat ',
+			label: 'View: Toggle AI Chat',
+			shortcut: 'Ctrl+Shift+A',
+			icon: '󰚩',
 			action: () => {
 				agent.open = !agent.open;
+				searchDialogOpen = false;
 			}
 		},
 		{
-			label: 'Contact Ramzy KEMMOUN',
-			icon: 'trash',
-			action: () => {}
+			label: 'Help: Contact Ramzy KEMMOUN',
+			shortcut: '',
+			icon: '󰋖',
+			action: () => {
+				searchDialogOpen = false;
+			}
 		}
 	];
 
 	const files = [
 		{
 			name: 'AboutMe.tsx',
+			path: 'src/components/',
 			action: () => {
 				file.section = 'aboutMe';
+				searchDialogOpen = false;
 			}
 		},
 		{
 			name: 'Projects.tsx',
+			path: 'src/components/',
 			action: () => {
 				file.section = 'projects';
+				searchDialogOpen = false;
 			}
 		},
 		{
 			name: 'Experiences.tsx',
+			path: 'src/components/',
 			action: () => {
 				file.section = 'experiences';
+				searchDialogOpen = false;
 			}
 		},
 		{
 			name: 'Skills.tsx',
+			path: 'src/components/',
 			action: () => {
 				file.section = 'skills';
+				searchDialogOpen = false;
 			}
 		},
 		{
 			name: 'Education.tsx',
+			path: 'src/components/',
 			action: () => {
 				file.section = 'education';
+				searchDialogOpen = false;
 			}
 		},
-		{ name: 'global.css', action: () => {} },
-		{ name: 'package.json', action: () => {} },
-		{ name: 'tsconfig.json', action: () => {} },
-		{ name: 'README.md', action: () => {} },
-		{ name: 'tailwind.config.js', action: () => {} },
-		{ name: 'package-lock.json', action: () => {} },
-		{ name: '.gitignore', action: () => {} },
-		{ name: 'tsconfig.json', action: () => {} },
-		{ name: 'next.config.ts', action: () => {} },
-		{ name: 'postcss.config.mjs', action: () => {} }
+		{
+			name: 'global.css',
+			path: 'src/styles/',
+			action: () => {
+				searchDialogOpen = false;
+			}
+		},
+		{
+			name: 'package.json',
+			path: '',
+			action: () => {
+				searchDialogOpen = false;
+			}
+		},
+		{
+			name: 'tsconfig.json',
+			path: '',
+			action: () => {
+				searchDialogOpen = false;
+			}
+		},
+		{
+			name: 'README.md',
+			path: '',
+			action: () => {
+				searchDialogOpen = false;
+			}
+		},
+		{
+			name: 'tailwind.config.js',
+			path: '',
+			action: () => {
+				searchDialogOpen = false;
+			}
+		},
+		{
+			name: 'package-lock.json',
+			path: '',
+			action: () => {
+				searchDialogOpen = false;
+			}
+		},
+		{
+			name: '.gitignore',
+			path: '',
+			action: () => {
+				searchDialogOpen = false;
+			}
+		},
+		{
+			name: 'next.config.ts',
+			path: '',
+			action: () => {
+				searchDialogOpen = false;
+			}
+		},
+		{
+			name: 'postcss.config.mjs',
+			path: '',
+			action: () => {
+				searchDialogOpen = false;
+			}
+		}
 	];
 
-	let filteredFiles = $derived(
-		searchTerm.trim() === ''
-			? files
-			: files.filter((file) => file.name.toLowerCase().includes(searchTerm.trim().toLowerCase()))
+	let filteredCommands = $derived(
+		searchTerm.trim() === '' || searchTerm.startsWith('>')
+			? commands.filter((cmd) =>
+					cmd.label.toLowerCase().includes(searchTerm.replace('>', '').trim().toLowerCase())
+				)
+			: []
 	);
+
+	let filteredFiles = $derived(
+		searchTerm.startsWith('>')
+			? []
+			: searchTerm.trim() === ''
+				? files
+				: files.filter((f) => f.name.toLowerCase().includes(searchTerm.trim().toLowerCase()))
+	);
+
+	let allItems = $derived([...filteredCommands, ...filteredFiles]);
+
+	$effect(() => {
+		selectedIndex = 0;
+	});
 
 	function handleGlobalEvents(event: KeyboardEvent | MouseEvent) {
 		if (!searchDialogOpen) return;
@@ -117,48 +206,392 @@
 	function handleInputKeydown(event: KeyboardEvent) {
 		if (event.key === 'Escape') {
 			searchDialogOpen = false;
+		} else if (event.key === 'ArrowDown') {
+			event.preventDefault();
+			selectedIndex = Math.min(selectedIndex + 1, allItems.length - 1);
+		} else if (event.key === 'ArrowUp') {
+			event.preventDefault();
+			selectedIndex = Math.max(selectedIndex - 1, 0);
+		} else if (event.key === 'Enter' && allItems[selectedIndex]) {
+			event.preventDefault();
+			allItems[selectedIndex].action();
 		}
+	}
+
+	function highlightMatch(text: string, query: string): string {
+		if (!query.trim()) return text;
+		const cleanQuery = query.replace('>', '').trim();
+		if (!cleanQuery) return text;
+		const regex = new RegExp(`(${cleanQuery})`, 'gi');
+		return text.replace(regex, '<mark class="highlight">$1</mark>');
 	}
 </script>
 
-<div
-	bind:this={commandPalette}
-	class="flex flex-col w-200 max-w-lg bg-surface-900 p-3 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 rounded-lg shadow-2xl"
->
-	<input
-		bind:this={searchInput}
-		bind:value={searchTerm}
-		on:keydown={handleInputKeydown}
-		type="text"
-		placeholder="Search files by name (append : to go to lines or @ to go to symbol)"
-		class="bg-transparent text-white border-b-2 border-surface-200 p-2 outline-none focus:border-color-primary-500 transition-colors duration-200"
-	/>
-	<div class="flex flex-col gap-1 mt-2 max-h-60 overflow-y-auto">
-		{#each buttons as button}
-			<div
-				role="button"
-				tabindex="2"
-				aria-label="Toggle"
-				class="flex items-center gap-3 hover:bg-surface-200/20 px-2 py-1 cursor-pointer rounded-md text-color-primary-500 font-semibold transition-colors duration-150"
-				on:click={button.action}
-			>
-				{button.label}
-			</div>
-		{/each}
+<!-- Backdrop overlay -->
+<div class="search-backdrop" onclick={() => (searchDialogOpen = false)}></div>
+
+<!-- Command Palette -->
+<div bind:this={commandPalette} class="command-palette">
+	<!-- Search Input -->
+	<div class="search-input-wrapper">
+		<svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+			<circle cx="11" cy="11" r="8" />
+			<path d="m21 21-4.35-4.35" />
+		</svg>
+		<input
+			bind:this={searchInput}
+			bind:value={searchTerm}
+			onkeydown={handleInputKeydown}
+			type="text"
+			placeholder="Search files by name (prefix > for commands)"
+			class="search-input"
+		/>
+		{#if searchTerm}
+			<button class="clear-btn" onclick={() => (searchTerm = '')}>
+				<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+					<path d="M18 6L6 18M6 6l12 12" />
+				</svg>
+			</button>
+		{/if}
 	</div>
 
-	<div class="flex flex-col gap-1 mt-2 max-h-40 overflow-y-auto border-t border-surface-200 pt-2">
-		{#each filteredFiles as file}
-			<div
-				role="button"
-				aria-label="Toggle"
-				tabindex="3"
-				class="flex items-center gap-3 hover:bg-surface-200/20 px-2 py-1 cursor-pointer rounded-md text-white transition-colors duration-150"
-				on:click={file.action}
-			>
-				{getFileIcon(file.name)}
-				{file.name}
+	<!-- Results Container -->
+	<div class="results-container">
+		<!-- Commands Section -->
+		{#if filteredCommands.length > 0}
+			<div class="section-header">
+				<span class="section-icon">⌘</span>
+				<span>Commands</span>
 			</div>
-		{/each}
+			{#each filteredCommands as command, i}
+				{@const globalIndex = i}
+				<div
+					role="button"
+					tabindex="0"
+					aria-label={command.label}
+					class="result-item command-item"
+					class:selected={selectedIndex === globalIndex}
+					onclick={command.action}
+					onmouseenter={() => (selectedIndex = globalIndex)}
+				>
+					<span class="item-icon command-icon">{command.icon}</span>
+					<span class="item-label">{@html highlightMatch(command.label, searchTerm)}</span>
+					{#if command.shortcut}
+						<span class="shortcut">{command.shortcut}</span>
+					{/if}
+				</div>
+			{/each}
+		{/if}
+
+		<!-- Files Section -->
+		{#if filteredFiles.length > 0}
+			<div class="section-header">
+				<span class="section-icon">📁</span>
+				<span>Files</span>
+			</div>
+			{#each filteredFiles as fileItem, i}
+				{@const globalIndex = filteredCommands.length + i}
+				<div
+					role="button"
+					tabindex="0"
+					aria-label={fileItem.name}
+					class="result-item file-item"
+					class:selected={selectedIndex === globalIndex}
+					onclick={fileItem.action}
+					onmouseenter={() => (selectedIndex = globalIndex)}
+				>
+					<span class="item-icon file-icon">{getFileIcon(fileItem.name)}</span>
+					<span class="item-label">{@html highlightMatch(fileItem.name, searchTerm)}</span>
+					<span class="file-path">{fileItem.path}</span>
+				</div>
+			{/each}
+		{/if}
+
+		<!-- No Results -->
+		{#if allItems.length === 0}
+			<div class="no-results">
+				<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+					<path
+						d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+					/>
+				</svg>
+				<span>No results found for "{searchTerm}"</span>
+			</div>
+		{/if}
+	</div>
+
+	<!-- Footer -->
+	<div class="palette-footer">
+		<div class="footer-hint">
+			<kbd>↑↓</kbd> navigate
+		</div>
+		<div class="footer-hint">
+			<kbd>↵</kbd> select
+		</div>
+		<div class="footer-hint">
+			<kbd>esc</kbd> close
+		</div>
 	</div>
 </div>
+
+<style>
+	.search-backdrop {
+		position: fixed;
+		inset: 0;
+		background: rgba(0, 0, 0, 0.5);
+		backdrop-filter: blur(4px);
+		z-index: 100;
+		animation: fadeIn 0.15s ease-out;
+	}
+
+	.command-palette {
+		position: fixed;
+		top: 15%;
+		left: 50%;
+		transform: translateX(-50%);
+		width: 90%;
+		max-width: 600px;
+		background: linear-gradient(180deg, #252526 0%, #1e1e1e 100%);
+		border: 1px solid #3c3c3c;
+		border-radius: 8px;
+		box-shadow:
+			0 0 0 1px rgba(255, 255, 255, 0.05),
+			0 25px 50px -12px rgba(0, 0, 0, 0.6),
+			0 0 80px rgba(0, 120, 215, 0.1);
+		z-index: 101;
+		overflow: hidden;
+		animation: slideDown 0.2s ease-out;
+	}
+
+	@keyframes fadeIn {
+		from {
+			opacity: 0;
+		}
+		to {
+			opacity: 1;
+		}
+	}
+
+	@keyframes slideDown {
+		from {
+			opacity: 0;
+			transform: translateX(-50%) translateY(-20px);
+		}
+		to {
+			opacity: 1;
+			transform: translateX(-50%) translateY(0);
+		}
+	}
+
+	.search-input-wrapper {
+		display: flex;
+		align-items: center;
+		padding: 12px 16px;
+		gap: 12px;
+		border-bottom: 1px solid #3c3c3c;
+		background: rgba(255, 255, 255, 0.02);
+	}
+
+	.search-icon {
+		width: 18px;
+		height: 18px;
+		color: #808080;
+		flex-shrink: 0;
+	}
+
+	.search-input {
+		flex: 1;
+		background: transparent;
+		border: none;
+		outline: none;
+		color: #cccccc;
+		font-size: 14px;
+		font-family: 'Segoe UI', system-ui, sans-serif;
+	}
+
+	.search-input::placeholder {
+		color: #6e6e6e;
+	}
+
+	.clear-btn {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 20px;
+		height: 20px;
+		background: transparent;
+		border: none;
+		border-radius: 4px;
+		cursor: pointer;
+		color: #808080;
+		transition: all 0.15s ease;
+	}
+
+	.clear-btn:hover {
+		background: rgba(255, 255, 255, 0.1);
+		color: #cccccc;
+	}
+
+	.clear-btn svg {
+		width: 14px;
+		height: 14px;
+	}
+
+	.results-container {
+		max-height: 400px;
+		overflow-y: auto;
+		padding: 6px;
+	}
+
+	.results-container::-webkit-scrollbar {
+		width: 8px;
+	}
+
+	.results-container::-webkit-scrollbar-track {
+		background: transparent;
+	}
+
+	.results-container::-webkit-scrollbar-thumb {
+		background: #424242;
+		border-radius: 4px;
+	}
+
+	.results-container::-webkit-scrollbar-thumb:hover {
+		background: #4f4f4f;
+	}
+
+	.section-header {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		padding: 8px 12px 6px;
+		font-size: 11px;
+		font-weight: 600;
+		color: #808080;
+		text-transform: uppercase;
+		letter-spacing: 0.5px;
+	}
+
+	.section-icon {
+		font-size: 10px;
+	}
+
+	.result-item {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		padding: 8px 12px;
+		border-radius: 6px;
+		cursor: pointer;
+		transition: all 0.1s ease;
+	}
+
+	.result-item:hover,
+	.result-item.selected {
+		background: #04395e;
+	}
+
+	.result-item.selected {
+		background: #094771;
+		box-shadow: inset 0 0 0 1px rgba(0, 120, 215, 0.4);
+	}
+
+	.item-icon {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 22px;
+		height: 22px;
+		flex-shrink: 0;
+		font-size: 14px;
+	}
+
+	.command-icon {
+		color: #569cd6;
+	}
+
+	.file-icon {
+		color: #cccccc;
+	}
+
+	.item-label {
+		flex: 1;
+		font-size: 13px;
+		color: #cccccc;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	.item-label :global(.highlight) {
+		background: rgba(255, 213, 0, 0.25);
+		color: #ffd500;
+		border-radius: 2px;
+		padding: 0 2px;
+	}
+
+	.shortcut {
+		font-size: 11px;
+		color: #6e6e6e;
+		background: rgba(255, 255, 255, 0.06);
+		padding: 3px 6px;
+		border-radius: 4px;
+		border: 1px solid #3c3c3c;
+		font-family: 'SF Mono', 'Consolas', monospace;
+	}
+
+	.file-path {
+		font-size: 11px;
+		color: #6e6e6e;
+		white-space: nowrap;
+	}
+
+	.no-results {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 12px;
+		padding: 40px 20px;
+		color: #6e6e6e;
+		font-size: 13px;
+	}
+
+	.no-results svg {
+		width: 32px;
+		height: 32px;
+		opacity: 0.5;
+	}
+
+	.palette-footer {
+		display: flex;
+		justify-content: center;
+		gap: 20px;
+		padding: 10px 16px;
+		background: rgba(0, 0, 0, 0.2);
+		border-top: 1px solid #3c3c3c;
+	}
+
+	.footer-hint {
+		display: flex;
+		align-items: center;
+		gap: 6px;
+		font-size: 11px;
+		color: #6e6e6e;
+	}
+
+	.footer-hint kbd {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-width: 20px;
+		height: 18px;
+		padding: 0 5px;
+		background: rgba(255, 255, 255, 0.06);
+		border: 1px solid #3c3c3c;
+		border-radius: 3px;
+		font-size: 10px;
+		font-family: 'SF Mono', 'Consolas', monospace;
+		color: #808080;
+	}
+</style>

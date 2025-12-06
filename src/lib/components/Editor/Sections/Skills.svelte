@@ -16,6 +16,8 @@
 		Lock
 	} from '@lucide/svelte';
 
+	import Icon from '$lib/components/Icon.svelte';
+
 	// Skill categories with unique themes
 	const skillCategories = [
 		{
@@ -45,7 +47,7 @@
 			bgGradient: 'linear-gradient(135deg, #0c1a2e 0%, #1e3a8a 50%, #172554 100%)',
 			skills: [
 				{ name: 'Svelte/SvelteKit', level: 95, icon: '🔥' },
-				{ name: 'React/Next.js', level: 90, icon: '⚛️' },
+				{ name: 'React/Next.js', level: 90, icon: 'react' },
 				{ name: 'Vue/Nuxt', level: 85, icon: '💚' },
 				{ name: 'Node.js', level: 92, icon: '🟢' },
 				{ name: 'FastAPI', level: 80, icon: '🚀' },
@@ -182,7 +184,9 @@
 				<div class="skills-grid">
 					{#each cat.skills as skill, skillIndex}
 						<div class="skill-card" style="--delay: {skillIndex * 80}ms; --glow: {cat.glowColor};">
-							<div class="skill-icon">{skill.icon}</div>
+							<div class="skill-icon">
+								<Icon icon={skill.icon} size={36} />
+							</div>
 							<div class="skill-info">
 								<h3>{skill.name}</h3>
 								<div class="skill-bar">

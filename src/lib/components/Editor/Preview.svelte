@@ -7,8 +7,6 @@
 	import Projects from './Sections/Projects.svelte';
 	import Skills from './Sections/Skills.svelte';
 	import Testimonials from './Sections/Testimonials.svelte';
-
-	$inspect(file.section);
 </script>
 
 <div class="preview-container">

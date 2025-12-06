@@ -49,6 +49,7 @@
 		"storybook": "10.1.0",
 		"svelte": "^5.43.8",
 		"svelte-check": "^4.3.4",
+		"svelte-preprocess-import-assets": "^1.1.0",
 		"tailwindcss": "^4.1.17",
 		"typescript": "^5.9.3",
 		"typescript-eslint": "^8.47.0",

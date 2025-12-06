@@ -2,6 +2,7 @@
 	import Routes from './Routes.svelte';
 	import Pages from './Pages.svelte';
 	import Code from './Code.svelte';
+	import Contact from './Sections/Contact.svelte';
 	import Preview from './Preview.svelte';
 	import Terminal from '../Terminal/Terminal.svelte';
 	import { Terminal as TerminalIcon } from '@lucide/svelte';
@@ -52,6 +53,9 @@
 			{/if}
 			{#if file.view === 'live'}
 				<Preview />
+			{/if}
+			{#if file.view === 'contact'}
+				<Contact />
 			{/if}
 		</div>
 	</div>

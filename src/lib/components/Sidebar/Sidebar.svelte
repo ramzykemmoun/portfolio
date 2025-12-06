@@ -1,7 +1,9 @@
 <script lang="ts">
+	import { User, Briefcase, Book, Wrench, Mail, Folder, Search, GitBranch } from '@lucide/svelte';
 	import Explorer from './Explorer.svelte';
+	import Contact from './Contact.svelte';
 	import { sidebar } from '$lib/stores/index.svelte';
-	import { sections } from '$lib/data/index';
+	import Git from './Git.svelte';
 
 	let isResizing = $state(false);
 
@@ -16,6 +18,30 @@
 		} else {
 			sidebar.open = true;
 			sidebar.section = section;
+		}
+	};
+
+	export const sections = {
+		explorer: {
+			title: 'Explorer',
+			icon: Folder,
+			action: () => {}
+		},
+		search: {
+			title: 'Search',
+			icon: Search
+		},
+		contact: {
+			title: 'Contact',
+			icon: Mail
+		},
+		git: {
+			title: 'Git',
+			icon: GitBranch
+		},
+		extensions: {
+			title: 'Extensions',
+			icon: Wrench
 		}
 	};
 </script>
@@ -39,11 +65,16 @@
 		{/each}
 	</div>
 
-	<!-- Sidebar Panel -->
 	{#if sidebar.open}
-		<div class="sidebar-panel">
+		{#if sidebar.section === 'explorer'}
 			<Explorer bind:isResizing />
-		</div>
+		{/if}
+		{#if sidebar.section === 'contact'}
+			<Contact bind:isResizing />
+		{/if}
+		{#if sidebar.section === 'git'}
+			<Git bind:isResizing />
+		{/if}
 
 		<div
 			role="button"

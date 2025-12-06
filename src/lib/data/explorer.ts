@@ -34,40 +34,45 @@ export const rootNode = {
 						{
 							id: 'aboutMe',
 							name: 'AboutMe.tsx',
-							icon: 'Code',
+							icon: 'react',
 							isClickable: true
 						},
 						{
 							id: 'education',
 							name: 'Education.tsx',
-							icon: 'Code',
+							icon: 'react',
 							isClickable: true
 						},
 						{
 							id: 'experiences',
 							name: 'Experiences.tsx',
-							icon: 'Code',
+							icon: 'react',
 							isClickable: true
 						},
 						{
 							id: 'projects',
 							name: 'Projects.tsx',
-							icon: 'Code',
+							icon: 'react',
 							isClickable: true
 						},
 						{
 							id: 'testimonials',
 							name: 'Testimonials.tsx',
-							icon: 'Code',
+							icon: 'react',
 							isClickable: true
 						},
 						{
 							id: 'skills',
 							name: 'Skills.tsx',
-							icon: 'Code',
+							icon: 'react',
 							isClickable: true
 						},
-
+						{
+							id: 'contact',
+							name: 'Contact.tsx',
+							icon: 'react',
+							isClickable: true
+						}
 					]
 				},
 

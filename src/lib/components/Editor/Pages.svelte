@@ -1,11 +1,16 @@
 <script lang="ts">
-	import { X, FileCode, Eye, Circle } from '@lucide/svelte';
+	import { X, Circle } from '@lucide/svelte';
 	import { file } from '$lib/stores/index.svelte';
 
-	const tabs = [
+	const tabs = $derived([
 		{
-			label: 'index.svelte',
+			label: file.sectionFileName,
 			id: 'code',
+			modified: false
+		},
+		{
+			label: 'Contact.tsx',
+			id: 'contact',
 			modified: false
 		},
 		{
@@ -13,11 +18,10 @@
 			id: 'live',
 			modified: false
 		}
-	];
+	]);
 
 	const getFileIcon = (label: string) => {
-		if (label.includes('.svelte')) return '🔶';
-		if (label.includes('Preview')) return '👁️';
+		if (label.includes('.svelte')) return 'react';
 		return '📄';
 	};
 </script>
