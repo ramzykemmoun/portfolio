@@ -2,6 +2,8 @@
 	import { User, Briefcase, Book, Wrench, Mail, Folder, Search, GitBranch } from '@lucide/svelte';
 	import Explorer from './Explorer.svelte';
 	import Contact from './Contact.svelte';
+	import SearchPanel from './Search.svelte';
+	import Extensions from './Extensions.svelte';
 	import { sidebar } from '$lib/stores/index.svelte';
 	import Git from './Git.svelte';
 
@@ -74,6 +76,12 @@
 		{/if}
 		{#if sidebar.section === 'git'}
 			<Git bind:isResizing />
+		{/if}
+		{#if sidebar.section === 'extensions'}
+			<Extensions bind:isResizing />
+		{/if}
+		{#if sidebar.section === 'search'}
+			<SearchPanel bind:isResizing />
 		{/if}
 
 		<div
