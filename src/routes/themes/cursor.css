@@ -1,0 +1,13 @@
+[data-theme='cursor'] {
+	--text-scaling: 1;
+	--base-font-color: #abb2bf;
+	--base-font-color-dark: #1e1e1e;
+	--base-font-family: system-ui, sans-serif;
+
+	--color-surface-50: #abb2bf;
+	--color-surface-100: #2c313c;
+	--color-surface-200: #3e4451;
+	--color-surface-800: #21252b;
+	--color-surface-900: #1e1e1e;
+	--color-surface-950: #181a1f;
+}

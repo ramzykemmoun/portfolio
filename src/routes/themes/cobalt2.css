@@ -1,0 +1,13 @@
+/* Theme: Kobalt 2 */
+[data-theme='cobalt2'] {
+	--text-scaling: 1;
+	--base-font-color: #e1efff;
+	--base-font-color-dark: #193549;
+
+	--color-surface-50: #e1efff;
+	--color-surface-100: #1f4662;
+	--color-surface-200: #155a80;
+	--color-surface-800: #193549;
+	--color-surface-900: #193549;
+	--color-surface-950: #0e2233;
+}

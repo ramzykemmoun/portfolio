@@ -17,3 +17,7 @@ export const terminal = $state({
 export const agent = $state({
 	open: true
 });
+
+export const config = $state({
+	theme: 'nord'
+});

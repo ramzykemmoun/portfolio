@@ -1,0 +1,13 @@
+/* Theme: Night Owl */
+[data-theme='night-owl'] {
+	--text-scaling: 1;
+	--base-font-color: #d6deeb;
+	--base-font-color-dark: #011627;
+
+	--color-surface-50: #d6deeb;
+	--color-surface-100: #011627;
+	--color-surface-200: #5f7e97;
+	--color-surface-800: #011627;
+	--color-surface-900: #011627;
+	--color-surface-950: #000c1d;
+}

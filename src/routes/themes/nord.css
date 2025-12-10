@@ -1,0 +1,13 @@
+/* Theme: Nord */
+[data-theme='nord'] {
+	--text-scaling: 1;
+	--base-font-color: #d8dee9;
+	--base-font-color-dark: #2e3440;
+
+	--color-surface-50: #d8dee9;
+	--color-surface-100: #3b4252;
+	--color-surface-200: #434c5e;
+	--color-surface-800: #2e3440;
+	--color-surface-900: #2e3440;
+	--color-surface-950: #242933;
+}

@@ -120,8 +120,8 @@
 		display: flex;
 		align-items: center;
 		height: 38px;
-		background: #1f1f1f;
-		border-bottom: 1px solid #252526;
+		background: var(--color-surface-900);
+		border-bottom: 1px solid var(--color-surface-800);
 		font-family: 'Segoe UI', sans-serif;
 		font-size: 12px;
 		user-select: none;
@@ -135,14 +135,14 @@
 		justify-content: center;
 		width: 48px;
 		height: 100%;
-		background: linear-gradient(135deg, #4759cc, #005a2e);
+		background: linear-gradient(135deg, var(--color-primary-600), var(--color-secondary-600));
 		-webkit-app-region: no-drag;
 	}
 
 	.icon-text {
 		font-size: 11px;
 		font-weight: 700;
-		color: white;
+		color: var(--color-surface-50);
 		letter-spacing: -0.5px;
 	}
 
@@ -159,7 +159,7 @@
 		height: 100%;
 		background: transparent;
 		border: none;
-		color: #cccccc;
+		color: var(--color-surface-200);
 		font-size: 12px;
 		cursor: pointer;
 		transition: background 0.1s ease;
@@ -167,7 +167,7 @@
 
 	.menu-item:hover,
 	.menu-item.active {
-		background: rgba(255, 255, 255, 0.1);
+		background: var(--color-surface-700);
 	}
 
 	/* Window Title */
@@ -177,7 +177,7 @@
 		align-items: center;
 		justify-content: center;
 		gap: 6px;
-		color: #cccccc;
+		color: var(--color-surface-200);
 		font-size: 12px;
 		overflow: hidden;
 	}
@@ -208,22 +208,22 @@
 		align-items: center;
 		gap: 6px;
 		padding: 3px 8px;
-		background: rgba(255, 255, 255, 0.05);
-		border: 1px solid rgba(255, 255, 255, 0.1);
+		background: var(--color-surface-800);
+		border: 1px solid var(--color-surface-700);
 		border-radius: 4px;
-		color: #888;
+		color: var(--color-surface-400);
 		font-size: 11px;
 		cursor: pointer;
 		transition: all 0.15s ease;
 	}
 
 	.search-btn:hover {
-		background: rgba(255, 255, 255, 0.1);
-		color: #ccc;
+		background: var(--color-surface-700);
+		color: var(--color-surface-200);
 	}
 
 	.shortcut {
-		color: #666;
+		color: var(--color-surface-500);
 		font-size: 10px;
 	}
 
@@ -243,14 +243,14 @@
 		background: transparent;
 		border: none;
 		border-radius: 4px;
-		color: #858585;
+		color: var(--color-surface-400);
 		cursor: pointer;
 		transition: all 0.1s ease;
 	}
 
 	.status-btn:hover {
-		background: rgba(255, 255, 255, 0.1);
-		color: #ccc;
+		background: var(--color-surface-700);
+		color: var(--color-surface-200);
 	}
 
 	.badge {
@@ -260,7 +260,7 @@
 		min-width: 14px;
 		height: 14px;
 		padding: 0 4px;
-		background: #007acc;
+		background: var(--color-primary-500);
 		border-radius: 10px;
 		color: white;
 		font-size: 9px;
@@ -285,17 +285,17 @@
 		height: 100%;
 		background: transparent;
 		border: none;
-		color: #cccccc;
+		color: var(--color-surface-200);
 		cursor: pointer;
 		transition: background 0.15s ease;
 	}
 
 	.control-btn:hover {
-		background: rgba(255, 255, 255, 0.1);
+		background: var(--color-surface-700);
 	}
 
 	.control-btn.close:hover {
-		background: #e81123;
+		background: var(--color-error-500);
 		color: white;
 	}
 

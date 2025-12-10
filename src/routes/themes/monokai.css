@@ -1,0 +1,13 @@
+/* Theme: Monokai */
+[data-theme='monokai'] {
+	--text-scaling: 1;
+	--base-font-color: #f8f8f2;
+	--base-font-color-dark: #272822;
+
+	--color-surface-50: #f8f8f2;
+	--color-surface-100: #3e3d32;
+	--color-surface-200: #75715e;
+	--color-surface-800: #272822;
+	--color-surface-900: #272822;
+	--color-surface-950: #1e1f1c;
+}

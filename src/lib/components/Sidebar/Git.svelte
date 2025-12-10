@@ -45,7 +45,6 @@
 		};
 	});
 
-	// Mock data for commits
 	const commits = [
 		{
 			hash: 'a3f7c2d',
@@ -53,16 +52,16 @@
 			author: 'Ramzy KEMMOUN',
 			time: '2 hours ago',
 			branch: 'main',
-			color: '#4ade80',
+			color: 'var(--color-primary-500)',
 			isMerge: false
 		},
 		{
 			hash: 'b8e1f4a',
-			message: 'style: Update SearchDialog to VS Code style',
+			message: 'fix: Update SearchDialog to VS Code style',
 			author: 'Ramzy KEMMOUN',
 			time: '3 hours ago',
 			branch: 'main',
-			color: '#4ade80',
+			color: 'var(--color-primary-500)',
 			isMerge: false
 		},
 		{
@@ -71,7 +70,7 @@
 			author: 'Ramzy KEMMOUN',
 			time: '5 hours ago',
 			branch: 'main',
-			color: '#4ade80',
+			color: 'var(--color-primary-500)',
 			isMerge: true
 		},
 		{
@@ -80,7 +79,7 @@
 			author: 'Ramzy KEMMOUN',
 			time: '6 hours ago',
 			branch: 'feature/skills',
-			color: '#60a5fa',
+			color: 'var(--color-tertiary-500)',
 			isMerge: false
 		},
 		{
@@ -89,7 +88,7 @@
 			author: 'Ramzy KEMMOUN',
 			time: '1 day ago',
 			branch: 'main',
-			color: '#4ade80',
+			color: 'var(--color-primary-500)',
 			isMerge: false
 		},
 		{
@@ -98,7 +97,7 @@
 			author: 'Ramzy KEMMOUN',
 			time: '2 days ago',
 			branch: 'main',
-			color: '#4ade80',
+			color: 'var(--color-primary-500)',
 			isMerge: false
 		},
 		{
@@ -107,7 +106,7 @@
 			author: 'Ramzy KEMMOUN',
 			time: '3 days ago',
 			branch: 'main',
-			color: '#4ade80',
+			color: 'var(--color-primary-500)',
 			isMerge: false
 		}
 	];
@@ -123,7 +122,6 @@
 </script>
 
 <div class="git-panel" style="width: {sidebar.width}px;">
-	<!-- Header -->
 	<div class="git-header">
 		<div class="header-title">
 			<GitBranch class="w-4 h-4" />
@@ -139,16 +137,15 @@
 		</div>
 	</div>
 
-	<!-- Branch Selector -->
 	<div class="branch-selector">
 		<button class="branch-btn" onclick={() => (showBranchDropdown = !showBranchDropdown)}>
-			<GitBranch class="w-4 h-4 text-green-400" />
+			<GitBranch class="w-4 h-4 text-primary" />
 			<span class="branch-name">{selectedBranch}</span>
 			<span class="branch-status">✓ synced</span>
 		</button>
 
 		{#if showBranchDropdown}
-			<div class="branch-dropdown">
+			<div class="branch-dropdown bg-surface-800">
 				{#each branches as branch}
 					<button
 						class="branch-option"
@@ -175,7 +172,6 @@
 		{/if}
 	</div>
 
-	<!-- Git Actions -->
 	<div class="git-actions">
 		<button class="git-action-btn">
 			<ArrowDown class="w-4 h-4" />
@@ -273,8 +269,8 @@
 		display: flex;
 		flex-direction: column;
 		height: 100%;
-		background: #1e1e1e;
-		color: #cccccc;
+		background: var(--color-surface-900);
+		color: var(--color-surface-200);
 		font-size: 12px;
 		overflow: hidden;
 	}
@@ -284,7 +280,7 @@
 		align-items: center;
 		justify-content: space-between;
 		padding: 12px 16px;
-		border-bottom: 1px solid #3c3c3c;
+		border-bottom: 1px solid var(--color-surface-800);
 		background: rgba(255, 255, 255, 0.02);
 	}
 
@@ -296,7 +292,7 @@
 		font-weight: 600;
 		text-transform: uppercase;
 		letter-spacing: 0.5px;
-		color: #808080;
+		color: var(--color-primary-500);
 	}
 
 	.header-actions {
@@ -313,20 +309,20 @@
 		background: transparent;
 		border: none;
 		border-radius: 4px;
-		color: #808080;
+		color: var(--color-surface-500);
 		cursor: pointer;
 		transition: all 0.15s ease;
 	}
 
 	.action-btn:hover {
 		background: rgba(255, 255, 255, 0.1);
-		color: #cccccc;
+		color: var(--color-surface-200);
 	}
 
 	.branch-selector {
 		position: relative;
 		padding: 8px 12px;
-		border-bottom: 1px solid #3c3c3c;
+		border-bottom: 1px solid var(--color-surface-800);
 	}
 
 	.branch-btn {
@@ -335,17 +331,16 @@
 		gap: 8px;
 		width: 100%;
 		padding: 8px 12px;
-		background: rgba(255, 255, 255, 0.05);
-		border: 1px solid #3c3c3c;
+		background: var(--color-surface-800);
+		border: 1px solid var(--color-surface-700);
 		border-radius: 6px;
-		color: #cccccc;
+		color: var(--color-surface-200);
 		cursor: pointer;
 		transition: all 0.15s ease;
 	}
 
 	.branch-btn:hover {
-		background: rgba(255, 255, 255, 0.08);
-		border-color: #4ade80;
+		border-color: var(--color-primary-500);
 	}
 
 	.branch-name {
@@ -356,8 +351,8 @@
 
 	.branch-status {
 		font-size: 10px;
-		color: #4ade80;
-		background: rgba(74, 222, 128, 0.1);
+		color: var(--color-primary-500);
+		background: rgba(0, 0, 0, 0.2);
 		padding: 2px 6px;
 		border-radius: 4px;
 	}
@@ -367,8 +362,8 @@
 		top: 100%;
 		left: 12px;
 		right: 12px;
-		background: #252526;
-		border: 1px solid #3c3c3c;
+		background: var(--color-surface-800);
+		border: 1px solid var(--color-surface-700);
 		border-radius: 6px;
 		box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
 		z-index: 50;
@@ -383,9 +378,13 @@
 		padding: 8px 12px;
 		background: transparent;
 		border: none;
-		color: #cccccc;
+		color: var(--color-surface-200);
 		cursor: pointer;
 		transition: background 0.15s ease;
+	}
+
+	.text-primary {
+		color: var(--color-primary-500);
 	}
 
 	.branch-option:hover,
@@ -395,8 +394,8 @@
 
 	.current-badge {
 		font-size: 9px;
-		color: #4ade80;
-		background: rgba(74, 222, 128, 0.15);
+		color: var(--color-primary-500);
+		background: rgba(0, 0, 0, 0.2);
 		padding: 1px 5px;
 		border-radius: 3px;
 		margin-left: auto;
@@ -404,7 +403,7 @@
 
 	.sync-status {
 		font-size: 10px;
-		color: #f59e0b;
+		color: var(--color-warning-500);
 		margin-left: auto;
 	}
 
@@ -413,7 +412,7 @@
 		grid-template-columns: repeat(4, 1fr);
 		gap: 6px;
 		padding: 12px;
-		border-bottom: 1px solid #3c3c3c;
+		border-bottom: 1px solid var(--color-surface-800);
 	}
 
 	.git-action-btn {
@@ -422,46 +421,46 @@
 		align-items: center;
 		gap: 4px;
 		padding: 10px 6px;
-		background: rgba(255, 255, 255, 0.04);
-		border: 1px solid #3c3c3c;
+		background: var(--color-surface-800);
+		border: 1px solid var(--color-surface-800);
 		border-radius: 6px;
-		color: #808080;
+		color: var(--color-surface-400);
 		font-size: 10px;
 		cursor: pointer;
 		transition: all 0.15s ease;
 	}
 
 	.git-action-btn:hover {
-		background: rgba(74, 222, 128, 0.1);
-		border-color: #4ade80;
-		color: #4ade80;
+		background: var(--color-surface-700);
+		border-color: var(--color-primary-500);
+		color: var(--color-primary-500);
 	}
 
 	.commit-input-section {
 		display: flex;
 		gap: 8px;
 		padding: 12px;
-		border-bottom: 1px solid #3c3c3c;
+		border-bottom: 1px solid var(--color-surface-800);
 	}
 
 	.commit-input {
 		flex: 1;
 		padding: 10px 12px;
-		background: rgba(255, 255, 255, 0.05);
-		border: 1px solid #3c3c3c;
+		background: var(--color-surface-800);
+		border: 1px solid var(--color-surface-700);
 		border-radius: 6px;
-		color: #cccccc;
+		color: var(--color-surface-200);
 		font-size: 12px;
 		outline: none;
 		transition: border-color 0.15s ease;
 	}
 
 	.commit-input::placeholder {
-		color: #6e6e6e;
+		color: var(--color-surface-400);
 	}
 
 	.commit-input:focus {
-		border-color: #4ade80;
+		border-color: var(--color-primary-500);
 	}
 
 	.commit-btn {
@@ -469,21 +468,21 @@
 		align-items: center;
 		justify-content: center;
 		width: 38px;
-		background: #4ade80;
+		background: var(--color-primary-500);
 		border: none;
 		border-radius: 6px;
-		color: #1e1e1e;
+		color: var(--color-surface-900);
 		cursor: pointer;
 		transition: all 0.15s ease;
 	}
 
 	.commit-btn:hover {
-		background: #22c55e;
+		background: var(--color-primary-600);
 	}
 
 	.changes-section {
 		padding: 12px;
-		border-bottom: 1px solid #3c3c3c;
+		border-bottom: 1px solid var(--color-surface-800);
 	}
 
 	.section-header {
@@ -495,13 +494,13 @@
 		font-weight: 600;
 		text-transform: uppercase;
 		letter-spacing: 0.5px;
-		color: #808080;
+		color: var(--color-primary-500);
 	}
 
 	.change-count,
 	.commit-count {
 		font-size: 10px;
-		background: rgba(255, 255, 255, 0.1);
+		background: var(--color-surface-800);
 		padding: 2px 8px;
 		border-radius: 10px;
 	}
@@ -511,8 +510,8 @@
 		align-items: center;
 		gap: 8px;
 		padding: 16px;
-		color: #4ade80;
-		background: rgba(74, 222, 128, 0.05);
+		color: var(--color-primary-500);
+		background: var(--color-surface-800);
 		border-radius: 6px;
 		font-size: 11px;
 	}
@@ -536,7 +535,7 @@
 	}
 
 	.commit-row:hover {
-		background: rgba(255, 255, 255, 0.03);
+		background: var(--color-surface-800);
 	}
 
 	.graph-line {
@@ -577,7 +576,7 @@
 		height: 12px;
 		border: 2px solid;
 		border-radius: 50%;
-		background: #1e1e1e;
+		background: var(--color-surface-900);
 		z-index: 1;
 		display: flex;
 		align-items: center;
@@ -604,8 +603,8 @@
 	.commit-hash {
 		font-family: 'SF Mono', 'Consolas', monospace;
 		font-size: 11px;
-		color: #60a5fa;
-		background: rgba(96, 165, 250, 0.1);
+		color: var(--color-secondary-500);
+		background: rgba(0, 0, 0, 0.2);
 		padding: 2px 6px;
 		border-radius: 4px;
 	}
@@ -616,7 +615,7 @@
 	}
 
 	.commit-message {
-		color: #cccccc;
+		color: var(--color-surface-200);
 		font-size: 12px;
 		white-space: nowrap;
 		overflow: hidden;
@@ -629,7 +628,7 @@
 		align-items: center;
 		gap: 6px;
 		font-size: 10px;
-		color: #6e6e6e;
+		color: var(--color-surface-400);
 	}
 
 	/* Scrollbar */
@@ -642,11 +641,11 @@
 	}
 
 	.graph-section::-webkit-scrollbar-thumb {
-		background: #424242;
+		background: var(--color-surface-700);
 		border-radius: 4px;
 	}
 
 	.graph-section::-webkit-scrollbar-thumb:hover {
-		background: #4f4f4f;
+		background: var(--color-surface-600);
 	}
 </style>

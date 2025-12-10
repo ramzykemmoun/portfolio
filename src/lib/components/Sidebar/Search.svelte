@@ -322,8 +322,8 @@
 		display: flex;
 		flex-direction: column;
 		height: 100%;
-		background: #1e1e1e;
-		color: #cccccc;
+		background: var(--color-surface-900);
+		color: var(--color-surface-200);
 		font-size: 12px;
 		overflow: hidden;
 	}
@@ -333,7 +333,7 @@
 		align-items: center;
 		justify-content: space-between;
 		padding: 12px 16px;
-		border-bottom: 1px solid #3c3c3c;
+		border-bottom: 1px solid var(--color-surface-800);
 		background: rgba(255, 255, 255, 0.02);
 	}
 
@@ -345,7 +345,7 @@
 		font-weight: 600;
 		text-transform: uppercase;
 		letter-spacing: 0.5px;
-		color: #808080;
+		color: var(--color-primary-500);
 	}
 
 	.header-actions {
@@ -362,19 +362,19 @@
 		background: transparent;
 		border: none;
 		border-radius: 4px;
-		color: #808080;
+		color: var(--color-surface-500);
 		cursor: pointer;
 		transition: all 0.15s ease;
 	}
 
 	.action-btn:hover {
-		background: rgba(255, 255, 255, 0.1);
-		color: #cccccc;
+		background: var(--color-surface-800);
+		color: var(--color-surface-200);
 	}
 
 	.search-inputs {
 		padding: 12px;
-		border-bottom: 1px solid #3c3c3c;
+		border-bottom: 1px solid var(--color-surface-800);
 	}
 
 	.input-row {
@@ -396,13 +396,13 @@
 		height: 20px;
 		background: transparent;
 		border: none;
-		color: #808080;
+		color: var(--color-surface-500);
 		cursor: pointer;
 		flex-shrink: 0;
 	}
 
 	.toggle-replace:hover {
-		color: #cccccc;
+		color: var(--color-surface-200);
 	}
 
 	.spacer {
@@ -414,16 +414,16 @@
 		flex: 1;
 		display: flex;
 		align-items: center;
-		background: rgba(255, 255, 255, 0.05);
-		border: 1px solid #3c3c3c;
+		background: var(--color-surface-800);
+		border: 1px solid var(--color-surface-700);
 		border-radius: 4px;
 		overflow: hidden;
 		transition: border-color 0.15s ease;
 	}
 
 	.input-wrapper:focus-within {
-		border-color: #007acc;
-		box-shadow: 0 0 0 1px rgba(0, 122, 204, 0.3);
+		border-color: var(--color-primary-500);
+		box-shadow: 0 0 0 1px var(--color-primary-500);
 	}
 
 	.search-input {
@@ -432,12 +432,12 @@
 		background: transparent;
 		border: none;
 		outline: none;
-		color: #cccccc;
+		color: var(--color-surface-200);
 		font-size: 12px;
 	}
 
 	.search-input::placeholder {
-		color: #6e6e6e;
+		color: var(--color-surface-400);
 	}
 
 	.input-actions {
@@ -455,20 +455,20 @@
 		background: transparent;
 		border: none;
 		border-radius: 3px;
-		color: #6e6e6e;
+		color: var(--color-surface-400);
 		cursor: pointer;
 		transition: all 0.15s ease;
 	}
 
 	.filter-btn:hover,
 	.replace-btn:hover {
-		background: rgba(255, 255, 255, 0.1);
-		color: #cccccc;
+		background: var(--color-surface-700);
+		color: var(--color-surface-200);
 	}
 
 	.filter-btn.active {
-		background: rgba(0, 122, 204, 0.3);
-		color: #007acc;
+		background: var(--color-primary-500);
+		color: var(--color-surface-50);
 	}
 
 	.replace-all-icon {
@@ -485,15 +485,15 @@
 		background: transparent;
 		border: none;
 		border-radius: 4px;
-		color: #6e6e6e;
+		color: var(--color-surface-400);
 		font-size: 11px;
 		cursor: pointer;
 		transition: all 0.15s ease;
 	}
 
 	.filter-toggle:hover {
-		background: rgba(255, 255, 255, 0.05);
-		color: #cccccc;
+		background: var(--color-surface-800);
+		color: var(--color-surface-200);
 	}
 
 	.file-filters {
@@ -506,21 +506,21 @@
 
 	.filter-input {
 		padding: 6px 10px;
-		background: rgba(255, 255, 255, 0.05);
-		border: 1px solid #3c3c3c;
+		background: var(--color-surface-800);
+		border: 1px solid var(--color-surface-700);
 		border-radius: 4px;
-		color: #cccccc;
+		color: var(--color-surface-200);
 		font-size: 11px;
 		outline: none;
 		transition: border-color 0.15s ease;
 	}
 
 	.filter-input:focus {
-		border-color: #007acc;
+		border-color: var(--color-primary-500);
 	}
 
 	.filter-input::placeholder {
-		color: #5a5a5a;
+		color: var(--color-surface-500);
 	}
 
 	.results-section {
@@ -536,21 +536,21 @@
 		justify-content: center;
 		gap: 12px;
 		padding: 40px 20px;
-		color: #6e6e6e;
+		color: var(--color-surface-400);
 		text-align: center;
 	}
 
 	.no-search .hint {
 		font-size: 10px;
-		color: #5a5a5a;
+		color: var(--color-surface-500);
 	}
 
 	.results-header {
 		padding: 8px 12px;
 		font-size: 11px;
-		color: #808080;
+		color: var(--color-surface-500);
 		background: rgba(255, 255, 255, 0.02);
-		border-bottom: 1px solid #3c3c3c;
+		border-bottom: 1px solid var(--color-surface-800);
 	}
 
 	.results-list {
@@ -558,7 +558,7 @@
 	}
 
 	.result-file {
-		border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+		border-bottom: 1px solid var(--color-surface-800);
 	}
 
 	.file-header {
@@ -569,18 +569,18 @@
 		padding: 6px 8px;
 		background: transparent;
 		border: none;
-		color: #cccccc;
+		color: var(--color-surface-200);
 		font-size: 12px;
 		cursor: pointer;
 		transition: background 0.15s ease;
 	}
 
 	.file-header:hover {
-		background: rgba(255, 255, 255, 0.05);
+		background: var(--color-surface-800);
 	}
 
 	.file-header .chevron {
-		color: #808080;
+		color: var(--color-surface-500);
 		flex-shrink: 0;
 	}
 
@@ -590,17 +590,17 @@
 
 	.file-path {
 		flex: 1;
-		color: #6e6e6e;
+		color: var(--color-surface-400);
 		font-size: 11px;
 		text-align: left;
 	}
 
 	.match-count {
 		font-size: 10px;
-		background: rgba(255, 255, 255, 0.1);
+		background: var(--color-surface-800);
 		padding: 2px 6px;
 		border-radius: 10px;
-		color: #808080;
+		color: var(--color-surface-500);
 	}
 
 	.file-matches {
@@ -615,7 +615,7 @@
 		padding: 4px 8px;
 		background: transparent;
 		border: none;
-		color: #cccccc;
+		color: var(--color-surface-200);
 		font-size: 12px;
 		text-align: left;
 		cursor: pointer;
@@ -623,13 +623,13 @@
 	}
 
 	.match-item:hover {
-		background: rgba(0, 122, 204, 0.15);
+		background: var(--color-surface-800);
 	}
 
 	.line-number {
 		flex-shrink: 0;
 		min-width: 32px;
-		color: #6e6e6e;
+		color: var(--color-surface-400);
 		font-family: 'SF Mono', 'Consolas', monospace;
 		font-size: 11px;
 	}
@@ -644,8 +644,8 @@
 	}
 
 	.match-content :global(.highlight) {
-		background: rgba(255, 213, 0, 0.3);
-		color: #ffd500;
+		background: var(--color-warning-500);
+		color: var(--color-surface-900);
 		border-radius: 2px;
 		padding: 0 2px;
 	}
@@ -660,11 +660,11 @@
 	}
 
 	.results-section::-webkit-scrollbar-thumb {
-		background: #424242;
+		background: var(--color-surface-700);
 		border-radius: 4px;
 	}
 
 	.results-section::-webkit-scrollbar-thumb:hover {
-		background: #4f4f4f;
+		background: var(--color-surface-600);
 	}
 </style>

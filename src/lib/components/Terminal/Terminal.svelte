@@ -235,7 +235,7 @@
 		flex-direction: column;
 		height: 100%;
 		min-height: 0;
-		background: #1e1e1e;
+		background: var(--color-surface-900);
 		font-family: 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
 		font-size: 13px;
 	}
@@ -248,8 +248,8 @@
 		height: 35px;
 		min-height: 35px;
 		padding: 0 8px;
-		background: #252526;
-		border-bottom: 1px solid #1e1e1e;
+		background: var(--color-surface-800);
+		border-bottom: 1px solid var(--color-surface-900);
 		flex-shrink: 0;
 	}
 
@@ -264,16 +264,16 @@
 		align-items: center;
 		gap: 6px;
 		padding: 4px 10px;
-		background: #1e1e1e;
+		background: var(--color-surface-900);
 		border: none;
 		border-radius: 4px 4px 0 0;
-		color: #cccccc;
+		color: var(--color-surface-200);
 		font-size: 12px;
 		cursor: pointer;
 	}
 
 	.tab.active {
-		color: white;
+		color: var(--color-surface-50);
 	}
 
 	.tab-close {
@@ -290,13 +290,13 @@
 		background: transparent;
 		border: none;
 		border-radius: 4px;
-		color: #858585;
+		color: var(--color-surface-400);
 		cursor: pointer;
 	}
 
 	.tab-add:hover {
-		background: rgba(255, 255, 255, 0.1);
-		color: white;
+		background: var(--color-surface-700);
+		color: var(--color-surface-50);
 	}
 
 	.header-actions {
@@ -314,18 +314,18 @@
 		background: transparent;
 		border: none;
 		border-radius: 4px;
-		color: #858585;
+		color: var(--color-surface-400);
 		cursor: pointer;
 	}
 
 	.action-btn:hover {
-		background: rgba(255, 255, 255, 0.1);
-		color: white;
+		background: var(--color-surface-700);
+		color: var(--color-surface-50);
 	}
 
 	.action-btn.close:hover {
-		background: rgba(255, 0, 0, 0.2);
-		color: #ff6b6b;
+		background: var(--color-error-500);
+		color: white;
 	}
 
 	/* Terminal Body */
@@ -335,7 +335,7 @@
 		overflow-y: auto;
 		overflow-x: hidden;
 		padding: 8px 12px;
-		background: #1e1e1e;
+		background: var(--color-surface-900);
 		cursor: text;
 	}
 
@@ -344,7 +344,7 @@
 	}
 
 	.terminal-body::-webkit-scrollbar-thumb {
-		background: #424242;
+		background: var(--color-surface-700);
 		border-radius: 4px;
 	}
 
@@ -358,27 +358,27 @@
 	}
 
 	.terminal-line.output {
-		color: #cccccc;
+		color: var(--color-surface-200);
 	}
 	.terminal-line.error {
-		color: #f14c4c;
+		color: var(--color-error-500);
 	}
 	.terminal-line.success {
-		color: #4ec9b0;
+		color: var(--color-success-500);
 	}
 	.terminal-line.input {
-		color: #cccccc;
+		color: var(--color-surface-200);
 	}
 
 	.prompt {
-		color: #4ec9b0;
+		color: var(--color-success-500);
 		font-weight: bold;
 	}
 	.path {
-		color: #569cd6;
+		color: var(--color-primary-500);
 	}
 	.dollar {
-		color: #dcdcaa;
+		color: var(--color-warning-500);
 	}
 	.content {
 		white-space: pre-wrap;
@@ -391,13 +391,13 @@
 		background: transparent;
 		border: none;
 		outline: none;
-		color: #cccccc;
+		color: var(--color-surface-200);
 		font-family: inherit;
 		font-size: inherit;
-		caret-color: #ffffff;
+		caret-color: var(--color-secondary-500);
 	}
 
 	.terminal-input::selection {
-		background: #264f78;
+		background: var(--color-primary-700);
 	}
 </style>

@@ -8,7 +8,11 @@ const config = {
 	kit: {
 		adapter: adapter()
 	},
-	extensions: ['.svelte', '.svx']
+	extensions: ['.svelte', '.svx'],
+	onwarn: (warning, handler) => {
+		if (warning.code === 'a11y-click-events-have-key-events') return;
+		handler(warning);
+	}
 };
 
 export default config;

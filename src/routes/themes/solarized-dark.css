@@ -1,0 +1,13 @@
+/* Theme: Solarized Dark */
+[data-theme='solarized-dark'] {
+	--text-scaling: 1;
+	--base-font-color: #839496;
+	--base-font-color-dark: #002b36;
+
+	--color-surface-50: #839496;
+	--color-surface-100: #073642;
+	--color-surface-200: #586e75;
+	--color-surface-800: #002b36;
+	--color-surface-900: #002b36;
+	--color-surface-950: #00212b;
+}

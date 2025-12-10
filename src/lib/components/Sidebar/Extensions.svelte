@@ -1,11 +1,12 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { sidebar } from '$lib/stores/index.svelte';
+	import { sidebar, config } from '$lib/stores/index.svelte';
+	import { themes as themesData, extensions } from '$lib/data/sections/extensions';
+
 	import {
 		Puzzle,
 		Palette,
 		Search,
-		Star,
 		Download,
 		Check,
 		ChevronDown,
@@ -49,140 +50,7 @@
 	let activeTab = $state<'installed' | 'themes' | 'extensions'>('installed');
 	let expandedSections = $state<Set<string>>(new Set(['installed', 'themes']));
 
-	// Themes data
-	const themes = [
-		{
-			id: 'one-dark-pro',
-			name: 'One Dark Pro',
-			author: 'binaryify',
-			description: 'Atom One Dark theme for Visual Studio Code',
-			icon: '🌙',
-			color: '#282c34',
-			rating: 4.8,
-			downloads: '8.2M',
-			installed: true,
-			active: true
-		},
-		{
-			id: 'dracula',
-			name: 'Dracula Official',
-			author: 'Dracula Theme',
-			description: 'Official Dracula Theme. A dark theme for many editors.',
-			icon: '🧛',
-			color: '#282a36',
-			rating: 4.9,
-			downloads: '6.1M',
-			installed: true,
-			active: false
-		},
-		{
-			id: 'github-theme',
-			name: 'GitHub Theme',
-			author: 'GitHub',
-			description: 'GitHub theme for VS Code',
-			icon: '🐙',
-			color: '#0d1117',
-			rating: 4.7,
-			downloads: '4.3M',
-			installed: false,
-			active: false
-		},
-		{
-			id: 'tokyo-night',
-			name: 'Tokyo Night',
-			author: 'enkia',
-			description: 'A clean Visual Studio Code theme with Tokyo night colors',
-			icon: '🗼',
-			color: '#1a1b26',
-			rating: 4.9,
-			downloads: '3.8M',
-			installed: false,
-			active: false
-		},
-		{
-			id: 'catppuccin',
-			name: 'Catppuccin',
-			author: 'Catppuccin',
-			description: 'Soothing pastel theme for VS Code',
-			icon: '🐱',
-			color: '#1e1e2e',
-			rating: 4.8,
-			downloads: '1.2M',
-			installed: false,
-			active: false
-		}
-	];
-
-	// Extensions data
-	const extensions = [
-		{
-			id: 'prettier',
-			name: 'Prettier',
-			author: 'Prettier',
-			description: 'Code formatter using prettier',
-			icon: '✨',
-			color: '#1a2b34',
-			rating: 4.6,
-			downloads: '42M',
-			installed: true
-		},
-		{
-			id: 'eslint',
-			name: 'ESLint',
-			author: 'Microsoft',
-			description: 'Integrates ESLint JavaScript into VS Code',
-			icon: '🔍',
-			color: '#4b32c3',
-			rating: 4.7,
-			downloads: '35M',
-			installed: true
-		},
-		{
-			id: 'svelte',
-			name: 'Svelte for VS Code',
-			author: 'Svelte',
-			description: 'Svelte language support for VS Code',
-			icon: '🔥',
-			color: '#ff3e00',
-			rating: 4.8,
-			downloads: '2.1M',
-			installed: true
-		},
-		{
-			id: 'tailwind',
-			name: 'Tailwind CSS IntelliSense',
-			author: 'Tailwind Labs',
-			description: 'Intelligent Tailwind CSS tooling for VS Code',
-			icon: '💨',
-			color: '#06b6d4',
-			rating: 4.9,
-			downloads: '12M',
-			installed: true
-		},
-		{
-			id: 'gitlens',
-			name: 'GitLens',
-			author: 'GitKraken',
-			description: 'Supercharge Git within VS Code',
-			icon: '🔮',
-			color: '#00b4d8',
-			rating: 4.7,
-			downloads: '28M',
-			installed: false
-		},
-		{
-			id: 'copilot',
-			name: 'GitHub Copilot',
-			author: 'GitHub',
-			description: 'Your AI pair programmer',
-			icon: '🤖',
-			color: '#000000',
-			rating: 4.5,
-			downloads: '15M',
-			installed: false
-		}
-	];
-
+	let themes = $state(themesData);
 	let installedThemes = $derived(themes.filter((t) => t.installed));
 	let installedExtensions = $derived(extensions.filter((e) => e.installed));
 
@@ -301,7 +169,14 @@
 				{#if expandedSections.has('installed-themes')}
 					<div class="ext-list">
 						{#each installedThemes as theme}
-							<div class="ext-card" class:active={theme.active}>
+							<div
+								key={theme.id}
+								class="ext-card"
+								class:active={theme.id === config.theme}
+								onclick={() => {
+									config.theme = theme.id;
+								}}
+							>
 								<div class="ext-icon" style="background: {theme.color};">
 									{theme.icon}
 								</div>
@@ -361,7 +236,7 @@
 			</div>
 			<div class="ext-list marketplace">
 				{#each filteredThemes as theme}
-					<div class="ext-card detailed" class:active={theme.active}>
+					<div class="ext-card detailed" class:active={theme.id === config.theme}>
 						<div class="ext-icon large" style="background: {theme.color};">
 							{theme.icon}
 						</div>
@@ -380,7 +255,15 @@
 								</span>
 							</div>
 						</div>
-						<button class="ext-action" class:installed={theme.installed}>
+						<button
+							class="ext-action"
+							class:installed={theme.installed}
+							onclick={() => {
+								if (!theme.installed) {
+									themes = themes.map((t) => (t.id === theme.id ? { ...t, installed: true } : t));
+								}
+							}}
+						>
 							{#if theme.installed}
 								<Check class="w-4 h-4" />
 							{:else}
@@ -435,8 +318,8 @@
 		display: flex;
 		flex-direction: column;
 		height: 100%;
-		background: #1e1e1e;
-		color: #cccccc;
+		background: var(--color-surface-900);
+		color: var(--color-primary-500);
 		font-size: 12px;
 		overflow: hidden;
 	}
@@ -446,7 +329,7 @@
 		align-items: center;
 		justify-content: space-between;
 		padding: 12px 16px;
-		border-bottom: 1px solid #3c3c3c;
+		border-bottom: 1px solid var(--color-surface-800);
 		background: rgba(255, 255, 255, 0.02);
 	}
 
@@ -458,7 +341,7 @@
 		font-weight: 600;
 		text-transform: uppercase;
 		letter-spacing: 0.5px;
-		color: #808080;
+		color: var(--color-primary-500);
 	}
 
 	.header-actions {
@@ -475,7 +358,7 @@
 		background: transparent;
 		border: none;
 		border-radius: 4px;
-		color: #808080;
+		color: var(--color-surface-color-500);
 		cursor: pointer;
 		transition: all 0.15s ease;
 	}
@@ -487,7 +370,7 @@
 
 	.search-section {
 		padding: 12px;
-		border-bottom: 1px solid #3c3c3c;
+		border-bottom: 1px solid var(--color-surface-color-800);
 	}
 
 	.search-wrapper {
@@ -496,7 +379,7 @@
 		gap: 8px;
 		padding: 8px 12px;
 		background: rgba(255, 255, 255, 0.05);
-		border: 1px solid #3c3c3c;
+		border: 1px solid var(--color-surface-color-800);
 		border-radius: 6px;
 		transition: border-color 0.15s ease;
 	}
@@ -505,27 +388,27 @@
 		border-color: #007acc;
 	}
 
-	.search-icon {
-		color: #6e6e6e;
-		flex-shrink: 0;
-	}
-
 	.search-input {
 		flex: 1;
 		background: transparent;
 		border: none;
 		outline: none;
-		color: #cccccc;
+		color: var(--color-surface-color-200);
 		font-size: 12px;
 	}
 
 	.search-input::placeholder {
-		color: #6e6e6e;
+		color: var(--color-surface-color-50);
+	}
+
+	.search-icon {
+		color: var(--color-surface-color-200);
+		background: var(--color-surface-color-200);
 	}
 
 	.tabs {
 		display: flex;
-		border-bottom: 1px solid #3c3c3c;
+		border-bottom: 1px solid var(--color-surface-color-800);
 	}
 
 	.tab {
@@ -551,7 +434,7 @@
 
 	.tab.active {
 		color: #ffffff;
-		border-bottom-color: #007acc;
+		border-bottom-color: var(--color-primary-700);
 	}
 
 	.tab-count {
@@ -567,7 +450,7 @@
 	}
 
 	.section {
-		border-bottom: 1px solid #2d2d2d;
+		border-bottom: 1px solid var(--color-surface-800);
 	}
 
 	.section-header {
@@ -598,21 +481,13 @@
 		border-radius: 10px;
 	}
 
-	.text-purple {
-		color: #c586c0;
-	}
-
-	.text-blue {
-		color: #569cd6;
-	}
-
 	.marketplace-header {
 		padding: 10px 12px;
 		font-size: 11px;
 		font-weight: 600;
-		color: #808080;
+		color: var(--color-primary-500);
 		background: rgba(255, 255, 255, 0.02);
-		border-bottom: 1px solid #2d2d2d;
+		border-bottom: 1px solid var(--color-surface-800);
 	}
 
 	.ext-list {
@@ -637,8 +512,8 @@
 	}
 
 	.ext-card.active {
-		background: rgba(0, 122, 204, 0.1);
-		border-left: 2px solid #007acc;
+		background: var(--color-primary-700);
+		border-left: 2px solid var(--color-primary-700);
 	}
 
 	.ext-card.detailed {
@@ -646,13 +521,13 @@
 		margin-bottom: 8px;
 		background: rgba(255, 255, 255, 0.03);
 		border-radius: 8px;
-		border: 1px solid #2d2d2d;
+		border: 1px solid var(--color-surface-800);
 		align-items: flex-start;
 	}
 
 	.ext-card.detailed:hover {
 		background: rgba(255, 255, 255, 0.06);
-		border-color: #3c3c3c;
+		border-color: var(--color-surface-800);
 	}
 
 	.ext-icon {
@@ -696,7 +571,7 @@
 	.active-badge {
 		font-size: 9px;
 		font-weight: 600;
-		color: #4ade80;
+		color: var(--success-500);
 		background: rgba(74, 222, 128, 0.15);
 		padding: 2px 6px;
 		border-radius: 4px;
@@ -704,13 +579,13 @@
 
 	.ext-author {
 		font-size: 11px;
-		color: #6e6e6e;
+		color: var(--color-surface-50);
 		margin-top: 2px;
 	}
 
 	.ext-description {
 		font-size: 11px;
-		color: #808080;
+		color: var(--color-surface-300);
 		margin-top: 4px;
 		line-height: 1.4;
 		display: -webkit-box;
@@ -725,7 +600,7 @@
 		gap: 16px;
 		margin-top: 8px;
 		font-size: 10px;
-		color: #6e6e6e;
+		color: var(--color-primary-500);
 	}
 
 	.rating,
@@ -744,7 +619,7 @@
 		align-items: center;
 		justify-content: center;
 		padding: 6px 12px;
-		background: #0e639c;
+		background: var(--color-primary-700);
 		border: none;
 		border-radius: 4px;
 		color: #ffffff;
@@ -756,12 +631,12 @@
 	}
 
 	.ext-action:hover {
-		background: #1177bb;
+		background: var(--primary-600);
 	}
 
 	.ext-action.installed {
 		padding: 6px;
-		background: rgba(74, 222, 128, 0.15);
+		background: var(--success-500);
 		color: #4ade80;
 	}
 

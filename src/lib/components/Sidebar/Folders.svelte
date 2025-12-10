@@ -41,7 +41,7 @@
 	};
 </script>
 
-<div class="vscode-explorer">
+<div class="bg-surface-900">
 	<div class="explorer-header">
 		<span class="header-title">EXPLORER</span>
 	</div>
@@ -109,7 +109,6 @@
 	.vscode-explorer {
 		width: 100%;
 		height: 100%;
-		background: #1e1e1e;
 		color: #cccccc;
 		font-family: 'Segoe UI', 'SF Pro Text', sans-serif;
 		font-size: 13px;
@@ -196,7 +195,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		color: #dcb67a;
+		color: var(--color-primary-500);
 		flex-shrink: 0;
 	}
 
@@ -204,6 +203,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		color: var(--color-primary-500);
 		width: 16px;
 		font-size: 14px;
 		flex-shrink: 0;
@@ -231,7 +231,7 @@
 	}
 
 	.folder.expanded .folder-icon {
-		color: #e8ab6a;
+		color: var(--color-primary-500);
 	}
 
 	.tree-item.file:hover .item-name {

@@ -39,7 +39,7 @@
 </script>
 
 <div class="flex">
-	<div class="bg-white flex flex-col" style="width: {sidebar.width}px;">
+	<div class="bg-surface-900 flex flex-col" style="width: {sidebar.width}px;">
 		<Folders />
 	</div>
 </div>

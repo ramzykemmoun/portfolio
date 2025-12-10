@@ -48,9 +48,8 @@
 	};
 </script>
 
-<div class="vscode-sidebar">
-	<!-- Activity Bar (Left icons) -->
-	<div class="activity-bar">
+<div class="vscode-sidebar bg-surface-950">
+	<div class="activity-bar bg-surface-900">
 		{#each Object.entries(sections) as [key, section]}
 			<button
 				type="button"
@@ -99,7 +98,6 @@
 		display: flex;
 		height: 100%;
 		min-height: 0;
-		background: #1e1e1e;
 		flex-shrink: 0;
 	}
 
@@ -109,7 +107,6 @@
 		flex-direction: column;
 		width: 48px;
 		height: 100%;
-		background: #181818;
 		border-right: 1px solid #2b2b2b;
 		flex-shrink: 0;
 	}

@@ -1,0 +1,13 @@
+/* Theme: Dracula */
+[data-theme='dracula'] {
+	--text-scaling: 1;
+	--base-font-color: #f8f8f2;
+	--base-font-color-dark: #282a36;
+
+	--color-surface-50: #f8f8f2;
+	--color-surface-100: #44475a;
+	--color-surface-200: #6272a4;
+	--color-surface-800: #282a36;
+	--color-surface-900: #282a36;
+	--color-surface-950: #1e1f29;
+}

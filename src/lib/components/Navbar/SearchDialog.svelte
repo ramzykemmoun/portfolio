@@ -351,11 +351,11 @@
 		transform: translateX(-50%);
 		width: 90%;
 		max-width: 600px;
-		background: linear-gradient(180deg, #252526 0%, #1e1e1e 100%);
-		border: 1px solid #3c3c3c;
+		background: linear-gradient(180deg, var(--color-surface-800) 0%, var(--color-surface-900) 100%);
+		border: 1px solid var(--color-surface-700);
 		border-radius: 8px;
 		box-shadow:
-			0 0 0 1px rgba(255, 255, 255, 0.05),
+			0 0 0 1px var(--color-surface-800),
 			0 25px 50px -12px rgba(0, 0, 0, 0.6),
 			0 0 80px rgba(0, 120, 215, 0.1);
 		z-index: 101;
@@ -388,14 +388,14 @@
 		align-items: center;
 		padding: 12px 16px;
 		gap: 12px;
-		border-bottom: 1px solid #3c3c3c;
-		background: rgba(255, 255, 255, 0.02);
+		border-bottom: 1px solid var(--color-surface-700);
+		background: var(--color-surface-800);
 	}
 
 	.search-icon {
 		width: 18px;
 		height: 18px;
-		color: #808080;
+		color: var(--color-surface-500);
 		flex-shrink: 0;
 	}
 
@@ -404,13 +404,13 @@
 		background: transparent;
 		border: none;
 		outline: none;
-		color: #cccccc;
+		color: var(--color-surface-200);
 		font-size: 14px;
 		font-family: 'Segoe UI', system-ui, sans-serif;
 	}
 
 	.search-input::placeholder {
-		color: #6e6e6e;
+		color: var(--color-surface-400);
 	}
 
 	.clear-btn {
@@ -423,13 +423,13 @@
 		border: none;
 		border-radius: 4px;
 		cursor: pointer;
-		color: #808080;
+		color: var(--color-surface-500);
 		transition: all 0.15s ease;
 	}
 
 	.clear-btn:hover {
-		background: rgba(255, 255, 255, 0.1);
-		color: #cccccc;
+		background: var(--color-surface-700);
+		color: var(--color-surface-200);
 	}
 
 	.clear-btn svg {
@@ -452,12 +452,12 @@
 	}
 
 	.results-container::-webkit-scrollbar-thumb {
-		background: #424242;
+		background: var(--color-surface-700);
 		border-radius: 4px;
 	}
 
 	.results-container::-webkit-scrollbar-thumb:hover {
-		background: #4f4f4f;
+		background: var(--color-surface-600);
 	}
 
 	.section-header {
@@ -467,7 +467,7 @@
 		padding: 8px 12px 6px;
 		font-size: 11px;
 		font-weight: 600;
-		color: #808080;
+		color: var(--color-surface-500);
 		text-transform: uppercase;
 		letter-spacing: 0.5px;
 	}
@@ -488,12 +488,12 @@
 
 	.result-item:hover,
 	.result-item.selected {
-		background: #04395e;
+		background: var(--color-surface-700);
 	}
 
 	.result-item.selected {
-		background: #094771;
-		box-shadow: inset 0 0 0 1px rgba(0, 120, 215, 0.4);
+		background: var(--color-surface-600);
+		box-shadow: inset 0 0 0 1px var(--color-primary-500);
 	}
 
 	.item-icon {
@@ -507,42 +507,42 @@
 	}
 
 	.command-icon {
-		color: #569cd6;
+		color: var(--color-primary-400);
 	}
 
 	.file-icon {
-		color: #cccccc;
+		color: var(--color-surface-200);
 	}
 
 	.item-label {
 		flex: 1;
 		font-size: 13px;
-		color: #cccccc;
+		color: var(--color-surface-200);
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
 	}
 
 	.item-label :global(.highlight) {
-		background: rgba(255, 213, 0, 0.25);
-		color: #ffd500;
+		background: var(--color-warning-500);
+		color: var(--color-surface-900);
 		border-radius: 2px;
 		padding: 0 2px;
 	}
 
 	.shortcut {
 		font-size: 11px;
-		color: #6e6e6e;
-		background: rgba(255, 255, 255, 0.06);
+		color: var(--color-surface-400);
+		background: var(--color-surface-800);
 		padding: 3px 6px;
 		border-radius: 4px;
-		border: 1px solid #3c3c3c;
+		border: 1px solid var(--color-surface-700);
 		font-family: 'SF Mono', 'Consolas', monospace;
 	}
 
 	.file-path {
 		font-size: 11px;
-		color: #6e6e6e;
+		color: var(--color-surface-400);
 		white-space: nowrap;
 	}
 
@@ -553,7 +553,7 @@
 		justify-content: center;
 		gap: 12px;
 		padding: 40px 20px;
-		color: #6e6e6e;
+		color: var(--color-surface-400);
 		font-size: 13px;
 	}
 
@@ -569,7 +569,7 @@
 		gap: 20px;
 		padding: 10px 16px;
 		background: rgba(0, 0, 0, 0.2);
-		border-top: 1px solid #3c3c3c;
+		border-top: 1px solid var(--color-surface-700);
 	}
 
 	.footer-hint {
@@ -577,7 +577,7 @@
 		align-items: center;
 		gap: 6px;
 		font-size: 11px;
-		color: #6e6e6e;
+		color: var(--color-surface-400);
 	}
 
 	.footer-hint kbd {
@@ -587,11 +587,11 @@
 		min-width: 20px;
 		height: 18px;
 		padding: 0 5px;
-		background: rgba(255, 255, 255, 0.06);
-		border: 1px solid #3c3c3c;
+		background: var(--color-surface-800);
+		border: 1px solid var(--color-surface-700);
 		border-radius: 3px;
 		font-size: 10px;
 		font-family: 'SF Mono', 'Consolas', monospace;
-		color: #808080;
+		color: var(--color-surface-500);
 	}
 </style>

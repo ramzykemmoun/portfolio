@@ -1,0 +1,13 @@
+/* Theme: Catppuccin */
+[data-theme='catppuccin'] {
+	--text-scaling: 1;
+	--base-font-color: #cdd6f4;
+	--base-font-color-dark: #1e1e2e;
+
+	--color-surface-50: #cdd6f4;
+	--color-surface-100: #313244;
+	--color-surface-200: #45475a;
+	--color-surface-800: #1e1e2e;
+	--color-surface-900: #1e1e2e;
+	--color-surface-950: #181825;
+}

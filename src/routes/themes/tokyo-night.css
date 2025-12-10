@@ -1,0 +1,13 @@
+/* Theme: Tokyo Night */
+[data-theme='tokyo-night'] {
+	--text-scaling: 1;
+	--base-font-color: #c0caf5;
+	--base-font-color-dark: #1a1b26;
+
+	--color-surface-50: #c0caf5;
+	--color-surface-100: #292e42;
+	--color-surface-200: #414868;
+	--color-surface-800: #1a1b26;
+	--color-surface-900: #1a1b26;
+	--color-surface-950: #16161e;
+}

@@ -1,0 +1,13 @@
+/* Theme: One Dark Pro */
+[data-theme='one-dark-pro'] {
+	--text-scaling: 1;
+	--base-font-color: #abb2bf;
+	--base-font-color-dark: #282c34;
+
+	--color-surface-50: #abb2bf;
+	--color-surface-100: #3e4451;
+	--color-surface-200: #2c313c;
+	--color-surface-800: #282c34;
+	--color-surface-900: #282c34;
+	--color-surface-950: #21252b;
+}

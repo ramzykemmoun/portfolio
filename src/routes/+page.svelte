@@ -3,8 +3,10 @@
 	import Sidebar from '../lib/components/Sidebar/Sidebar.svelte';
 	import Agent from '../lib/components/Agent/Agent.svelte';
 	import Editor from '../lib/components/Editor/Editor.svelte';
+	import ThemeToggle from '../lib/components/ThemeToggle.svelte';
 </script>
 
+<ThemeToggle />
 <div class="flex flex-col h-screen overflow-hidden w-full">
 	<Navbar />
 	<main class="flex flex-1 overflow-hidden">

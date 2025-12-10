@@ -4,22 +4,24 @@
 @plugin '@tailwindcss/forms';
 @plugin '@tailwindcss/typography';
 
+@import './themes/cursor.css';
+@import './themes/one-dark-pro.css';
+@import './themes/dracula.css';
+@import './themes/github-theme.css';
+@import './themes/tokyo-night.css';
+@import './themes/catppuccin.css';
+@import './themes/monokai.css';
+@import './themes/nord.css';
+@import './themes/night-owl.css';
+@import './themes/solarized-dark.css';
+@import './themes/cobalt2.css';
+
 @theme {
-	--color-surface-50: #abb2bf;
-	--color-surface-100: #1a1b26;
-	--color-surface-200: #3e4451;
-	--color-surface-900: #1a1b26;
-	--color-surface-950: rgb(19, 23, 43);
-
-	--color-text-100: var(--color-surface-50);
-	--color-text-500: var(--color-surface-50);
-	--color-text-900: #1a1b26;
-
-	--color-border-100: #4b5263;
-	--color-border-500: #61afef;
-
-	--color-accent-comment: #5c6370;
-	--color-accent-keyword: #c678dd;
-	--color-accent-string: #98c379;
-	--color-accent-number: #d19a66;
+	/* Map to CSS variables for dynamic switching */
+	--color-surface-50: var(--color-surface-50);
+	--color-surface-100: var(--color-surface-100);
+	--color-surface-200: var(--color-surface-200);
+	--color-surface-800: var(--color-surface-800);
+	--color-surface-900: var(--color-surface-900);
+	--color-surface-950: var(--color-surface-950);
 }
