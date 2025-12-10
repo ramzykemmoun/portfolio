@@ -14,6 +14,7 @@
 	} from '@lucide/svelte';
 
 	import { agent } from '$lib/stores/index.svelte';
+	import { generateMessage } from '$lib/ai/services/chat';
 
 	let inputValue = $state('');
 	let isTyping = $state(false);
@@ -25,20 +26,13 @@
 		timestamp: Date;
 	}
 
-	let messages = $state<Message[]>([
-		{
-			id: 1,
-			role: 'assistant',
-			content: "Hi! I'm your AI coding assistant. How can I help you today?",
-			timestamp: new Date()
-		}
-	]);
+	let messages = $state<Message[]>([]);
 
 	export const toggleAgent = () => {
 		agent.open = !agent.open;
 	};
 
-	const sendMessage = () => {
+	const sendMessage = async () => {
 		if (!inputValue.trim()) return;
 
 		messages = [
@@ -55,18 +49,21 @@
 		inputValue = '';
 		isTyping = true;
 
-		setTimeout(() => {
-			messages = [
-				...messages,
-				{
-					id: messages.length + 1,
-					role: 'assistant',
-					content: `I understand you're asking about "${userMsg}". This is a demo response.`,
-					timestamp: new Date()
-				}
-			];
-			isTyping = false;
-		}, 1500);
+		const generatedText = await generateMessage(userMsg, messages);
+
+		console.log(generatedText);
+
+		messages = [
+			...messages,
+			{
+				id: messages.length + 1,
+				role: 'assistant',
+				content: generatedText,
+				timestamp: new Date()
+			}
+		];
+
+		isTyping = false;
 	};
 
 	const handleKeydown = (e: KeyboardEvent) => {
@@ -76,11 +73,15 @@
 		}
 	};
 
-	const suggestions = ['Explain this code', 'Fix the bug', 'Add comments', 'Optimize'];
+	const suggestions = [
+		'Who are you',
+		'What is your vision',
+		'What is your mission',
+		'What is your goal'
+	];
 </script>
 
 <div class="agent-sidebar" class:open={agent.open}>
-	<!-- Toggle Button -->
 	<button
 		class="toggle-btn"
 		onclick={toggleAgent}
@@ -101,7 +102,7 @@
 					<div class="header-icon">
 						<Zap class="w-4 h-4" />
 					</div>
-					<span>AI Assistant</span>
+					<span>rk-v3</span>
 					<span class="header-badge">Beta</span>
 				</div>
 				<button class="header-close" onclick={toggleAgent}>
@@ -109,8 +110,10 @@
 				</button>
 			</div>
 
-			<!-- Messages -->
 			<div class="agent-messages">
+				<div class="text-primary-400 text-center">
+					Hi! I'm your AI coding assistant. How can I help you today?
+				</div>
 				{#each messages as message}
 					<div
 						class="message"
@@ -126,9 +129,7 @@
 						</div>
 						<div class="message-content">
 							<div class="message-header">
-								<span class="message-role"
-									>{message.role === 'assistant' ? 'Assistant' : 'You'}</span
-								>
+								<span class="message-role">{message.role === 'assistant' ? 'Ramzy' : 'You'}</span>
 							</div>
 							<div class="message-text">{message.content}</div>
 							{#if message.role === 'assistant'}
@@ -161,7 +162,6 @@
 				{/if}
 			</div>
 
-			<!-- Suggestions -->
 			{#if messages.length <= 1}
 				<div class="suggestions">
 					{#each suggestions as suggestion}
@@ -179,7 +179,6 @@
 				</div>
 			{/if}
 
-			<!-- Input -->
 			<div class="agent-input">
 				<textarea
 					bind:value={inputValue}
@@ -210,7 +209,6 @@
 		width: 350px;
 	}
 
-	/* Toggle Button */
 	.toggle-btn {
 		display: flex;
 		align-items: center;
@@ -229,7 +227,6 @@
 		color: var(--color-surface-50);
 	}
 
-	/* Agent Panel */
 	.agent-panel {
 		flex: 1;
 		display: flex;
@@ -365,13 +362,13 @@
 	.message-role {
 		font-size: 11px;
 		font-weight: 600;
-		color: var(--color-surface-400);
+		color: var(--color-primary-400);
 	}
 
 	.message-text {
 		font-size: 12px;
 		line-height: 1.5;
-		color: var(--color-surface-200);
+		color: var(--color-primary-200);
 	}
 
 	.message-actions {
@@ -462,7 +459,6 @@
 		border-color: var(--color-primary-500);
 	}
 
-	/* Input */
 	.agent-input {
 		display: flex;
 		align-items: flex-end;
@@ -476,9 +472,9 @@
 		flex: 1;
 		padding: 8px 10px;
 		background: var(--color-surface-900);
-		border: 1px solid var(--color-surface-700);
+		border: 1px solid var(--color-primary-700);
 		border-radius: 6px;
-		color: var(--color-surface-200);
+		color: var(--color-primary-200);
 		font-size: 12px;
 		font-family: inherit;
 		resize: none;

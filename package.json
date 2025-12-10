@@ -59,6 +59,7 @@
 		"vitest-browser-svelte": "^2.0.1"
 	},
 	"dependencies": {
+		"@huggingface/inference": "^4.13.5",
 		"@lucide/svelte": "^0.555.0",
 		"@monaco-editor/loader": "^1.7.0",
 		"@skeletonlabs/skeleton": "^4.7.2",

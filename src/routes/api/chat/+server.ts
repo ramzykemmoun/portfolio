@@ -1,39 +1,44 @@
 import { json } from '@sveltejs/kit';
+import { InferenceClient } from '@huggingface/inference';
+import { env } from '$env/dynamic/private';
+import { SYSTEM_PROMPT } from '$lib/ai/prompts/system';
 
-// /api/newsletter GET
+const hf = new InferenceClient(env.HF_ACCESS_TOKEN);
 
-export async function GET(event) {
-	const options: ResponseInit = {
-		status: 418,
-		headers: {
-			X: 'Gon give it to ya'
-		}
-	};
+export async function POST({ request }) {
+	const { input, history } = await request.json();
 
-	return json(
-		{
-			message: 'Hello'
-		},
-		options
-	);
-}
+	if (!input) {
+		return json({ error: 'Empty input' }, { status: 400 });
+	}
 
-// /api/newsletter POST
+	try {
+		const messages = [
+			{ role: 'system', content: SYSTEM_PROMPT },
+			...history.map((msg: any) => ({
+				role: msg.role,
+				content: msg.content
+			})),
+			{ role: 'user', content: input }
+		];
 
-export async function POST(event) {
-	const data = await event.request.formData();
-	const email = data.get('email');
+		const response = await hf.chatCompletion({
+			model: 'meta-llama/Llama-3.2-1B-Instruct',
+			messages: messages,
+			max_tokens: 500,
+			temperature: 0.7,
+			top_p: 0.9
+		});
 
-	// subscribe the user to the newsletter
-	console.log(email);
-
-	// return success
-	return new Response(JSON.stringify({ success: true }), {
-		headers: {
-			'Content-Type': 'application/json'
-		}
-	});
-
-	// it's common to return JSON, so SvelteKit has a helper
-	return json({ success: true });
+		return json({
+			generatedText: response.choices[0].message.content?.trim()
+		});
+	} catch (error: any) {
+		return json(
+			{
+				error: error.message
+			},
+			{ status: 503 }
+		);
+	}
 }

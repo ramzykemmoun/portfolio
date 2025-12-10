@@ -650,7 +650,6 @@
 		padding: 0 2px;
 	}
 
-	/* Scrollbar */
 	.results-section::-webkit-scrollbar {
 		width: 8px;
 	}

@@ -17,7 +17,6 @@
 @import './themes/cobalt2.css';
 
 @theme {
-	/* Map to CSS variables for dynamic switching */
 	--color-surface-50: var(--color-surface-50);
 	--color-surface-100: var(--color-surface-100);
 	--color-surface-200: var(--color-surface-200);

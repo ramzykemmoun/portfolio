@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@huggingface/inference':
+        specifier: ^4.13.5
+        version: 4.13.5
       '@lucide/svelte':
         specifier: ^0.555.0
         version: 0.555.0(svelte@5.45.5)
@@ -547,6 +550,17 @@ packages:
 
   '@fontsource/ibm-plex-mono@5.2.7':
     resolution: {integrity: sha512-MKAb8qV+CaiMQn2B0dIi1OV3565NYzp3WN5b4oT6LTkk+F0jR6j0ZN+5BKJiIhffDC3rtBULsYZE65+0018z9w==}
+
+  '@huggingface/inference@4.13.5':
+    resolution: {integrity: sha512-jeRQVwoV2Xx5stHR4wyZPPvhOOm6Hi9B2hsHWWuFJBEoxlFJMbRAsQbTvQrusw2vNBfNHIqb2i9EpelNLOqhvg==}
+    engines: {node: '>=18'}
+
+  '@huggingface/jinja@0.5.3':
+    resolution: {integrity: sha512-asqfZ4GQS0hD876Uw4qiUb7Tr/V5Q+JZuo2L+BtdrD4U40QU58nIRq3ZSgAzJgT874VLjhGVacaYfrdpXtEvtA==}
+    engines: {node: '>=18'}
+
+  '@huggingface/tasks@0.19.69':
+    resolution: {integrity: sha512-qv/3D3HKkGsnOdzHicirhTuyLgvQ/HSk9mxGC7BoneC6JFMlV9O1omA63dtaJTuHqk/t4lGPiIx5cSo3ZqI9mg==}
 
   '@humanfs/core@0.19.1':
     resolution: {integrity: sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==}
@@ -2875,6 +2889,15 @@ snapshots:
   '@floating-ui/utils@0.2.10': {}
 
   '@fontsource/ibm-plex-mono@5.2.7': {}
+
+  '@huggingface/inference@4.13.5':
+    dependencies:
+      '@huggingface/jinja': 0.5.3
+      '@huggingface/tasks': 0.19.69
+
+  '@huggingface/jinja@0.5.3': {}
+
+  '@huggingface/tasks@0.19.69': {}
 
   '@humanfs/core@0.19.1': {}
 

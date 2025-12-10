@@ -14,9 +14,11 @@
 		ChevronDown
 	} from '@lucide/svelte';
 	import SearchDialog from './SearchDialog.svelte';
-	let searchDialogOpen = $state<boolean>(false);
 
+	import rkIcon from '$lib/assets/logos/rk-icon.png';
 	import { terminal } from '$lib/stores/index.svelte';
+
+	let searchDialogOpen = $state<boolean>(false);
 
 	const menuItems = [
 		{ label: 'File', shortcut: '' },
@@ -43,12 +45,10 @@
 {/if}
 
 <header class="vscode-titlebar">
-	<!-- App Icon -->
 	<div class="app-icon">
-		<span class="icon-text">RK</span>
+		<img src={rkIcon} alt="RK" />
 	</div>
 
-	<!-- Menu Bar -->
 	<nav class="menu-bar">
 		{#each menuItems as item}
 			<button
@@ -71,16 +71,13 @@
 		<span class="title-file">Visual Studio Code</span>
 	</div>
 
-	<!-- Right Side Actions -->
 	<div class="right-actions">
-		<!-- Search -->
 		<button class="action-btn search-btn" onclick={() => (searchDialogOpen = true)}>
 			<Search class="w-4 h-4" />
 			<span>Search</span>
 			<span class="shortcut">Ctrl+Shift+F</span>
 		</button>
 
-		<!-- Status Items -->
 		<div class="status-items">
 			<button class="status-btn" title="Run and Debug">
 				<Play class="w-4 h-4" />
@@ -101,7 +98,6 @@
 		</div>
 	</div>
 
-	<!-- Window Controls -->
 	<div class="window-controls">
 		<button class="control-btn minimize">
 			<Minus class="w-4 h-4" />
@@ -128,25 +124,21 @@
 		-webkit-app-region: drag;
 	}
 
-	/* App Icon */
 	.app-icon {
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		width: 48px;
-		height: 100%;
-		background: linear-gradient(135deg, var(--color-primary-600), var(--color-secondary-600));
-		-webkit-app-region: no-drag;
+		width: 28px;
+		height: 28px;
 	}
 
 	.icon-text {
 		font-size: 11px;
 		font-weight: 700;
-		color: var(--color-surface-50);
+		color: var(--color-primary-300);
 		letter-spacing: -0.5px;
 	}
 
-	/* Menu Bar */
 	.menu-bar {
 		display: flex;
 		align-items: center;
@@ -159,7 +151,7 @@
 		height: 100%;
 		background: transparent;
 		border: none;
-		color: var(--color-surface-200);
+		color: var(--color-primary-200);
 		font-size: 12px;
 		cursor: pointer;
 		transition: background 0.1s ease;
@@ -167,10 +159,9 @@
 
 	.menu-item:hover,
 	.menu-item.active {
-		background: var(--color-surface-700);
+		background: var(--color-primary-400);
 	}
 
-	/* Window Title */
 	.window-title {
 		flex: 1;
 		display: flex;
@@ -223,7 +214,7 @@
 	}
 
 	.shortcut {
-		color: var(--color-surface-500);
+		color: var(--color-primary-3000);
 		font-size: 10px;
 	}
 
