@@ -1,14 +1,13 @@
 <script lang="ts">
 	import { ChevronRight, Home, FolderOpen } from '@lucide/svelte';
 	import { file } from '$lib/stores/index.svelte';
+	import Icon from '../Icon.svelte';
 
-	// Breadcrumb path based on current section
 	const getBreadcrumbs = () => {
-		const section = file.section || 'aboutMe';
 		return [
 			{ label: 'src', icon: FolderOpen },
 			{ label: 'components', icon: FolderOpen },
-			{ label: `${section[0].toUpperCase() + section.slice(1)}.tsx`, icon: null }
+			{ label: file.sectionFileName, icon: file.sectionIcon }
 		];
 	};
 
@@ -22,8 +21,10 @@
 				<ChevronRight class="breadcrumb-separator" />
 			{/if}
 			<button class="breadcrumb-item" class:active={i === breadcrumbs.length - 1}>
-				{#if crumb.icon}
-					<crumb.icon class="breadcrumb-icon" />
+				{#if typeof crumb.icon !== 'string'}
+					<crumb.icon />
+				{:else}
+					<Icon icon={crumb.icon} />
 				{/if}
 				<span>{crumb.label}</span>
 			</button>
@@ -37,8 +38,8 @@
 		align-items: center;
 		height: 32px;
 		padding: 8px;
-		background: #1e1e1e;
-		border-bottom: 1px solid #252526;
+		background: var(--color-surface-900);
+		border-bottom: 1px solid var(--color-surface-800);
 		font-size: 12px;
 		font-family: 'Segoe UI', sans-serif;
 	}
@@ -58,7 +59,7 @@
 		background: transparent;
 		border: none;
 		border-radius: 3px;
-		color: #969696;
+		color: var(--color-surface-400);
 		cursor: pointer;
 		white-space: nowrap;
 		transition:
@@ -67,24 +68,18 @@
 	}
 
 	.breadcrumb-item:hover {
-		background: rgba(255, 255, 255, 0.08);
-		color: #cccccc;
+		background: var(--color-surface-800);
+		color: var(--color-surface-200);
 	}
 
 	.breadcrumb-item.active {
-		color: #cccccc;
-	}
-
-	.breadcrumb-icon {
-		width: 14px;
-		height: 14px;
-		color: #dcb67a;
+		color: var(--color-surface-200);
 	}
 
 	.breadcrumb-separator {
 		width: 14px;
 		height: 14px;
-		color: #5a5a5a;
+		color: var(--color-surface-500);
 		flex-shrink: 0;
 	}
 </style>

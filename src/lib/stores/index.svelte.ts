@@ -7,7 +7,8 @@ export const sidebar = $state({
 export const file = $state({
 	view: 'live',
 	section: 'aboutMe',
-	sectionFileName: 'AboutMe.tsx'
+	sectionFileName: 'AboutMe.tsx',
+	sectionIcon: 'tsx'
 });
 
 export const terminal = $state({
@@ -19,5 +20,5 @@ export const agent = $state({
 });
 
 export const config = $state({
-	theme: 'nord'
+	theme: 'tokyo-night'
 });

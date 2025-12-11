@@ -106,7 +106,7 @@
 
 	.resize-handle {
 		height: 4px;
-		background: #252526;
+		background: var(--color-surface-800);
 		cursor: ns-resize;
 		flex-shrink: 0;
 		transition: background 0.15s ease;
@@ -114,7 +114,7 @@
 
 	.resize-handle:hover,
 	.resize-handle.active {
-		background: #007acc;
+		background: var(--color-primary-500);
 	}
 
 	.terminal-section {
@@ -129,17 +129,17 @@
 		gap: 6px;
 		height: 28px;
 		padding: 0 12px;
-		background: #252526;
+		background: var(--color-surface-800);
 		border: none;
-		border-top: 1px solid #1e1e1e;
-		color: #858585;
+		border-top: 1px solid var(--color-surface-700);
+		color: var(--color-surface-400);
 		font-size: 12px;
 		cursor: pointer;
 		transition: all 0.15s ease;
 	}
 
 	.terminal-toggle:hover {
-		background: #2a2a2a;
-		color: #cccccc;
+		background: var(--color-surface-700);
+		color: var(--color-surface-200);
 	}
 </style>

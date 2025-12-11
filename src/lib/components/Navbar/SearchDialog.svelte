@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { onMount, onDestroy } from 'svelte';
 	import { browser } from '$app/environment';
-	import { getFileIcon } from '$lib/utils/icons';
 	import { file, agent, terminal } from '$lib/stores/index.svelte';
+	import Icon from '$lib/components/Icon.svelte';
 
 	let { searchDialogOpen = $bindable() }: { searchDialogOpen: boolean } = $props();
 
@@ -45,6 +45,7 @@
 		{
 			name: 'AboutMe.tsx',
 			path: 'src/components/',
+			icon: 'react.ts',
 			action: () => {
 				file.section = 'aboutMe';
 				searchDialogOpen = false;
@@ -269,7 +270,7 @@
 					role="button"
 					tabindex="0"
 					aria-label={command.label}
-					class="result-item command-item"
+					class="result-item"
 					class:selected={selectedIndex === globalIndex}
 					onclick={command.action}
 					onmouseenter={() => (selectedIndex = globalIndex)}
@@ -300,7 +301,9 @@
 					onclick={fileItem.action}
 					onmouseenter={() => (selectedIndex = globalIndex)}
 				>
-					<span class="item-icon file-icon">{getFileIcon(fileItem.name)}</span>
+					<span class="item-icon file-icon">
+						<Icon icon={fileItem.icon} />
+					</span>
 					<span class="item-label">{@html highlightMatch(fileItem.name, searchTerm)}</span>
 					<span class="file-path">{fileItem.path}</span>
 				</div>
@@ -517,7 +520,7 @@
 	.item-label {
 		flex: 1;
 		font-size: 13px;
-		color: var(--color-surface-200);
+		color: var(--color-primary-200);
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;

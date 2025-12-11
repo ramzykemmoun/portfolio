@@ -68,11 +68,11 @@
 	<div class="window-title">
 		<span class="title-text">Ramzy KEMMOUN - Portfolio</span>
 		<span class="title-separator">—</span>
-		<span class="title-file">Visual Studio Code</span>
+		<span class="title-file">RK IDE</span>
 	</div>
 
 	<div class="right-actions">
-		<button class="action-btn search-btn" onclick={() => (searchDialogOpen = true)}>
+		<button class="search-btn" onclick={() => (searchDialogOpen = true)}>
 			<Search class="w-4 h-4" />
 			<span>Search</span>
 			<span class="shortcut">Ctrl+Shift+F</span>
@@ -130,6 +130,7 @@
 		justify-content: center;
 		width: 28px;
 		height: 28px;
+		padding-left: 4px;
 	}
 
 	.icon-text {
@@ -168,7 +169,7 @@
 		align-items: center;
 		justify-content: center;
 		gap: 6px;
-		color: var(--color-surface-200);
+		color: var(--color-primary-200);
 		font-size: 12px;
 		overflow: hidden;
 	}
@@ -210,7 +211,7 @@
 
 	.search-btn:hover {
 		background: var(--color-surface-700);
-		color: var(--color-surface-200);
+		color: var(--color-surface-300);
 	}
 
 	.shortcut {
@@ -290,7 +291,6 @@
 		color: white;
 	}
 
-	/* Responsive */
 	@media (max-width: 800px) {
 		.menu-bar {
 			display: none;

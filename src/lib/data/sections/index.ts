@@ -4,6 +4,7 @@ import { educationCode } from './education';
 import { experiencesCode } from './experience';
 import { projectsCode } from './projects';
 import { testimonialsCode } from './testimonials';
+import { envCode } from '../codes';
 
 export const sectionCodes = {
 	skills: skillsCode,
@@ -11,5 +12,6 @@ export const sectionCodes = {
 	education: educationCode,
 	experiences: experiencesCode,
 	projects: projectsCode,
-	testimonials: testimonialsCode
+	testimonials: testimonialsCode,
+	env: envCode
 };

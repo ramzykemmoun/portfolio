@@ -1,6 +1,4 @@
 <script lang="ts">
-	import { fade, fly } from 'svelte/transition';
-	import { cubicOut } from 'svelte/easing';
 	import { Send, Mail, MessageSquare, CheckCircle2, Loader2, Sparkles } from '@lucide/svelte';
 
 	let email = $state('');
@@ -26,25 +24,23 @@
 	}
 </script>
 
-<div class="contact-page" in:fade={{ duration: 300 }}>
-	<!-- Animated Background Elements -->
+<div class="contact-page relative">
 	<div class="bg-shape shape-1"></div>
 	<div class="bg-shape shape-2"></div>
 	<div class="bg-grid"></div>
 
 	<div class="content-wrapper">
-		<div class="header" in:fly={{ y: -20, duration: 600, delay: 200 }}>
+		<div class="header">
 			<h2 class="title">
 				<span class="gradient-text">Let's Connect</span>
-				<Sparkles class="sparkle-icon" size={24} />
 			</h2>
-			<p class="subtitle">Have a project in mind or just want to say hi?</p>
+			<p class="subtitle">Have a project in mind or just want to say Salam Alaikum?</p>
 		</div>
 
-		<div class="card-container" in:fly={{ y: 20, duration: 600, delay: 400 }}>
+		<div class="card-container">
 			<div class="glass-card">
 				{#if sent}
-					<div class="success-message" in:fly={{ y: 10, duration: 300 }}>
+					<div class="success-message">
 						<div class="success-icon">
 							<CheckCircle2 size={48} />
 						</div>
@@ -106,63 +102,17 @@
 					</form>
 				{/if}
 			</div>
-
-			<!-- Decorative elements around card -->
-			<div class="card-decoration top-right"></div>
-			<div class="card-decoration bottom-left"></div>
 		</div>
 	</div>
 </div>
 
 <style>
 	.contact-page {
-		position: relative;
-		height: 100%;
-		width: 100%;
-		overflow: hidden;
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		background: var(--color-surface-950);
+		overflow-x: hidden;
 		z-index: 1;
-	}
-
-	/* Animated Background */
-	.bg-shape {
-		position: absolute;
-		border-radius: 50%;
-		filter: blur(80px);
-		z-index: -1;
-		opacity: 0.4;
-		animation: float 20s infinite alternate ease-in-out;
-	}
-
-	.shape-1 {
-		top: -10%;
-		left: -10%;
-		width: 500px;
-		height: 500px;
-		background: var(--color-primary-600);
-		animation-delay: -5s;
-	}
-
-	.shape-2 {
-		bottom: -10%;
-		right: -10%;
-		width: 600px;
-		height: 600px;
-		background: var(--color-secondary-600);
-	}
-
-	.bg-grid {
-		position: absolute;
-		inset: 0;
-		background-image:
-			linear-gradient(var(--color-surface-800) 1px, transparent 1px),
-			linear-gradient(90deg, var(--color-surface-800) 1px, transparent 1px);
-		background-size: 50px 50px;
-		opacity: 0.05;
-		z-index: -1;
 	}
 
 	@keyframes float {
@@ -206,41 +156,22 @@
 		color: transparent;
 	}
 
-	:global(.sparkle-icon) {
-		color: var(--color-warning-400);
-		animation: pulse 2s infinite;
-	}
-
 	.subtitle {
 		color: var(--color-surface-400);
 		font-size: 1.1rem;
 	}
-
-	/* Glass Card */
 	.card-container {
 		position: relative;
 	}
 
 	.glass-card {
-		background: rgba(30, 30, 30, 0.6);
+		background: var(--color-surface-900);
 		backdrop-filter: blur(12px);
 		border: 1px solid rgba(255, 255, 255, 0.1);
 		border-radius: 20px;
 		padding: 2.5rem;
-		box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-		overflow: hidden;
-		transition:
-			transform 0.3s ease,
-			box-shadow 0.3s ease;
 	}
 
-	.glass-card:hover {
-		transform: translateY(-5px);
-		box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
-		border-color: rgba(255, 255, 255, 0.15);
-	}
-
-	/* Form Elements */
 	form {
 		display: flex;
 		flex-direction: column;
@@ -372,28 +303,6 @@
 		transform: translateX(3px) translateY(-3px);
 	}
 
-	:global(.spin) {
-		animation: spin 1s linear infinite;
-	}
-
-	@keyframes spin {
-		to {
-			transform: rotate(360deg);
-		}
-	}
-
-	@keyframes pulse {
-		0%,
-		100% {
-			transform: scale(1);
-			opacity: 1;
-		}
-		50% {
-			transform: scale(0.8);
-			opacity: 0.7;
-		}
-	}
-
 	/* Success State */
 	.success-message {
 		display: flex;
@@ -407,7 +316,6 @@
 	.success-icon {
 		margin-bottom: 1.5rem;
 		color: var(--color-success-500);
-		animation: bounce 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 	}
 
 	.success-message h3 {
@@ -434,28 +342,6 @@
 		background: var(--color-surface-800);
 		color: var(--color-surface-100);
 		border-color: var(--color-surface-500);
-	}
-
-	@keyframes bounce {
-		0% {
-			transform: scale(0);
-		}
-		50% {
-			transform: scale(1.2);
-		}
-		100% {
-			transform: scale(1);
-		}
-	}
-
-	/* Decorations */
-	.card-decoration {
-		position: absolute;
-		width: 100px;
-		height: 100px;
-		border-radius: 50%;
-		z-index: -1;
-		filter: blur(40px);
 	}
 
 	.top-right {

@@ -5,7 +5,7 @@ export const rootNode = {
 		{
 			id: 'node_modules',
 			name: 'node_modules',
-			icon: 'Package',
+			icon: 'Folder',
 			children: []
 		},
 		{
@@ -34,58 +34,59 @@ export const rootNode = {
 						{
 							id: 'aboutMe',
 							name: 'AboutMe.tsx',
-							icon: 'react',
+							icon: 'react.ts',
 							isClickable: true
 						},
 						{
 							id: 'education',
 							name: 'Education.tsx',
-							icon: 'react',
+							icon: 'react.ts',
 							isClickable: true
 						},
 						{
 							id: 'experiences',
 							name: 'Experiences.tsx',
-							icon: 'react',
+							icon: 'react.ts',
 							isClickable: true
 						},
 						{
 							id: 'projects',
 							name: 'Projects.tsx',
-							icon: 'react',
+							icon: 'react.ts',
 							isClickable: true
 						},
 						{
 							id: 'testimonials',
 							name: 'Testimonials.tsx',
-							icon: 'react',
+							icon: 'react.ts',
 							isClickable: true
 						},
 						{
 							id: 'skills',
 							name: 'Skills.tsx',
-							icon: 'react',
+							icon: 'react.ts',
 							isClickable: true
 						},
 						{
 							id: 'contact',
 							name: 'Contact.tsx',
-							icon: 'react',
+							icon: 'react.ts',
 							isClickable: true
 						}
 					]
 				},
 
-				{ id: 'src/global.css', name: 'global.css', icon: 'Settings' }
+				{ id: 'src/global.css', name: 'global.css', icon: 'css' }
 			]
 		},
-		{ id: 'gitignore', name: '.gitignore', icon: 'Package' },
-		{ id: 'packageJson', name: 'package.json', icon: 'Package' },
-		{ id: 'tsconfigJson', name: 'tsconfig.json', icon: 'Package' },
-		{ id: 'nextConfig', name: 'next.config.ts', icon: 'Package' },
-		{ id: 'postcssConfig', name: 'postcss.config.mjs', icon: 'Package' },
-		{ id: 'readme', name: 'README.md', icon: 'Book' },
-		{ id: 'tailwindConfig', name: 'tailwind.config.js', icon: 'Settings' },
-		{ id: 'packageLockJson', name: 'package-lock.json', icon: 'Package' }
+		{ id: 'env', name: '.env', icon: 'env', isClickable: true },
+		{ id: 'gitignore', name: '.gitignore', icon: 'git', isClickable: true },
+		{ id: 'packageJson', name: 'package.json', icon: 'nodejs' },
+		{ id: 'packageLockJson', name: 'package-lock.json', icon: 'nodejs', isClickable: true },
+		{ id: 'tailwindConfig', name: 'tailwind.config.js', icon: 'js', isClickable: true },
+		{ id: 'nextConfig', name: 'next.config.ts', icon: 'nextjs', isClickable: true },
+		{ id: 'postcssConfig', name: 'postcss.config.mjs', icon: 'js', isClickable: true },
+		{ id: 'readme', name: 'README.md', icon: 'md', isClickable: true },
+		{ id: 'tsconfigJson', name: 'tsconfig.json', icon: 'ts', isClickable: true }
 	]
 };

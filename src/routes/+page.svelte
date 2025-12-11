@@ -7,7 +7,8 @@
 </script>
 
 <ThemeToggle />
-<div class="flex flex-col h-screen overflow-hidden w-full">
+<ThemeToggle />
+<div class="flex flex-col h-screen overflow-hidden w-full bg-surface-950 text-surface-200">
 	<Navbar />
 	<main class="flex flex-1 overflow-hidden">
 		<Sidebar />

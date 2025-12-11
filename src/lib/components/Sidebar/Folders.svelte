@@ -36,6 +36,7 @@
 				file.view = 'code';
 				file.section = node.id;
 				file.sectionFileName = node.name;
+				file.sectionIcon = node.icon;
 			}
 		}
 	};
@@ -99,7 +100,7 @@
 				selectFile(node);
 			}}
 		>
-			<Icon icon={node.name.split('.').pop()?.toLowerCase() || ''} />
+			<Icon icon={node.icon} />
 			<span class="item-name">{node.name}</span>
 		</button>
 	{/if}

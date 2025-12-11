@@ -40,6 +40,8 @@
 		file.section;
 
 		if (editor) {
+			console.log(file.section);
+
 			editor.setValue(sectionCodes[file.section as keyof typeof sectionCodes] as string);
 			editor.layout();
 		}

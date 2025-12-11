@@ -4,8 +4,9 @@
 	import Contact from './Contact.svelte';
 	import SearchPanel from './Search.svelte';
 	import Extensions from './Extensions.svelte';
-	import { sidebar } from '$lib/stores/index.svelte';
 	import Git from './Git.svelte';
+	import { sidebar } from '$lib/stores/index.svelte';
+	import { Portal, Tooltip } from '@skeletonlabs/skeleton-svelte';
 
 	let isResizing = $state(false);
 
@@ -51,7 +52,9 @@
 <div class="vscode-sidebar bg-surface-950">
 	<div class="activity-bar bg-surface-900">
 		{#each Object.entries(sections) as [key, section]}
-			<button
+		<Tooltip positioning={{ placement: 'top' }}>
+	<Tooltip.Trigger>
+		<button
 				type="button"
 				class="activity-item"
 				class:active={sidebar.section === key && sidebar.open}
@@ -63,6 +66,19 @@
 					<div class="active-indicator"></div>
 				{/if}
 			</button>
+	</Tooltip.Trigger>
+	<Portal>
+		<Tooltip.Positioner>
+			<Tooltip.Content class="card p-2 preset-filled-surface-950-50">
+				<span>Hello Skeleton</span>
+				<Tooltip.Arrow class="[--arrow-size:--spacing(2)] [--arrow-background:var(--color-surface-950-50)]">
+					<Tooltip.ArrowTip />
+				</Tooltip.Arrow>
+			</Tooltip.Content>
+		</Tooltip.Positioner>
+	</Portal>
+</Tooltip>
+			
 		{/each}
 	</div>
 
@@ -107,8 +123,9 @@
 		flex-direction: column;
 		width: 48px;
 		height: 100%;
-		border-right: 1px solid #2b2b2b;
+		border-right: 1px solid var(--color-surface-800);
 		flex-shrink: 0;
+		background: var(--color-surface-900);
 	}
 
 	.activity-item {
@@ -120,17 +137,17 @@
 		height: 48px;
 		background: transparent;
 		border: none;
-		color: #858585;
+		color: var(--color-surface-400);
 		cursor: pointer;
 		transition: color 0.15s ease;
 	}
 
 	.activity-item:hover {
-		color: #ffffff;
+		color: var(--color-surface-50);
 	}
 
 	.activity-item.active {
-		color: #ffffff;
+		color: var(--color-surface-50);
 	}
 
 	/* Active indicator (white bar on left) */
@@ -141,7 +158,7 @@
 		transform: translateY(-50%);
 		width: 2px;
 		height: 24px;
-		background: #ffffff;
+		background: var(--color-primary-500);
 		border-radius: 0 2px 2px 0;
 	}
 
@@ -151,8 +168,9 @@
 		flex-direction: column;
 		min-width: 0;
 		height: 100%;
-		border-right: 1px solid #1e1e1e;
+		border-right: 1px solid var(--color-surface-800);
 		overflow: hidden;
+		background: var(--color-surface-800);
 	}
 
 	/* Resize Handle */
@@ -166,6 +184,6 @@
 	}
 
 	.resize-handle:hover {
-		background: #007acc;
+		background: var(--color-primary-500);
 	}
 </style>

@@ -1,35 +1,36 @@
 <script lang="ts">
 	import { X, Circle } from '@lucide/svelte';
 	import { file } from '$lib/stores/index.svelte';
+	import Icon from '$lib/components/Icon.svelte';
 
 	const tabs = $derived([
 		{
 			label: file.sectionFileName,
 			id: 'code',
-			modified: false
+			modified: false,
+			icon: file.sectionIcon
 		},
 		{
-			label: 'Contact.tsx',
+			label: 'Extension: Contact',
 			id: 'contact',
-			modified: false
+			modified: false,
+			icon: 'extension'
 		},
 		{
 			label: 'Preview',
 			id: 'live',
-			modified: false
+			modified: false,
+			icon: 'live'
 		}
 	]);
-
-	const getFileIcon = (label: string) => {
-		if (label.includes('.svelte')) return 'react';
-		return '📄';
-	};
 </script>
 
 <div class="vscode-tabs">
 	{#each tabs as tab}
 		<button class="tab" class:active={file.view === tab.id} onclick={() => (file.view = tab.id)}>
-			<span class="tab-icon">{getFileIcon(tab.label)}</span>
+			<span class="tab-icon">
+				<Icon icon={tab.icon} />
+			</span>
 			<span class="tab-label">{tab.label}</span>
 			<span class="tab-close">
 				{#if tab.modified}
@@ -47,8 +48,8 @@
 	.vscode-tabs {
 		display: flex;
 		height: 35px;
-		background: #181818;
-		border-bottom: 1px solid #252526;
+		background: var(--color-surface-950);
+		border-bottom: 1px solid var(--color-surface-800);
 		overflow-x: auto;
 		overflow-y: hidden;
 	}
@@ -58,7 +59,7 @@
 	}
 
 	.vscode-tabs::-webkit-scrollbar-thumb {
-		background: #424242;
+		background: var(--color-surface-700);
 	}
 
 	.tab {
@@ -67,10 +68,10 @@
 		gap: 6px;
 		height: 100%;
 		padding: 0 10px;
-		background: #2d2d2d;
+		background: var(--color-surface-800);
 		border: none;
-		border-right: 1px solid #252526;
-		color: #969696;
+		border-right: 1px solid var(--color-surface-900);
+		color: var(--color-surface-400);
 		font-size: 13px;
 		font-family: 'Segoe UI', sans-serif;
 		cursor: pointer;
@@ -79,13 +80,13 @@
 	}
 
 	.tab:hover {
-		background: #2a2a2a;
+		background: var(--color-surface-700);
 	}
 
 	.tab.active {
-		background: #1e1e1e;
-		color: #ffffff;
-		border-bottom: 1px solid #1e1e1e;
+		background: var(--color-surface-900);
+		color: white;
+		border-top: 2px solid var(--color-primary-500);
 		margin-bottom: -1px;
 	}
 
@@ -119,12 +120,12 @@
 
 	.tab-close:hover {
 		opacity: 1 !important;
-		background: rgba(255, 255, 255, 0.1);
+		background: var(--color-surface-600);
 	}
 
 	.tabs-spacer {
 		flex: 1;
 		min-width: 0;
-		background: #181818;
+		background: var(--color-surface-950);
 	}
 </style>

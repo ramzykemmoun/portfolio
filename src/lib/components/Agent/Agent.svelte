@@ -112,7 +112,9 @@
 
 			<div class="agent-messages">
 				<div class="text-primary-400 text-center">
-					Hi! I'm your AI coding assistant. How can I help you today?
+					{#if messages.length <= 1}
+						Hi! I'm rk-v3, the AI coding assistant of Ramzy, how can I help you today?
+					{/if}
 				</div>
 				{#each messages as message}
 					<div
@@ -283,7 +285,7 @@
 		border: 1px solid var(--color-primary-500);
 		border-radius: 3px;
 		font-size: 9px;
-		color: var(--color-primary-500);
+		color: var(--color-primary-200);
 		text-transform: uppercase;
 	}
 

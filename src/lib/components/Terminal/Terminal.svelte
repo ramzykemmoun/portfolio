@@ -240,7 +240,6 @@
 		font-size: 13px;
 	}
 
-	/* Header */
 	.terminal-header {
 		display: flex;
 		align-items: center;
@@ -264,10 +263,10 @@
 		align-items: center;
 		gap: 6px;
 		padding: 4px 10px;
-		background: var(--color-surface-900);
+		background: var(--color-primary-900);
 		border: none;
 		border-radius: 4px 4px 0 0;
-		color: var(--color-surface-200);
+		color: var(--color-primary-200);
 		font-size: 12px;
 		cursor: pointer;
 	}
@@ -314,12 +313,12 @@
 		background: transparent;
 		border: none;
 		border-radius: 4px;
-		color: var(--color-surface-400);
+		color: var(--color-primary-400);
 		cursor: pointer;
 	}
 
 	.action-btn:hover {
-		background: var(--color-surface-700);
+		background: var(--color-primary-700);
 		color: var(--color-surface-50);
 	}
 
@@ -358,40 +357,39 @@
 	}
 
 	.terminal-line.output {
-		color: var(--color-surface-200);
+		color: white;
 	}
 	.terminal-line.error {
-		color: var(--color-error-500);
+		color: red;
 	}
 	.terminal-line.success {
-		color: var(--color-success-500);
+		color: green;
 	}
 	.terminal-line.input {
-		color: var(--color-surface-200);
+		color: white;
 	}
 
 	.prompt {
-		color: var(--color-success-500);
+		color: green;
 		font-weight: bold;
 	}
 	.path {
-		color: var(--color-primary-500);
+		color: white;
 	}
 	.dollar {
-		color: var(--color-warning-500);
+		color: green;
 	}
 	.content {
 		white-space: pre-wrap;
 		word-break: break-word;
 	}
 
-	/* Input */
 	.terminal-input {
 		flex: 1;
 		background: transparent;
 		border: none;
 		outline: none;
-		color: var(--color-surface-200);
+		color: white;
 		font-family: inherit;
 		font-size: inherit;
 		caret-color: var(--color-secondary-500);
