@@ -51,7 +51,6 @@
 
 		const generatedText = await generateMessage(userMsg, messages);
 
-		console.log(generatedText);
 
 		messages = [
 			...messages,

@@ -11,80 +11,7 @@
 		Star
 	} from '@lucide/svelte';
 
-	interface Project {
-		id: number;
-		title: string;
-		description: string;
-		image: string;
-		tags: string[];
-		github?: string;
-		live?: string;
-		featured?: boolean;
-	}
-
-	const projects: Project[] = [
-		{
-			id: 1,
-			title: 'Neural Commerce',
-			description:
-				'AI-powered e-commerce platform with personalized recommendations and real-time analytics dashboard.',
-			image: '/images/project-1.jpg',
-			tags: ['Next.js', 'AI/ML', 'PostgreSQL', 'Stripe'],
-			github: 'https://github.com',
-			live: 'https://demo.com',
-			featured: true
-		},
-		{
-			id: 2,
-			title: 'CryptoVault',
-			description:
-				'Secure cryptocurrency wallet with multi-chain support, DeFi integration, and portfolio tracking.',
-			image: '/images/project-2.jpg',
-			tags: ['React', 'Web3', 'Solidity', 'Node.js'],
-			github: 'https://github.com',
-			live: 'https://demo.com',
-			featured: true
-		},
-		{
-			id: 3,
-			title: 'CloudSync Pro',
-			description:
-				'Enterprise file synchronization with end-to-end encryption and team collaboration features.',
-			image: '/images/project-3.jpg',
-			tags: ['SvelteKit', 'Rust', 'AWS', 'WebRTC'],
-			github: 'https://github.com',
-			live: 'https://demo.com'
-		},
-		{
-			id: 4,
-			title: 'MetaVerse Hub',
-			description:
-				'Immersive 3D social platform with customizable avatars and virtual event spaces.',
-			image: '/images/project-4.jpg',
-			tags: ['Three.js', 'WebGL', 'Socket.io', 'MongoDB'],
-			github: 'https://github.com'
-		},
-		{
-			id: 5,
-			title: 'DevOps Console',
-			description:
-				'Unified monitoring dashboard for CI/CD pipelines, container orchestration, and infrastructure.',
-			image: '/images/project-5.jpg',
-			tags: ['Go', 'Kubernetes', 'Prometheus', 'Grafana'],
-			github: 'https://github.com',
-			live: 'https://demo.com'
-		},
-		{
-			id: 6,
-			title: 'AI Assistant',
-			description:
-				'Conversational AI with natural language understanding and multi-modal capabilities.',
-			image: '/images/project-6.jpg',
-			tags: ['Python', 'LLM', 'FastAPI', 'Redis'],
-			github: 'https://github.com',
-			featured: true
-		}
-	];
+	import { projectsData } from '$lib/data/sections/projects';
 
 	let mounted = $state(false);
 	let currentIndex = $state(0);
@@ -122,18 +49,20 @@
 	});
 
 	const nextSlide = () => {
-		currentIndex = (currentIndex + 1) % projects.length;
+		currentIndex = (currentIndex + 1) % projectsData.length;
 	};
 
 	const prevSlide = () => {
-		currentIndex = (currentIndex - 1 + projects.length) % projects.length;
+		currentIndex = (currentIndex - 1 + projectsData.length) % projectsData.length;
 	};
 
 	const getCardStyle = (index: number) => {
 		const diff = index - currentIndex;
-		const normalizedDiff = (diff + projects.length) % projects.length;
+		const normalizedDiff = (diff + projectsData.length) % projectsData.length;
 		const adjustedDiff =
-			normalizedDiff > projects.length / 2 ? normalizedDiff - projects.length : normalizedDiff;
+			normalizedDiff > projectsData.length / 2
+				? normalizedDiff - projectsData.length
+				: normalizedDiff;
 
 		const isHovered = hoveredCard === index;
 		const baseScale = isHovered ? 1.08 : 1;
@@ -151,7 +80,7 @@
 	};
 </script>
 
-<div class="projects-container relative">
+<div class="projectsData-container relative">
 	<div class="bg-effects">
 		<div
 			class="grid-floor"
@@ -183,7 +112,7 @@
 
 	<div class="carousel-wrapper" class:mounted>
 		<div class="carousel" bind:this={carouselRef}>
-			{#each projects as project, index}
+			{#each projectsData as project, index}
 				<article
 					class="project-card"
 					class:active={currentIndex === index}
@@ -221,7 +150,7 @@
 
 					<div class="card-content">
 						<h3 class="card-title">{project.title}</h3>
-						<p class="card-desc">{project.description}</p>
+						<p class="card-desc">{project.subtitle}</p>
 
 						<div class="card-tags">
 							{#each project.tags as tag}
@@ -263,7 +192,7 @@
 		</button>
 
 		<div class="indicators">
-			{#each projects as project, index}
+			{#each projectsData as project, index}
 				<button
 					class="indicator"
 					class:active={currentIndex === index}
@@ -279,13 +208,13 @@
 	<div class="counter" class:mounted>
 		<span class="current">{String(currentIndex + 1).padStart(2, '0')}</span>
 		<span class="separator">/</span>
-		<span class="total">{String(projects.length).padStart(2, '0')}</span>
+		<span class="total">{String(projectsData.length).padStart(2, '0')}</span>
 	</div>
 </div>
 
 <style>
 	/* New Blue Accent Color: #007BFF (RGB: 0, 123, 255) */
-	.projects-container {
+	.projectsData-container {
 		position: relative;
 		min-height: 100%;
 		/* Adjusted background to a dark blue/black theme */
@@ -939,7 +868,7 @@
 	}
 
 	@media (max-width: 768px) {
-		.projects-container {
+		.projectsData-container {
 			padding: 1rem;
 		}
 

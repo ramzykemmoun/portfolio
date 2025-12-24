@@ -33,7 +33,6 @@
 				file.view = 'contact';
 				file.section = 'contact';
 			} else {
-				file.view = 'code';
 				file.section = node.id;
 				file.sectionFileName = node.name;
 				file.sectionIcon = node.icon;

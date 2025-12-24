@@ -13,9 +13,6 @@
 		Crown
 	} from '@lucide/svelte';
 
-	// REMARQUE: Assurez-vous que le chemin d'accès à vos données est correct.
-	// Si vous n'avez pas ce fichier, vous aurez besoin de définir 'experiencesData'
-	// manuellement (voir l'exemple de structure plus bas si nécessaire).
 	import { experiencesData } from '$lib/data/sections/experience';
 
 	let mounted = $state(false);
@@ -130,7 +127,9 @@
 						</div>
 					</div>
 
-					<p class="card-desc">{exp.description}</p>
+					{#if exp.description}
+						<p class="card-desc">{exp.description}</p>
+					{/if}
 
 					<div class="achievements">
 						<div class="achievements-header">

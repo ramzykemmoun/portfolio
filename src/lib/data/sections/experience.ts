@@ -1,6 +1,3 @@
-
-
-
 export const experiencesData = [
 	{
 		id: 1,
@@ -8,12 +5,9 @@ export const experiencesData = [
 		company: 'Mizaniya Pay',
 		location: 'Bir Mourad Raïs, Algiers, Algeria',
 		period: 'Sep 2025 - Present',
-		description:
-			'Leading a team of 12 engineers in developing next-generation cloud infrastructure and microservices architecture.',
 		achievements: [
-			'Reduced system latency by 60%',
-			'Architected multi-region deployment',
-			'Led migration to Kubernetes'
+			'Building andoptimizing responsive fintech webapplications with React.js.',
+			'Integrating APIs and improving performance to deliver a fast user experience.'
 		],
 		rank: 'general',
 		technologies: ['react.js', 'react-query', 'react-hook-form', 'zod', 'axios', 'shadcn/ui']
@@ -24,15 +18,12 @@ export const experiencesData = [
 		company: 'SlickPay',
 		location: 'Marseille, France',
 		period: 'Apr 2025 - May 2025',
-		description:
-			'Core member of the founding engineering team, building the product from ground zero to 100K+ users.',
 		achievements: [
-			'Developed MVP in 3 months',
-			'Scaled to 100K users',
-			'Integrated payment systems'
+			'Built scalable Node.js APIs with WebSocket/WebRTCsupport',
+			'PostgreSQLDBmanagementandJWT-basedsecureauth'
 		],
 		rank: 'captain',
-		technologies: ['Vue.js', 'Python', 'MongoDB', 'Redis']
+		technologies: ['node.js', 'express.js', 'typescript', 'prisma', 'mongodb']
 	},
 	{
 		id: 3,
@@ -40,15 +31,12 @@ export const experiencesData = [
 		company: 'Zad AI',
 		location: 'Kouba, Algiers, Algeria',
 		period: 'Nov 2024 - Jul 2025',
-		description:
-			'Developed high-performance web applications and led the frontend architecture modernization initiative.',
 		achievements: [
-			'Built real-time analytics dashboard',
-			'Implemented CI/CD pipeline',
-			'Mentored 5 junior developers'
+			'Developed multimodal AI system for defect detection in plastic',
+			'Added natural language feedback for quality assurance'
 		],
 		rank: 'commander',
-		technologies: ['React', 'Node.js', 'PostgreSQL', 'Docker']
+		technologies: ['python', 'langchain', 'tensorflow', 'flask', 'agno']
 	},
 
 	{
@@ -60,28 +48,25 @@ export const experiencesData = [
 		description:
 			'Started my professional journey building client websites and learning enterprise development practices.',
 		achievements: [
-			'Delivered 15+ client projects',
-			'Learned agile methodologies',
-			'First open source contribution'
+			'Led project-based web dev bootcamps from HTML,CSSJavaScript, to React.js to Node.js, Express.js and MongoDB'
 		],
 		rank: 'lieutenant',
-		technologies: ['JavaScript', 'PHP', 'MySQL', 'WordPress']
+		technologies: ['front-end', 'back-end']
 	},
 	{
 		id: 5,
 		title: 'Hsoub Academy',
 		company: 'Instructor & Coach',
-		location: "Remote",
+		location: 'Remote',
 		period: ' Aug 2023 - Sep 2024',
 		description:
 			'Started my professional journey building client websites and learning enterprise development practices.',
 		achievements: [
-			'Delivered 15+ client projects',
-			'Learned agile methodologies',
-			'First open source contribution'
+			'Created courses on TypeScript and real-time apps using WebSocket',
+			'Built performant, scalable applications with focus on UX'
 		],
 		rank: 'lieutenant',
-		technologies: ['JavaScript', 'PHP', 'MySQL', 'WordPress']
+		technologies: ['TypeScript', 'Node.js', 'React Native', 'Next.js', 'Socket.io']
 	},
 	{
 		id: 6,
@@ -90,18 +75,113 @@ export const experiencesData = [
 		description:
 			'Started my professional journey building client websites and learning enterprise development practices.',
 		achievements: [
-			'Delivered 15+ client projects',
-			'Learned agile methodologies',
-			'First open source contribution'
+			'Fullstack development using React, Next.js, React Native, Express, Electron',
+			'Mentored students in async programming and architecture'
 		],
 		rank: 'lieutenant',
-		technologies: ['JavaScript', 'PHP', 'MySQL', 'WordPress']
+		technologies: [
+			'React',
+			'Next.js',
+			'React Native',
+			'Electron',
+			'Node.js',
+			'Nest.js',
+			'TypeScript',
+			'Python'
+		]
 	}
 ];
 
+export const experiencesCode = `export const experiencesData = [
+	{
+		id: 1,
+		title: 'Front-End Developer',
+		company: 'Mizaniya Pay',
+		location: 'Bir Mourad Raïs, Algiers, Algeria',
+		period: 'Sep 2025 - Present',
+		achievements: [
+			'Building andoptimizing responsive fintech webapplications with React.js.',
+			'Integrating APIs and improving performance to deliver a fast user experience.'
+		],
+		rank: 'general',
+		technologies: ['react.js', 'react-query', 'react-hook-form', 'zod', 'axios', 'shadcn/ui']
+	},
+	{
+		id: 2,
+		title: 'Back-end Developer',
+		company: 'SlickPay',
+		location: 'Marseille, France',
+		period: 'Apr 2025 - May 2025',
+		achievements: [
+			'Built scalable Node.js APIs with WebSocket/WebRTCsupport',
+			'PostgreSQLDBmanagementandJWT-basedsecureauth'
+		],
+		rank: 'captain',
+		technologies: ['node.js', 'express.js', 'typescript', 'prisma', 'mongodb']
+	},
+	{
+		id: 3,
+		title: 'AI Intern',
+		company: 'Zad AI',
+		location: 'Kouba, Algiers, Algeria',
+		period: 'Nov 2024 - Jul 2025',
+		achievements: [
+			'Developed multimodal AI system for defect detection in plastic',
+			'Added natural language feedback for quality assurance'
+		],
+		rank: 'commander',
+		technologies: ['python', 'langchain', 'tensorflow', 'flask', 'agno']
+	},
 
-export const experiencesCode = `const section = {
-	title: 'Experience',
-	icon: Briefcase
-}
-`;
+	{
+		id: 4,
+		title: 'Fullstack JS Instructor',
+		company: 'Code213',
+		location: "Val d'Hydra, Algiers, Algeria",
+		period: 'Feb 2024 - May 2025',
+		description:
+			'Started my professional journey building client websites and learning enterprise development practices.',
+		achievements: [
+			'Led project-based web dev bootcamps from HTML,CSSJavaScript, to React.js to Node.js, Express.js and MongoDB'
+		],
+		rank: 'lieutenant',
+		technologies: ['front-end', 'back-end']
+	},
+	{
+		id: 5,
+		title: 'Hsoub Academy',
+		company: 'Instructor & Coach',
+		location: 'Remote',
+		period: ' Aug 2023 - Sep 2024',
+		description:
+			'Started my professional journey building client websites and learning enterprise development practices.',
+		achievements: [
+			'Created courses on TypeScript and real-time apps using WebSocket',
+			'Built performant, scalable applications with focus on UX'
+		],
+		rank: 'lieutenant',
+		technologies: ['TypeScript', 'Node.js', 'React Native', 'Next.js', 'Socket.io']
+	},
+	{
+		id: 6,
+		title: 'Freelance Developer',
+		period: '2023 - Present',
+		description:
+			'Started my professional journey building client websites and learning enterprise development practices.',
+		achievements: [
+			'Fullstack development using React, Next.js, React Native, Express, Electron',
+			'Mentored students in async programming and architecture'
+		],
+		rank: 'lieutenant',
+		technologies: [
+			'React',
+			'Next.js',
+			'React Native',
+			'Electron',
+			'Node.js',
+			'Nest.js',
+			'TypeScript',
+			'Python'
+		]
+	}
+];`;

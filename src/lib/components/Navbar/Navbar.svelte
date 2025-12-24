@@ -33,11 +33,85 @@
 		},
 		{ label: 'Go', shortcut: '' },
 		{ label: 'Run', shortcut: '' },
-		{ label: 'Terminal', shortcut: '', action: () => (terminal.open = !terminal.open) },
+		{ label: 'Terminal', shortcut: '' },
 		{ label: 'Help', shortcut: '' }
 	];
 
 	let activeMenu = $state<string | null>(null);
+	let isRunning = $state(false);
+
+	const menuStructure: Record<string, { label: string; shortcut?: string; action?: () => void }[]> =
+		{
+			File: [
+				{ label: 'New File', shortcut: 'Ctrl+N' },
+				{ label: 'Open Folder...', shortcut: 'Ctrl+K Ctrl+O' },
+				{ label: 'Save', shortcut: 'Ctrl+S' },
+				{ label: 'Auto Save', shortcut: '' },
+				{ label: 'Exit', shortcut: 'Alt+F4' }
+			],
+			Edit: [
+				{ label: 'Undo', shortcut: 'Ctrl+Z' },
+				{ label: 'Redo', shortcut: 'Ctrl+Y' },
+				{ label: 'Cut', shortcut: 'Ctrl+X' },
+				{ label: 'Copy', shortcut: 'Ctrl+C' },
+				{ label: 'Paste', shortcut: 'Ctrl+V' }
+			],
+			Selection: [
+				{ label: 'Select All', shortcut: 'Ctrl+A' },
+				{ label: 'Expand Selection', shortcut: 'Shift+Alt+Right' }
+			],
+			View: [
+				{
+					label: 'Command Palette...',
+					shortcut: 'Ctrl+Shift+P',
+					action: () => (searchDialogOpen = true)
+				},
+				{ label: 'Open View...', shortcut: '' },
+				{ label: 'Appearance', shortcut: '' },
+				{ label: 'Output', shortcut: 'Ctrl+K Ctrl+H' }
+			],
+			Go: [
+				{ label: 'Go to File...', shortcut: 'Ctrl+P' },
+				{ label: 'Go to Symbol...', shortcut: 'Ctrl+Shift+O' }
+			],
+			Run: [
+				{
+					label: 'Start Debugging',
+					shortcut: 'F5',
+					action: () => toggleRun()
+				},
+				{ label: 'Run Without Debugging', shortcut: 'Ctrl+F5' }
+			],
+			Terminal: [
+				{
+					label: 'New Terminal',
+					shortcut: 'Ctrl+Shift+`',
+					action: () => (terminal.open = true)
+				}
+			],
+			Help: [
+				{ label: 'Welcome', shortcut: '' },
+				{ label: 'About', shortcut: '' }
+			]
+		};
+
+	function toggleRun() {
+		isRunning = !isRunning;
+		setTimeout(() => {
+			isRunning = false;
+		}, 3000);
+	}
+
+	function handleMenuClick(action?: () => void) {
+		if (action) action();
+		activeMenu = null;
+	}
+
+	function handleOutsideClick(e: MouseEvent) {
+		if (activeMenu && !(e.target as Element).closest('.menu-item')) {
+			activeMenu = null;
+		}
+	}
 </script>
 
 {#if searchDialogOpen}
@@ -51,17 +125,41 @@
 
 	<nav class="menu-bar">
 		{#each menuItems as item}
-			<button
-				class="menu-item"
-				class:active={activeMenu === item.label}
-				onmouseenter={() => activeMenu && (activeMenu = item.label)}
-				onclick={() => {
-					activeMenu = activeMenu === item.label ? null : item.label;
-					item.action && item.action();
-				}}
-			>
-				{item.label}
-			</button>
+			<div class="menu-wrapper">
+				<button
+					class="menu-item"
+					class:active={activeMenu === item.label}
+					onmouseenter={() => activeMenu && (activeMenu = item.label)}
+					onclick={() => {
+						if (item.action) {
+							item.action();
+							activeMenu = null; // Close menu if it's a direct action
+						} else {
+							activeMenu = activeMenu === item.label ? null : item.label;
+						}
+					}}
+				>
+					{item.label}
+				</button>
+				{#if activeMenu === item.label && menuStructure[item.label]}
+					<div class="dropdown-menu">
+						{#each menuStructure[item.label] as subItem}
+							<button
+								class="dropdown-item"
+								onclick={(e) => {
+									e.stopPropagation();
+									handleMenuClick(subItem.action);
+								}}
+							>
+								<span class="label">{subItem.label}</span>
+								{#if subItem.shortcut}
+									<span class="shortcut">{subItem.shortcut}</span>
+								{/if}
+							</button>
+						{/each}
+					</div>
+				{/if}
+			</div>
 		{/each}
 	</nav>
 
@@ -79,8 +177,12 @@
 		</button>
 
 		<div class="status-items">
-			<button class="status-btn" title="Run and Debug">
-				<Play class="w-4 h-4" />
+			<button class="status-btn" title="Run and Debug" onclick={toggleRun}>
+				{#if isRunning}
+					<div class="spinner"></div>
+				{:else}
+					<Play class="w-4 h-4 text-green-400" />
+				{/if}
 			</button>
 			<button class="status-btn" title="Source Control">
 				<GitBranch class="w-4 h-4" />
@@ -110,6 +212,8 @@
 		</button>
 	</div>
 </header>
+
+<svelte:window onclick={handleOutsideClick} />
 
 <style>
 	.vscode-titlebar {
@@ -306,6 +410,70 @@
 
 		.window-title {
 			padding-left: 10px;
+		}
+	}
+
+	.menu-wrapper {
+		position: relative;
+		height: 100%;
+	}
+
+	.dropdown-menu {
+		position: absolute;
+		top: 100%;
+		left: 0;
+		min-width: 200px;
+		background: var(--color-surface-800);
+		border: 1px solid var(--color-surface-700);
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+		border-radius: 0 0 4px 4px;
+		padding: 4px 0;
+		z-index: 1000;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.dropdown-item {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 6px 16px;
+		background: transparent;
+		border: none;
+		color: var(--color-primary-200);
+		font-size: 12px;
+		cursor: pointer;
+		text-align: left;
+		width: 100%;
+	}
+
+	.dropdown-item:hover {
+		background: var(--color-primary-600);
+		color: white;
+	}
+
+	.dropdown-item .shortcut {
+		margin-left: 20px;
+		color: var(--color-surface-400);
+		font-size: 10px;
+	}
+
+	.dropdown-item:hover .shortcut {
+		color: var(--color-surface-200);
+	}
+
+	.spinner {
+		width: 14px;
+		height: 14px;
+		border: 2px solid var(--color-primary-500);
+		border-top-color: transparent;
+		border-radius: 50%;
+		animation: spin 1s linear infinite;
+	}
+
+	@keyframes spin {
+		to {
+			transform: rotate(360deg);
 		}
 	}
 </style>
