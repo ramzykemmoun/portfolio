@@ -1,18 +1,18 @@
 import tibiane from '$lib/assets/projects/tibiane.png';
-
-export const projectsCode = `const section = {
-        title: 'Projects',
-        icon: Briefcase
-    }
-`;
+import pointageVDC from '$lib/assets/projects/pointagevdc.png';
+import nightbyte from '$lib/assets/projects/nightbyte.png';
+import mouhandisson from '$lib/assets/projects/mouhandisson.png';
+import zappicon from '$lib/assets/projects/zappicon.png';
+import mcloader from '$lib/assets/projects/mcloader.png';
+import mywkfl from '$lib/assets/projects/mywkfl.png';
+import artistCalendar from '$lib/assets/projects/artist-calendar.png';
 
 export const projectsData = [
 	{
 		title: 'PointageVDC',
 		subtitle: 'Plateform for employee timetracking and attendance management',
-		imageSrc: '/images/project-1.webp',
+		imageSrc: pointageVDC,
 		tags: ['React', 'Tailwind', 'Nest.js', 'PostgreSQL'],
-		href: '#project-1',
 		priority: true,
 		gradientFrom: '#0f172a',
 		gradientTo: '#6d28d9'
@@ -20,7 +20,7 @@ export const projectsData = [
 	{
 		title: 'Nightbyte Website',
 		subtitle: 'Designed and developed a responsive, high-impact landing page for an agency',
-		imageSrc: '/images/project-2.webp',
+		imageSrc: nightbyte,
 		tags: ['SaaS', 'Design System', 'Web'],
 		href: 'https://www.nightbyte.space/',
 		priority: false,
@@ -30,7 +30,7 @@ export const projectsData = [
 	{
 		title: 'Real-Time ChatApp',
 		subtitle: 'Fullstack real-time messaging app',
-		imageSrc: '/images/project-3.webp',
+		imageSrc: '',
 		tags: ['React', 'Tailwind', 'Nest.js', 'WebSockets'],
 		href: 'https://github.com/ramzykemmoun/Gloria-chat-nestjs',
 		priority: false,
@@ -40,7 +40,7 @@ export const projectsData = [
 	{
 		title: 'Mohandisson - JobPlatform',
 		subtitle: 'Job/freelance platform for companies and seekers',
-		imageSrc: '/images/project-4.webp',
+		imageSrc: mouhandisson,
 		tags: ['React', 'Node.js', 'Freelance', 'E-Payment'],
 		href: '#project-4',
 		priority: false,
@@ -60,7 +60,7 @@ export const projectsData = [
 	{
 		title: 'Zappicon - Icon Library',
 		subtitle: 'Smart searchable icon platform for developers/designers',
-		imageSrc: '/images/project-5.webp',
+		imageSrc: zappicon,
 		tags: ['Next.js', 'Animation', 'UI/UX'],
 		href: 'https://zappicon.com/',
 		priority: false,
@@ -70,9 +70,9 @@ export const projectsData = [
 	{
 		title: 'Micro Loader - OpenSource',
 		subtitle: 'Collection of beautiful open-source Flutter loaders',
-		imageSrc: '/images/project-6.webp',
+		imageSrc: mcloader,
 		tags: ['Flutter', 'UI/UX', 'Open Source'],
-		href: '#project-6',
+		href: 'https://loaders.microclub.info/',
 		priority: false,
 		gradientFrom: '#0b132b',
 		gradientTo: '#10b981'
@@ -80,9 +80,9 @@ export const projectsData = [
 	{
 		title: 'MyWkfl - Workflow Automation Platform',
 		subtitle: 'Automates social posts, email, content generation',
-		imageSrc: '/images/project-7.webp',
+		imageSrc: mywkfl,
 		tags: ['AI', 'Automation', 'LLMs'],
-		href: '#project-7',
+		href: 'https://github.com/ramzykemmoun/my-wkfl-devfest-batna-2k24',
 		priority: false,
 		gradientFrom: '#1f2937',
 		gradientTo: '#8b5cf6'
@@ -90,9 +90,8 @@ export const projectsData = [
 	{
 		title: 'Geni OCR',
 		subtitle: 'System to extract identity information from scanned documents',
-		imageSrc: '/images/project-7.webp',
+		imageSrc: '',
 		tags: ['Python', 'Agentic AI', 'OCR', 'Computer Vision'],
-		href: '#project-7',
 		priority: false,
 		gradientFrom: '#1f2937',
 		gradientTo: '#8b5cf6'
@@ -100,11 +99,16 @@ export const projectsData = [
 	{
 		title: 'Artist Calendar Plateform',
 		subtitle: 'Plateform focused oncontent creation and management',
-		imageSrc: '/images/project-7.webp',
+		imageSrc: artistCalendar,
 		tags: ['Next.js', 'Shadcn/ui', 'API Integration'],
-		href: '#project-7',
 		priority: false,
 		gradientFrom: '#1f2937',
 		gradientTo: '#8b5cf6'
 	}
 ];
+
+export const projectsCode = `const section = {
+        title: 'Projects',
+        icon: Briefcase
+    }
+`;
