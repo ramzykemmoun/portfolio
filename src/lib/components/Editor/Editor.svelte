@@ -142,4 +142,21 @@
 		background: var(--color-surface-700);
 		color: var(--color-surface-200);
 	}
+
+	/* Responsive: Mobile */
+	@media (max-width: 768px) {
+		.editor-container {
+			/* Add bottom padding for fixed bottom nav */
+			padding-bottom: 48px;
+		}
+
+		.terminal-toggle {
+			height: 44px;
+			font-size: 14px;
+		}
+
+		.resize-handle {
+			height: 8px;
+		}
+	}
 </style>

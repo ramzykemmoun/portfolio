@@ -1,38 +1,107 @@
-# sv
+# 🖥️ Ramzy KEMMOUN - Portfolio
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+<div align="center">
 
-## Creating a project
+![SvelteKit](https://img.shields.io/badge/SvelteKit-FF3E00?style=for-the-badge&logo=svelte&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Monaco Editor](https://img.shields.io/badge/Monaco_Editor-1E1E1E?style=for-the-badge&logo=visual-studio-code&logoColor=white)
 
-If you're seeing this, you've probably already done this step. Congrats!
+**A unique VS Code-inspired portfolio that showcases my work as an interactive code editor experience.**
 
-```sh
-# create a new project in the current directory
-npx sv create
+[Live Demo](https://ramzykemmoun.dev) • [GitHub](https://github.com/ramzykemmoun)
 
-# create a new project in my-app
-npx sv create my-app
+</div>
+
+---
+
+## ✨ Features
+
+- **VS Code UI** - Authentic IDE experience with sidebar, tabs, terminal, and file explorer
+- **Monaco Editor** - Real syntax highlighting with multiple themes
+- **AI Chat Assistant** - Interactive AI panel powered by Hugging Face
+- **Multiple Themes** - Cursor, One Dark Pro, Dracula, Tokyo Night, and more
+- **Fully Responsive** - Optimized for desktop, tablet, and mobile
+- **3D Elements** - Three.js powered visuals with Threlte
+
+## 🛠️ Tech Stack
+
+| Category        | Technologies               |
+| --------------- | -------------------------- |
+| **Framework**   | SvelteKit 2, Svelte 5      |
+| **Styling**     | TailwindCSS 4, Skeleton UI |
+| **Editor**      | Monaco Editor              |
+| **3D Graphics** | Three.js, Threlte          |
+| **AI**          | Hugging Face Inference     |
+| **Testing**     | Vitest, Playwright         |
+| **Docs**        | Storybook                  |
+
+## 🚀 Quick Start
+
+```bash
+# Clone the repository
+git clone https://github.com/ramzykemmoun/portfolio.git
+cd portfolio
+
+# Install dependencies
+pnpm install
+
+# Start development server
+pnpm dev
+
+# Build for production
+pnpm build
 ```
 
-## Developing
+## 📁 Project Structure
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```sh
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+```
+src/
+├── lib/
+│   ├── components/
+│   │   ├── Agent/        # AI chat panel
+│   │   ├── Editor/       # Code editor & sections
+│   │   ├── Navbar/       # Top navigation bar
+│   │   ├── Sidebar/      # File explorer & panels
+│   │   └── Terminal/     # Terminal component
+│   ├── data/
+│   │   └── sections/     # Portfolio content data
+│   └── stores/           # Svelte stores
+├── routes/
+│   └── themes/           # Editor themes
+└── stories/              # Storybook stories
 ```
 
-## Building
+## 🎨 Available Themes
 
-To create a production version of your app:
+- Cursor (Default)
+- One Dark Pro
+- Dracula
+- GitHub Theme
+- Tokyo Night
+- Catppuccin
+- Monokai
+- Nord
+- Night Owl
+- Solarized Dark
+- Cobalt2
 
-```sh
-npm run build
-```
+## 📱 Responsive Breakpoints
 
-You can preview the production build with `npm run preview`.
+| Screen                  | Behavior                                       |
+| ----------------------- | ---------------------------------------------- |
+| **Desktop** (>1024px)   | Full layout with sidebar, editor, and AI panel |
+| **Tablet** (768-1024px) | Collapsed agent panel                          |
+| **Mobile** (<768px)     | Bottom navigation, full-width editor           |
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+## 📄 License
+
+MIT © [Ramzy KEMMOUN](https://github.com/ramzykemmoun)
+
+---
+
+<div align="center">
+
+**Built by Ramzy KEMMOUN and FREE PALESTINE!!!**
+
+</div>

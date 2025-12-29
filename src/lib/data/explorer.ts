@@ -35,43 +35,50 @@ export const rootNode = {
 							id: 'aboutMe',
 							name: 'AboutMe.tsx',
 							icon: 'react.ts',
-							isClickable: true
+							isClickable: true,
+							hasPreview: true
 						},
 						{
 							id: 'education',
 							name: 'Education.tsx',
 							icon: 'react.ts',
-							isClickable: true
+							isClickable: true,
+							hasPreview: true
 						},
 						{
 							id: 'experiences',
 							name: 'Experiences.tsx',
 							icon: 'react.ts',
-							isClickable: true
+							isClickable: true,
+							hasPreview: true
 						},
 						{
 							id: 'projects',
 							name: 'Projects.tsx',
 							icon: 'react.ts',
-							isClickable: true
+							isClickable: true,
+							hasPreview: true
 						},
 						{
 							id: 'testimonials',
 							name: 'Testimonials.tsx',
 							icon: 'react.ts',
-							isClickable: true
+							isClickable: true,
+							hasPreview: true
 						},
 						{
 							id: 'skills',
 							name: 'Skills.tsx',
 							icon: 'react.ts',
-							isClickable: true
+							isClickable: true,
+							hasPreview: true
 						},
 						{
 							id: 'contact',
 							name: 'Contact.tsx',
 							icon: 'react.ts',
-							isClickable: true
+							isClickable: true,
+							hasPreview: true
 						}
 					]
 				},
@@ -81,7 +88,7 @@ export const rootNode = {
 		},
 		{ id: 'env', name: '.env', icon: 'env', isClickable: true },
 		{ id: 'gitignore', name: '.gitignore', icon: 'git', isClickable: true },
-		{ id: 'packageJson', name: 'package.json', icon: 'nodejs' },
+		{ id: 'jsonPackage', name: 'package.json', icon: 'nodejs', isClickable: true },
 		{ id: 'packageLockJson', name: 'package-lock.json', icon: 'nodejs', isClickable: true },
 		{ id: 'tailwindConfig', name: 'tailwind.config.js', icon: 'js', isClickable: true },
 		{ id: 'nextConfig', name: 'next.config.ts', icon: 'nextjs', isClickable: true },

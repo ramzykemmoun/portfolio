@@ -1,57 +1,41 @@
 <script lang="ts">
 	import { onMount, onDestroy } from 'svelte';
 	import { browser } from '$app/environment';
-	import {
-		Code2,
-		Layers,
-		Database,
-		Globe,
-		Cpu,
-		Sparkles,
-		Zap,
-		Terminal,
-		Palette,
-		Server,
-		Cloud,
-		Lock
-	} from '@lucide/svelte';
+	import { Code, Layers, Database, Cpu, Sparkles, Cloud, Lock } from '@lucide/svelte';
 
 	import Icon from '$lib/components/Icon.svelte';
 
-	// Skill categories with unique themes
 	const skillCategories = [
 		{
 			id: 'languages',
 			title: 'Languages',
-			icon: Code2,
-			// NOUVEAU: Or Vieilli / Cuivre
+			icon: Code,
 			gradient: 'from-yellow-600 via-amber-500 to-orange-400',
-			glowColor: '#ca8a04', // Or foncé
+			glowColor: '#ca8a04',
 			bgGradient: 'linear-gradient(135deg, #1c1917 0%, #362f28 50%, #523f33 100%)',
 			skills: [
-				{ name: 'TypeScript', level: 95, icon: '🔷' },
-				{ name: 'JavaScript', level: 92, icon: '⚡' },
-				{ name: 'Python', level: 88, icon: '🐍' },
-				{ name: 'Rust', level: 75, icon: '🦀' },
-				{ name: 'Go', level: 70, icon: '🐹' },
-				{ name: 'C++', level: 65, icon: '⚙️' }
+				{ name: 'TypeScript', level: 95, icon: 'ts' },
+				{ name: 'JavaScript', level: 92, icon: 'js' },
+				{ name: 'Python', level: 88, icon: 'python' },
+				{ name: 'Java', level: 60, icon: 'java' },
+				{ name: 'Dart', level: 60, icon: 'dart' },
+				{ name: 'C++', level: 60, icon: 'cpp' }
 			]
 		},
 		{
 			id: 'frameworks',
 			title: 'Frameworks',
 			icon: Layers,
-			// NOUVEAU: Saphir / Azur
 			gradient: 'from-blue-800 via-indigo-600 to-cyan-500',
-			glowColor: '#1d4ed8', // Bleu Royal
+			glowColor: '#1d4ed8',
 			bgGradient: 'linear-gradient(135deg, #0c1a2e 0%, #1e3a8a 50%, #172554 100%)',
 			skills: [
-				{ name: 'Svelte/SvelteKit', level: 95, icon: '🔥' },
-				{ name: 'React/Next.js', level: 90, icon: 'react' },
-				{ name: 'Vue/Nuxt', level: 85, icon: '💚' },
-				{ name: 'Node.js', level: 92, icon: '🟢' },
-				{ name: 'FastAPI', level: 80, icon: '🚀' },
-				{ name: 'Django', level: 75, icon: '🎸' }
+				{ name: 'React.js', level: 95, icon: 'react' },
+				{ name: 'Next.js', level: 95, icon: 'nextjs' },
+				{ name: 'Svelte/SvelteKit', level: 70, icon: 'svelte' },
+				{ name: 'Node.js/Nest.js', level: 90, icon: 'nodejs' },
+				{ name: 'FastAPI', level: 75, icon: 'fastapi' },
+				{ name: 'LangChain', level: 75, icon: 'langchain' }
 			]
 		},
 		{
@@ -63,29 +47,36 @@
 			glowColor: '#059669', // Vert Émeraude
 			bgGradient: 'linear-gradient(135deg, #052e16 0%, #065f46 50%, #047857 100%)',
 			skills: [
-				{ name: 'PostgreSQL', level: 90, icon: '🐘' },
-				{ name: 'MongoDB', level: 85, icon: '🍃' },
-				{ name: 'Redis', level: 88, icon: '🔴' },
-				{ name: 'MySQL', level: 80, icon: '🐬' },
-				{ name: 'Prisma', level: 92, icon: '△' },
-				{ name: 'Supabase', level: 85, icon: '⚡' }
+				{ name: 'PostgreSQL', level: 90, icon: 'psql' },
+				{ name: 'MongoDB', level: 85, icon: 'mongo' },
+				{ name: 'Redis', level: 88, icon: 'redis' },
+				{ name: 'MySQL', level: 80, icon: 'mysql' },
+				{ name: 'Prisma', level: 92, icon: 'prisma' },
+				{ name: 'Supabase', level: 85, icon: 'supabase' }
 			]
 		},
 		{
-			id: 'devops',
-			title: 'DevOps & Cloud',
-			icon: Cloud,
-			// NOUVEAU: Pourpre / Grenat
+			id: 'ai',
+			title: 'AI & Machine Learning',
+			icon: Cpu,
 			gradient: 'from-fuchsia-700 via-rose-600 to-red-600',
-			glowColor: '#be123c', // Rouge Royal
+			glowColor: '#be123c',
 			bgGradient: 'linear-gradient(135deg, #2d0014 0%, #4c0519 50%, #6d0a27 100%)',
 			skills: [
-				{ name: 'Docker', level: 90, icon: '🐳' },
-				{ name: 'Kubernetes', level: 78, icon: '☸️' },
-				{ name: 'AWS', level: 85, icon: '☁️' },
-				{ name: 'CI/CD', level: 88, icon: '🔄' },
-				{ name: 'Terraform', level: 72, icon: '🏗️' },
-				{ name: 'Linux', level: 90, icon: '🐧' }
+				{ name: 'Machine Learning', level: 78, icon: 'ml' },
+				{ name: 'Data Science', level: 78, icon: 'data-science' },
+				{ name: 'TensorFlow', level: 78, icon: 'tensorflow' },
+				{ name: 'LLMs', level: 90, icon: 'llms' },
+				{
+					name: 'Agentic AI',
+					level: 75,
+					icon: 'agentic-ai'
+				},
+				{
+					name: 'AI Automation',
+					level: 75,
+					icon: 'ai-automation'
+				}
 			]
 		},
 		{
@@ -97,12 +88,19 @@
 			glowColor: '#a1a1aa', // Gris Ardoise
 			bgGradient: 'linear-gradient(135deg, #27272a 0%, #3f3f46 50%, #52525b 100%)',
 			skills: [
-				{ name: 'Full-Stack Dev', level: 95, icon: '🎯' },
-				{ name: 'System Design', level: 88, icon: '🏛️' },
+				{ name: 'Full-Stack Dev', level: 95, icon: 'html' },
 				{ name: 'API Design', level: 92, icon: '🔌' },
-				{ name: 'UI/UX Design', level: 85, icon: '🎨' },
-				{ name: 'Machine Learning', level: 75, icon: '🤖' },
-				{ name: 'Security', level: 80, icon: '🔐' }
+				{
+					name: 'Mobile Dev',
+					level: 95,
+					icon: '📱'
+				},
+				{
+					name: 'Teaching',
+					level: 95,
+					icon: '🏫'
+				},
+				{ name: 'Machine Learning', level: 75, icon: '🤖' }
 			]
 		}
 	];
@@ -110,7 +108,6 @@
 	let mounted = $state(false);
 	let activeCategory = $state(0);
 	let container: HTMLElement;
-	let animationId: number;
 
 	onMount(() => {
 		if (!browser) return;
@@ -118,10 +115,6 @@
 		setTimeout(() => {
 			mounted = true;
 		}, 100);
-	});
-
-	onDestroy(() => {
-		if (animationId) cancelAnimationFrame(animationId);
 	});
 
 	const handleCategoryHover = (index: number) => {

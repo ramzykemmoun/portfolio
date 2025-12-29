@@ -4,7 +4,17 @@ import { educationCode } from './education';
 import { experiencesCode } from './experience';
 import { projectsCode } from './projects';
 import { testimonialsCode } from './testimonials';
-import { envCode } from '../codes';
+import {
+	envCode,
+	nextConfig,
+	readme,
+	jsonPackage,
+	packageLockJson,
+	tsconfigJson,
+	tailwindConfig,
+	postcssConfig,
+	gitignore
+} from '../codes';
 
 export const sectionCodes = {
 	skills: skillsCode,
@@ -13,5 +23,13 @@ export const sectionCodes = {
 	experiences: experiencesCode,
 	projects: projectsCode,
 	testimonials: testimonialsCode,
-	env: envCode
+	env: envCode,
+	readme,
+	nextConfig,
+	jsonPackage,
+	packageLockJson,
+	tsconfigJson,
+	tailwindConfig,
+	postcssConfig,
+	gitignore
 };

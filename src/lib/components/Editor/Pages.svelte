@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { X, Circle } from '@lucide/svelte';
+	import { X, Circle, Puzzle, Webcam } from '@lucide/svelte';
 	import { file } from '$lib/stores/index.svelte';
 	import Icon from '$lib/components/Icon.svelte';
 
@@ -8,19 +8,22 @@
 			label: file.sectionFileName,
 			id: 'code',
 			modified: false,
-			icon: file.sectionIcon
+			icon: file.sectionIcon,
+			component: null
 		},
 		{
 			label: 'Extension: Contact',
 			id: 'contact',
 			modified: false,
-			icon: 'extension'
+			icon: null,
+			component: Puzzle
 		},
 		{
 			label: 'Preview',
 			id: 'live',
 			modified: false,
-			icon: 'live'
+			icon: null,
+			component: Webcam
 		}
 	]);
 </script>
@@ -29,7 +32,11 @@
 	{#each tabs as tab}
 		<button class="tab" class:active={file.view === tab.id} onclick={() => (file.view = tab.id)}>
 			<span class="tab-icon">
-				<Icon icon={tab.icon} />
+				{#if tab.icon}
+					<Icon icon={tab.icon} />
+				{:else if tab.component}
+					<tab.component class="w-4 h-4" />
+				{/if}
 			</span>
 			<span class="tab-label">{tab.label}</span>
 			<span class="tab-close">
@@ -127,5 +134,36 @@
 		flex: 1;
 		min-width: 0;
 		background: var(--color-surface-950);
+	}
+
+	/* Responsive: Mobile */
+	@media (max-width: 768px) {
+		.tab {
+			padding: 0 8px;
+			font-size: 12px;
+		}
+
+		.tab-label {
+			max-width: 80px;
+		}
+
+		.tab-close {
+			width: 16px;
+			height: 16px;
+		}
+	}
+
+	@media (max-width: 480px) {
+		.tab-label {
+			display: none;
+		}
+
+		.tab {
+			padding: 0 10px;
+		}
+
+		.tab-icon {
+			font-size: 16px;
+		}
 	}
 </style>

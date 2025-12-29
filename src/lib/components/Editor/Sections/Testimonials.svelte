@@ -3,6 +3,11 @@
 	import { browser } from '$app/environment';
 	import { Quote, Star, ChevronLeft, ChevronRight, Sparkles } from '@lucide/svelte';
 	import { testimonialsData } from '$lib/data/sections/testimonials';
+	import younesfdj from '$lib/assets/testimonials/younesfdj.png';
+	import mouhoub from '$lib/assets/testimonials/mouhoub.png';
+	import beroual from '$lib/assets/testimonials/beroual.png';
+
+	const avatars = [beroual, younesfdj, mouhoub];
 
 	let mounted = $state(false);
 	let currentIndex = $state(0);
@@ -129,7 +134,7 @@
 							<!-- Author -->
 							<div class="author-section">
 								<div class="avatar-container">
-									<img src={testimonial.avatar} alt={testimonial.name} class="avatar" />
+									<img src={avatars[testimonial.id - 1]} alt={testimonial.name} class="avatar" />
 									<div class="avatar-ring"></div>
 								</div>
 								<div class="author-info">
@@ -172,7 +177,7 @@
 					class:active={i === currentIndex}
 					onclick={() => goToTestimonial(i)}
 				>
-					<img src={testimonial.avatar} alt={testimonial.name} class="preview-avatar" />
+					<img src={avatars[i - 1]} alt={testimonial.name} class="preview-avatar" />
 					<div class="preview-info">
 						<span class="preview-name">{testimonial.name}</span>
 						<span class="preview-company">{testimonial.company}</span>

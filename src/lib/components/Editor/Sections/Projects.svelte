@@ -1,15 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { browser } from '$app/environment';
-	import {
-		ExternalLink,
-		Github,
-		ChevronLeft,
-		ChevronRight,
-		Layers,
-		Zap,
-		Star
-	} from '@lucide/svelte';
+	import { ExternalLink, ChevronLeft, ChevronRight, Layers, Zap } from '@lucide/svelte';
 
 	import { projectsData } from '$lib/data/sections/projects';
 
@@ -135,15 +127,12 @@
 					<div class="card-border"></div>
 
 					<div class="card-image">
-						<div class="image-placeholder">
-							<Zap class="w-12 h-12" />
-							<span>{project.title}</span>
-						</div>
-						<div class="image-overlay"></div>
-						{#if project.featured}
-							<div class="featured-badge">
-								<Star class="w-3 h-3" />
-								<span>Featured</span>
+						{#if project.imageSrc}
+							<img src={project.imageSrc} alt={project.title} class="h-full" />
+						{:else}
+							<div class="image-placeholder">
+								<Zap class="w-12 h-12" />
+								<span>{project.title}</span>
 							</div>
 						{/if}
 					</div>
@@ -159,16 +148,12 @@
 						</div>
 
 						<div class="card-links">
-							{#if project.github}
-								<a href={project.github} target="_blank" rel="noopener" class="card-link">
-									<Github class="w-4 h-4" />
-									<span>Code</span>
-								</a>
-							{/if}
-							{#if project.live}
-								<a href={project.live} target="_blank" rel="noopener" class="card-link primary">
+							{#if project.href}
+								<a href={project.href} target="_blank" rel="noopener" class="card-link primary">
 									<ExternalLink class="w-4 h-4" />
-									<span>Live Demo</span>
+									<span>
+										{project.href.includes('github') ? 'Code' : 'Live Demo'}
+									</span>
 								</a>
 							{/if}
 						</div>
@@ -227,7 +212,7 @@
 	.bg-effects {
 		position: absolute;
 		inset: 0;
-		pointer-events: none;
+
 		overflow: hidden;
 	}
 
@@ -429,7 +414,6 @@
 		border: 1px solid rgba(0, 123, 255, 0.2);
 		border-radius: 20px;
 		overflow: hidden;
-		cursor: pointer;
 		transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 		transform-style: preserve-3d;
 	}
@@ -642,7 +626,7 @@
 		);
 		opacity: 0;
 		transition: opacity 0.3s ease;
-		pointer-events: none;
+
 		transform: translateX(-100%);
 	}
 
@@ -661,7 +645,7 @@
 	.card-particles {
 		position: absolute;
 		inset: 0;
-		pointer-events: none;
+
 		overflow: hidden;
 	}
 
@@ -736,7 +720,6 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		cursor: pointer;
 		z-index: 100;
 		transition: all 0.3s ease;
 	}
@@ -773,7 +756,6 @@
 		background: rgba(255, 255, 255, 0.1);
 		border: none;
 		border-radius: 2px;
-		cursor: pointer;
 		overflow: hidden;
 		transition: all 0.3s ease;
 	}

@@ -51,7 +51,6 @@
 
 		const generatedText = await generateMessage(userMsg, messages);
 
-
 		messages = [
 			...messages,
 			{
@@ -512,5 +511,19 @@
 	.send-btn:disabled {
 		opacity: 0.5;
 		cursor: not-allowed;
+	}
+
+	/* Responsive: Tablet */
+	@media (max-width: 1024px) {
+		.agent-sidebar.open {
+			width: 280px;
+		}
+	}
+
+	/* Responsive: Mobile */
+	@media (max-width: 768px) {
+		.agent-sidebar {
+			display: none;
+		}
 	}
 </style>

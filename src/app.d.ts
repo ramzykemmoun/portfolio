@@ -11,3 +11,13 @@ declare global {
 }
 
 export {};
+
+declare module '*&url' {
+	const content: string;
+	export default content;
+}
+
+declare module '*.jfif' {
+	const value: string;
+	export default value;
+}

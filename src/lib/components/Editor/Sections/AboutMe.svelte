@@ -35,7 +35,7 @@
 				if (charIndex < currentLine.length) {
 					terminalText += currentLine[charIndex];
 					charIndex++;
-					setTimeout(typeWriter, 30 + Math.random() * 50);
+					setTimeout(typeWriter, 15 + Math.random() * 25);
 				} else {
 					terminalText += '\n';
 					lineIndex++;

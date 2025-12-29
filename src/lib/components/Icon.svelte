@@ -6,6 +6,9 @@
 	import reactTs from '$lib/assets/icons/react_ts.svg';
 	import json from '$lib/assets/icons/json.svg';
 	import git from '$lib/assets/icons/git.svg';
+	import java from '$lib/assets/icons/java.svg';
+	import svelte from '$lib/assets/icons/svelte.svg';
+	import dart from '$lib/assets/icons/dart.svg';
 	import md from '$lib/assets/icons/markdown.svg';
 	import nodejs from '$lib/assets/icons/nodejs.svg';
 	import nextjs from '$lib/assets/icons/next.svg';
@@ -15,6 +18,8 @@
 	import folderSrc from '$lib/assets/icons/folder-src.svg';
 	import folderAssets from '$lib/assets/icons/folder-config.svg';
 	import folderPublic from '$lib/assets/icons/folder-public.svg';
+	import python from '$lib/assets/icons/python.svg';
+	import cpp from '$lib/assets/icons/cpp.svg';
 
 	let { icon, size = 18 }: { icon: string; size?: number } = $props();
 
@@ -53,6 +58,16 @@
 				return folderAssets;
 			case 'folder-public':
 				return folderPublic;
+			case 'python':
+				return python;
+			case 'cpp':
+				return cpp;
+			case 'java':
+				return java;
+			case 'dart':
+				return dart;
+			case 'svelte':
+				return svelte;
 			default:
 				return react;
 		}

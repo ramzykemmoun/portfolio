@@ -110,17 +110,21 @@
 
 					<div class="card-header">
 						<h3 class="card-title">{exp.title}</h3>
-						<div class="card-company">
-							<Shield class="w-4 h-4" />
-							<span>{exp.company}</span>
-						</div>
+						{#if exp.company}
+							<div class="card-company">
+								<Shield class="w-4 h-4" />
+								<span>{exp.company}</span>
+							</div>
+						{/if}
 					</div>
 
 					<div class="card-meta">
-						<div class="meta-item">
-							<MapPin class="w-4 h-4" />
-							<span>{exp.location}</span>
-						</div>
+						{#if exp.location}
+							<div class="meta-item">
+								<MapPin class="w-4 h-4" />
+								<span>{exp.location}</span>
+							</div>
+						{/if}
 						<div class="meta-item">
 							<Calendar class="w-4 h-4" />
 							<span>{exp.period}</span>

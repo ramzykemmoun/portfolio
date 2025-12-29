@@ -9,6 +9,7 @@
 		name: string;
 		icon?: string;
 		isClickable?: boolean;
+		hasPreview: boolean;
 		children?: TreeNode[];
 	}
 
@@ -26,6 +27,7 @@
 		expandedFolders = newSet;
 	};
 
+	let live = $state<string>(file.view);
 	const selectFile = (node: TreeNode) => {
 		selectedFile = node.id;
 		if (node.isClickable) {
@@ -35,7 +37,14 @@
 			} else {
 				file.section = node.id;
 				file.sectionFileName = node.name;
-				file.sectionIcon = node.icon;
+				if (node?.hasPreview) {
+					live = node.id;
+					file.view = 'live';
+				} else {
+					file.view = 'code';
+				}
+				if (node?.icon) file.sectionIcon = node.icon;
+				file.section = live;
 			}
 		}
 	};
@@ -99,7 +108,7 @@
 				selectFile(node);
 			}}
 		>
-			<Icon icon={node.icon} />
+			<Icon icon={node.icon || ''} />
 			<span class="item-name">{node.name}</span>
 		</button>
 	{/if}

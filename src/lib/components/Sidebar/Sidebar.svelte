@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { User, Briefcase, Book, Wrench, Mail, Folder, Search, GitBranch } from '@lucide/svelte';
+	import { Puzzle, Mail, Folder, Search, GitBranch } from '@lucide/svelte';
 	import Explorer from './Explorer.svelte';
 	import Contact from './Contact.svelte';
 	import SearchPanel from './Search.svelte';
@@ -44,7 +44,7 @@
 		},
 		extensions: {
 			title: 'Extensions',
-			icon: Wrench
+			icon: Puzzle
 		}
 	};
 </script>
@@ -52,33 +52,34 @@
 <div class="vscode-sidebar bg-surface-950">
 	<div class="activity-bar bg-surface-900">
 		{#each Object.entries(sections) as [key, section]}
-		<Tooltip positioning={{ placement: 'top' }}>
-	<Tooltip.Trigger>
-		<button
-				type="button"
-				class="activity-item"
-				class:active={sidebar.section === key && sidebar.open}
-				onclick={() => changeSection(key)}
-				title={section.title}
-			>
-				<section.icon class="w-6 h-6" />
-				{#if sidebar.section === key && sidebar.open}
-					<div class="active-indicator"></div>
-				{/if}
-			</button>
-	</Tooltip.Trigger>
-	<Portal>
-		<Tooltip.Positioner>
-			<Tooltip.Content class="card p-2 preset-filled-surface-950-50">
-				<span>Hello Skeleton</span>
-				<Tooltip.Arrow class="[--arrow-size:--spacing(2)] [--arrow-background:var(--color-surface-950-50)]">
-					<Tooltip.ArrowTip />
-				</Tooltip.Arrow>
-			</Tooltip.Content>
-		</Tooltip.Positioner>
-	</Portal>
-</Tooltip>
-			
+			<Tooltip positioning={{ placement: 'top' }}>
+				<Tooltip.Trigger>
+					<button
+						type="button"
+						class="activity-item"
+						class:active={sidebar.section === key && sidebar.open}
+						onclick={() => changeSection(key)}
+						title={section.title}
+					>
+						<section.icon class="w-6 h-6" />
+						{#if sidebar.section === key && sidebar.open}
+							<div class="active-indicator"></div>
+						{/if}
+					</button>
+				</Tooltip.Trigger>
+				<Portal>
+					<Tooltip.Positioner>
+						<Tooltip.Content class="card p-2 preset-filled-surface-950-50">
+							<span>{section.title}</span>
+							<Tooltip.Arrow
+								class="[--arrow-size:--spacing(2)] [--arrow-background:var(--color-surface-950-50)]"
+							>
+								<Tooltip.ArrowTip />
+							</Tooltip.Arrow>
+						</Tooltip.Content>
+					</Tooltip.Positioner>
+				</Portal>
+			</Tooltip>
 		{/each}
 	</div>
 
@@ -185,5 +186,56 @@
 
 	.resize-handle:hover {
 		background: var(--color-primary-500);
+	}
+
+	/* Responsive: Tablet */
+	@media (max-width: 1024px) {
+		.vscode-sidebar {
+			/* Auto-collapse sidebar panel on tablet */
+		}
+	}
+
+	/* Responsive: Mobile */
+	@media (max-width: 768px) {
+		.vscode-sidebar {
+			position: fixed;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			height: 48px;
+			z-index: 100;
+			flex-direction: row;
+			border-left: none;
+			border-top: 1px solid var(--color-surface-800);
+		}
+
+		.activity-bar {
+			flex-direction: row;
+			width: 100%;
+			height: 48px;
+			border-right: none;
+			justify-content: space-around;
+		}
+
+		.activity-item {
+			width: 48px;
+			height: 48px;
+		}
+
+		.active-indicator {
+			left: 50%;
+			top: 0;
+			bottom: auto;
+			transform: translateX(-50%);
+			width: 24px;
+			height: 2px;
+			border-radius: 0 0 2px 2px;
+		}
+
+		/* Hide sidebar panel and resize handle on mobile */
+		.resize-handle,
+		.sidebar-panel {
+			display: none;
+		}
 	}
 </style>

@@ -3,6 +3,79 @@ export interface Testimonial {
 	name: string;
 	role: string;
 	company: string;
+	content: string;
+	rating: number;
+	date: string;
+}
+
+export const testimonialsData: Testimonial[] = [
+	{
+		id: 1,
+		name: 'Seyfeddine Beroual',
+		role: 'CEO',
+		company: 'Lamsa Studio',
+		content:
+			'I needed to complete the programming of a React website, and while some might find the task unclear or difficult, Ramzy made my problem easy, simple, and very clear. The key reason I choose Ramzy for every programming project is his tight deadlines, high-quality work, and exceptional professionalism. Therefore, I recommend Ramzy if you want to work with peace of mind with an expert who knows their field well.',
+		rating: 5,
+		date: '2024-11'
+	},
+	{
+		id: 2,
+		name: 'Younes Feradji',
+		role: 'Fullstack Instructor',
+		company: 'Code213',
+		content:
+			'I had the pleasure of working alongside Ramzy both as a developer and as an instructor. I can confidently say that he is a highly skilled and collaborative person who consistently brings value to every project he’s part of.',
+		rating: 5,
+		date: '2024-10'
+	},
+	// {
+	// 	id: 3,
+	// 	name: 'Mohamed Achraf Saidi',
+	// 	role: 'Fullstack Developer',
+	// 	company: 'VDC Engineering',
+	// 	avatar: 'https://i.pravatar.cc/150?img=5',
+	// 	content: '',
+	// 	rating: 5,
+	// 	date: '2024-09'
+	// },
+	{
+		id: 3,
+		name: 'Massinissa Mouhoub',
+		role: 'Senior Developer',
+		company: 'YAY Global',
+		content:
+			'I had the pleasure of working with Ramzy at Slick Pay, a startup where we collaborated closely as part of the same team. I led the mobile development while Ramzy focused on the backend side of the application. Throughout our time working together, Ramzy proved to be dependable, professional, and highly committed to meeting deadlines. Our teamwork was seamless and effective, even when tackling real-world features under tight constraints.',
+		rating: 5,
+		date: '2025-05'
+	}
+	// {
+	// 	id: 5,
+	// 	name: 'Mehdi Djahraoui',
+	// 	role: 'Fullstack Developer',
+	// 	company: '',
+	// 	avatar: 'https://i.pravatar.cc/150?img=9',
+	// 	content: '',
+	// 	rating: 5,
+	// 	date: '2024-07'
+	// },
+	// {
+	// 	id: 6,
+	// 	name: '',
+	// 	role: '',
+	// 	company: '',
+	// 	avatar: '',
+	// 	content: '',
+	// 	rating: 5,
+	// 	date: '2025-12'
+	// }
+];
+
+export const testimonialsCode = `export interface Testimonial {
+	id: number;
+	name: string;
+	role: string;
+	company: string;
 	avatar: string;
 	content: string;
 	rating: number;
@@ -12,67 +85,38 @@ export interface Testimonial {
 export const testimonialsData: Testimonial[] = [
 	{
 		id: 1,
-		name: 'Sophie Martin',
-		role: 'Product Manager',
-		company: 'TechCorp',
-		avatar: 'https://i.pravatar.cc/150?img=1',
+		name: 'Seyfeddine Beroual',
+		role: 'CEO',
+		company: 'Lamsa Studio',
+		avatar:
+			'https://media.licdn.com/dms/image/v2/C4E03AQEFIPQpSoMVtQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1516989694227?e=1768435200&v=beta&t=gKoeV7BHyDhodP0w7YpBntrYo11MaBqDZ9wddydSFJI',
 		content:
-			'Ramzy is an exceptional developer who consistently delivers high-quality code. His attention to detail and problem-solving skills are remarkable. He transformed our project vision into reality with impressive efficiency.',
+			'I needed to complete the programming of a React website, and while some might find the task unclear or difficult, Ramzy made my problem easy, simple, and very clear. The key reason I choose Ramzy for every programming project is his tight deadlines, high-quality work, and exceptional professionalism. Therefore, I recommend Ramzy if you want to work with peace of mind with an expert who knows their field well.',
 		rating: 5,
 		date: '2024-11'
 	},
 	{
 		id: 2,
-		name: 'Alexandre Dubois',
-		role: 'CTO',
-		company: 'StartupFlow',
-		avatar: 'https://i.pravatar.cc/150?img=3',
+		name: 'Younes Feradji',
+		role: 'Fullstack Instructor',
+		company: 'Code213',
+		avatar:
+			'https://media.licdn.com/dms/image/v2/D4D03AQHlkUA04QTU6w/profile-displayphoto-shrink_800_800/B4DZOTStBxG0Ac-/0/1733342975732?e=1768435200&v=beta&t=h7POZSnOUY-UaGLgPZTcpH2_hBnEwW2-JFQ8lL7A4aE',
 		content:
-			'Working with Ramzy was a game-changer for our startup. His technical expertise and creative approach helped us build a scalable architecture from scratch. Highly recommended!',
+			'I had the pleasure of working alongside Ramzy both as a developer and as an instructor. I can confidently say that he is a highly skilled and collaborative person who consistently brings value to every project he’s part of.',
 		rating: 5,
 		date: '2024-10'
 	},
 	{
 		id: 3,
-		name: 'Emma Bernard',
-		role: 'Design Lead',
-		company: 'CreativeHub',
-		avatar: 'https://i.pravatar.cc/150?img=5',
-		content:
-			'Ramzy bridges the gap between design and development beautifully. He understands UI/UX principles and translates designs into pixel-perfect implementations. A pleasure to collaborate with!',
-		rating: 5,
-		date: '2024-09'
-	},
-	{
-		id: 4,
-		name: 'Lucas Moreau',
+		name: 'Massinissa Mouhoub',
 		role: 'Senior Developer',
-		company: 'CodeFactory',
-		avatar: 'https://i.pravatar.cc/150?img=8',
+		company: 'YAY Global',
+		avatar:
+			'https://media.licdn.com/dms/image/v2/D4E03AQFBy-1oz67xIg/profile-displayphoto-shrink_800_800/B4EZV2fTtsGYAc-/0/1741449674113?e=1768435200&v=beta&t=iuYVs2h6UY8VX2zOmBX4SZMhXc9fM3Ft_6gxmvoueEY',
 		content:
-			'I had the pleasure of mentoring Ramzy early in his career. His growth has been phenomenal - he now leads complex projects with confidence and delivers outstanding results consistently.',
+			'I had the pleasure of working with Ramzy at Slick Pay, a startup where we collaborated closely as part of the same team. I led the mobile development while Ramzy focused on the backend side of the application. Throughout our time working together, Ramzy proved to be dependable, professional, and highly committed to meeting deadlines. Our teamwork was seamless and effective, even when tackling real-world features under tight constraints.',
 		rating: 5,
-		date: '2024-08'
-	},
-	{
-		id: 5,
-		name: 'Camille Laurent',
-		role: 'Project Director',
-		company: 'DigitalAgency',
-		avatar: 'https://i.pravatar.cc/150?img=9',
-		content:
-			"Ramzy's communication skills and technical prowess make him an invaluable team member. He meets deadlines, handles feedback gracefully, and always goes the extra mile.",
-		rating: 5,
-		date: '2024-07'
+		date: '2025-05'
 	}
-];
-
-export const testimonialsCode = `// testimonials.json
-{
-  "totalReviews": ${testimonialsData.length},
-  "averageRating": 5.0,
-  "clients": [
-${testimonialsData.map((t) => `    "${t.company}"`).join(',\n')}
-  ],
-  "status": "trusted_by_many"
-}`;
+];`;

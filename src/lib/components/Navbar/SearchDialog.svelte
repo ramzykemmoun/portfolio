@@ -45,7 +45,7 @@
 		{
 			name: 'AboutMe.tsx',
 			path: 'src/components/',
-			icon: 'react.ts',
+			icon: 'react',
 			action: () => {
 				file.section = 'aboutMe';
 				searchDialogOpen = false;
@@ -54,6 +54,7 @@
 		{
 			name: 'Projects.tsx',
 			path: 'src/components/',
+			icon: 'react',
 			action: () => {
 				file.section = 'projects';
 				searchDialogOpen = false;
@@ -62,6 +63,7 @@
 		{
 			name: 'Experiences.tsx',
 			path: 'src/components/',
+			icon: 'react',
 			action: () => {
 				file.section = 'experiences';
 				searchDialogOpen = false;
@@ -70,6 +72,7 @@
 		{
 			name: 'Skills.tsx',
 			path: 'src/components/',
+			icon: 'react',
 			action: () => {
 				file.section = 'skills';
 				searchDialogOpen = false;
@@ -78,6 +81,7 @@
 		{
 			name: 'Education.tsx',
 			path: 'src/components/',
+			icon: 'react',
 			action: () => {
 				file.section = 'education';
 				searchDialogOpen = false;
@@ -86,12 +90,14 @@
 		{
 			name: 'global.css',
 			path: 'src/styles/',
+			icon: 'css',
 			action: () => {
 				searchDialogOpen = false;
 			}
 		},
 		{
 			name: 'package.json',
+			icon: 'nodejs',
 			path: '',
 			action: () => {
 				searchDialogOpen = false;
@@ -99,6 +105,7 @@
 		},
 		{
 			name: 'tsconfig.json',
+			icon: 'nodejs',
 			path: '',
 			action: () => {
 				searchDialogOpen = false;
@@ -106,6 +113,7 @@
 		},
 		{
 			name: 'README.md',
+			icon: 'md',
 			path: '',
 			action: () => {
 				searchDialogOpen = false;
@@ -113,6 +121,7 @@
 		},
 		{
 			name: 'tailwind.config.js',
+			icon: 'js',
 			path: '',
 			action: () => {
 				searchDialogOpen = false;
@@ -120,6 +129,7 @@
 		},
 		{
 			name: 'package-lock.json',
+			icon: 'nodejs',
 			path: '',
 			action: () => {
 				searchDialogOpen = false;
@@ -127,6 +137,7 @@
 		},
 		{
 			name: '.gitignore',
+			icon: 'git',
 			path: '',
 			action: () => {
 				searchDialogOpen = false;
@@ -134,6 +145,7 @@
 		},
 		{
 			name: 'next.config.ts',
+			icon: 'nextjs',
 			path: '',
 			action: () => {
 				searchDialogOpen = false;
@@ -141,6 +153,7 @@
 		},
 		{
 			name: 'postcss.config.mjs',
+			icon: 'js',
 			path: '',
 			action: () => {
 				searchDialogOpen = false;
