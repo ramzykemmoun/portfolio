@@ -105,7 +105,7 @@
 	<div class="carousel-wrapper" class:mounted>
 		<div class="carousel" bind:this={carouselRef}>
 			{#each projectsData as project, index}
-				<article
+				<div
 					class="project-card"
 					class:active={currentIndex === index}
 					class:hovered={hoveredCard === index}
@@ -149,7 +149,13 @@
 
 						<div class="card-links">
 							{#if project.href}
-								<a href={project.href} target="_blank" rel="noopener" class="card-link primary">
+								<a
+									href={project.href}
+									target="_blank"
+									rel="noopener"
+									class="card-link primary cursor-pointer z-100"
+									onclick={(e) => e.stopPropagation()}
+								>
 									<ExternalLink class="w-4 h-4" />
 									<span>
 										{project.href.includes('github') ? 'Code' : 'Live Demo'}
@@ -165,7 +171,7 @@
 							<span style="--delay: {i * 0.1}s;"></span>
 						{/each}
 					</div>
-				</article>
+				</div>
 			{/each}
 		</div>
 

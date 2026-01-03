@@ -3,6 +3,10 @@
 	import icon from '$lib/assets/logos/rk-icon.png';
 
 	let { children } = $props();
+
+	import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
+
+	injectSpeedInsights();
 </script>
 
 <svelte:head>

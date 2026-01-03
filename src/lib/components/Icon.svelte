@@ -18,8 +18,10 @@
 	import folderSrc from '$lib/assets/icons/folder-src.svg';
 	import folderAssets from '$lib/assets/icons/folder-config.svg';
 	import folderPublic from '$lib/assets/icons/folder-public.svg';
+	import fastapi from '$lib/assets/icons/fastapi.svg';
 	import python from '$lib/assets/icons/python.svg';
 	import cpp from '$lib/assets/icons/cpp.svg';
+	import langchain from '$lib/assets/icons/langchain.svg';
 
 	let { icon, size = 18 }: { icon: string; size?: number } = $props();
 
@@ -68,6 +70,10 @@
 				return dart;
 			case 'svelte':
 				return svelte;
+			case 'fastapi':
+				return fastapi;
+			case 'langchain':
+				return langchain;
 			default:
 				return react;
 		}

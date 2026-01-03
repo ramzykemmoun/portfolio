@@ -42,7 +42,7 @@ export const projectsData = [
 		subtitle: 'Job/freelance platform for companies and seekers',
 		imageSrc: mouhandisson,
 		tags: ['React', 'Node.js', 'Freelance', 'E-Payment'],
-		href: '#project-4',
+		href: 'https://mohandissoun.com/',
 		priority: false,
 		gradientFrom: '#0f172a',
 		gradientTo: '#10b981'

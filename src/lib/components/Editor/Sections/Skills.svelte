@@ -100,6 +100,7 @@
 					level: 95,
 					icon: '🏫'
 				},
+				{ name: 'Content Creation', level: 75, icon: '🤖' },
 				{ name: 'Machine Learning', level: 75, icon: '🤖' }
 			]
 		}

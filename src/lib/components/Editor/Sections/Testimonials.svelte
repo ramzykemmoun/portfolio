@@ -177,7 +177,7 @@
 					class:active={i === currentIndex}
 					onclick={() => goToTestimonial(i)}
 				>
-					<img src={avatars[i - 1]} alt={testimonial.name} class="preview-avatar" />
+					<img src={avatars[i]} alt={testimonial.name} class="preview-avatar" />
 					<div class="preview-info">
 						<span class="preview-name">{testimonial.name}</span>
 						<span class="preview-company">{testimonial.company}</span>
