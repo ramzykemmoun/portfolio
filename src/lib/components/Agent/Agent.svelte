@@ -4,16 +4,14 @@
 	import {
 		X,
 		Send,
-		Sparkles,
 		Bot,
 		User,
 		Copy,
 		RotateCcw,
 		MessageSquare,
 		Zap,
-		PanelRightClose,
-		PanelRightOpen
 	} from '@lucide/svelte';
+
 
 	import { agent } from '$lib/stores/index.svelte';
 	import { generateMessage } from '$lib/ai/services/chat';
@@ -95,9 +93,9 @@
 		title={agent.open ? 'Close AI Panel' : 'Open AI Panel'}
 	>
 		{#if agent.open}
-			<PanelRightClose class="w-5 h-5" />
+			<Bot class="w-5 h-5" />
 		{:else}
-			<PanelRightOpen class="w-5 h-5" />
+			<Bot class="w-5 h-5" />
 		{/if}
 	</button>
 
