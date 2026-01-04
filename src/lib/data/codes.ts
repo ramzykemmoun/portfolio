@@ -245,10 +245,10 @@ MIT © [Ramzy KEMMOUN](https://github.com/ramzykemmoun)
 export const packageLockJson = `//too long haha`;
 
 export const envCode = `PORT=8000
-DB_URI=dont_think_you_are_hacker_just_because_you_found_an_env_file
-DB_NAME=dont_think_you_are_hacker_just_because_you_found_an_env_file
-DB_USER=dont_think_you_are_hacker_just_because_you_found_an_env_file
-DB_PASSWORD=dont_think_you_are_hacker_just_because_you_found_an_env_file
+DB_URI=found_env_file_doesnt_make_you_hacker_haha
+DB_NAME=found_env_file_doesnt_make_you_hacker_haha
+DB_USER=found_env_file_doesnt_make_you_hacker_haha
+DB_PASSWORD=found_env_file_doesnt_make_you_hacker_haha
 `;
 
 export const tailwindConfig = `import defaultConfig from "@skeletonlabs/skeleton-svelte/tailwind.config";
@@ -264,8 +264,15 @@ export default {
 	plugins: [defaultConfig.plugins],
 };`;
 
-export const postcssConfig = `
-`;
+export const postcssConfig = `/** @type {import('postcss-load-config').Config} */
+const config = {
+  plugins: [
+    require('autoprefixer'),
+    require('postcss-nested')
+  ]
+}
+
+module.exports = config`;
 
 export const gitignore = `# dependencies
 node_modules

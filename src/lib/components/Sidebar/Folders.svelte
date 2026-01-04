@@ -33,18 +33,15 @@
 		if (node.isClickable) {
 			if (node.id === 'contact') {
 				file.view = 'contact';
-				file.section = 'contact';
 			} else {
 				file.section = node.id;
 				file.sectionFileName = node.name;
 				if (node?.hasPreview) {
-					live = node.id;
 					file.view = 'live';
 				} else {
 					file.view = 'code';
 				}
 				if (node?.icon) file.sectionIcon = node.icon;
-				file.section = live;
 			}
 		}
 	};

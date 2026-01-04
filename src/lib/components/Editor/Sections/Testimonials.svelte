@@ -426,25 +426,30 @@
 		transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 		pointer-events: none;
 		overflow: hidden;
+		visibility: hidden;
 	}
 
-	.testimonial-card.active {
+	.testimonials-container.mounted .testimonial-card {
+		visibility: visible;
+	}
+
+	.testimonials-container.mounted .testimonial-card.active {
 		opacity: 1;
 		transform: translateX(0) rotateY(0) scale(1);
 		pointer-events: auto;
-		z-index: 9000;
+		z-index: 10;
 	}
 
-	.testimonial-card.prev {
+	.testimonials-container.mounted .testimonial-card.prev {
 		opacity: 0.3;
 		transform: translateX(-30%) rotateY(15deg) scale(0.85);
-		z-index: -9000;
+		z-index: 5;
 	}
 
-	.testimonial-card.next {
+	.testimonials-container.mounted .testimonial-card.next {
 		opacity: 0.3;
 		transform: translateX(30%) rotateY(-15deg) scale(0.85);
-		z-index: -9000;
+		z-index: 5;
 	}
 
 	.card-glow {

@@ -10,6 +10,26 @@
 	let monaco: any;
 	let editorContainer: HTMLElement;
 
+	const getLanguage = (file: string) => {
+		switch (file) {
+			case 'env':
+				return 'env';
+			case 'readme':
+				return 'md';
+			case 'jsonPackage':
+			case 'packageLockJson':
+			case 'tsconfigJson':
+				return 'json';
+			case 'gitignore':
+				return 'txt';
+			case 'tailwindConfig':
+			case 'postcssConfig':
+				return 'javascript';
+			default:
+				return 'typescript';
+		}
+	};
+
 	onMount(async () => {
 		if (!browser) return;
 
@@ -17,10 +37,9 @@
 		if (!monaco) return;
 
 		monaco.editor.defineTheme(config.theme, themes[config.theme as keyof typeof themes]);
-
 		editor = monaco.editor.create(editorContainer, {
 			value: sectionCodes[file.section as keyof typeof sectionCodes] as string,
-			language: 'typescript',
+			language: getLanguage(file.section),
 			theme: config.theme,
 			automaticLayout: true,
 			autoClosingQuotes: 'always',
@@ -40,7 +59,7 @@
 		file.section;
 
 		if (editor) {
-			console.log(file.section);
+			console.log(file.section, sectionCodes[file.section as keyof typeof sectionCodes]);
 
 			editor.setValue(sectionCodes[file.section as keyof typeof sectionCodes] as string);
 			editor.layout();
