@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
+	import { browser } from '$app/environment';
 	import {
 		X,
 		Send,
@@ -27,6 +29,13 @@
 	}
 
 	let messages = $state<Message[]>([]);
+
+	// Close agent on mobile by default
+	onMount(() => {
+		if (browser && window.innerWidth < 768) {
+			agent.open = false;
+		}
+	});
 
 	export const toggleAgent = () => {
 		agent.open = !agent.open;
@@ -529,7 +538,7 @@
 	@media (max-width: 768px) {
 		.agent-sidebar {
 			position: fixed;
-			bottom: 16px;
+			top: 64px;
 			right: 16px;
 			width: auto;
 			height: auto;

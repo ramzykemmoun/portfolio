@@ -30,8 +30,7 @@ export const themes = [
 		color: '#f0f0f0',
 		rating: 4.7,
 		downloads: '4.3M',
-		installed: true,
-		active: false
+		installed: true
 	},
 	{
 		id: 'tokyo-night',
@@ -42,8 +41,7 @@ export const themes = [
 		color: '#3d59a1',
 		rating: 4.9,
 		downloads: '3.8M',
-		installed: true,
-		active: true
+		installed: true
 	},
 	{
 		id: 'catppuccin',
@@ -54,8 +52,7 @@ export const themes = [
 		color: '#cba6f7',
 		rating: 4.8,
 		downloads: '1.2M',
-		installed: false,
-		active: false
+		installed: false
 	},
 	{
 		id: 'monokai',

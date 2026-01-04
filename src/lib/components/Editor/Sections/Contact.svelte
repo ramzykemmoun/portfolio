@@ -12,15 +12,23 @@
 		if (!email || !message) return;
 
 		sending = true;
-		await new Promise((resolve) => setTimeout(resolve, 2000));
+		const response = await fetch('/api/contact', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({ email, message })
+		});
+
+		const data = await response.json();
+
+		if (!response.ok) {
+			throw new Error(data.error || 'Failed to send message');
+		}
 		sending = false;
 		sent = true;
-
-		setTimeout(() => {
-			sent = false;
-			email = '';
-			message = '';
-		}, 3000);
+		email = '';
+		message = '';
 	}
 </script>
 
@@ -340,8 +348,8 @@
 
 	.reset-btn:hover {
 		background: var(--color-surface-800);
-		color: var(--color-surface-100);
-		border-color: var(--color-surface-500);
+		color: var(--color-primary-500);
+		border-color: var(--color-primary-500);
 	}
 
 	.top-right {

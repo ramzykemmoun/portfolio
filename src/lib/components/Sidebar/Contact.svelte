@@ -42,25 +42,44 @@
 	let message = $state('');
 	let isSubmitting = $state(false);
 	let isSuccess = $state(false);
+	let errorMessage = $state('');
 
 	const handleSubmit = async (e: Event) => {
 		e.preventDefault();
 		isSubmitting = true;
+		errorMessage = '';
 
-		// Simulate network request
-		await new Promise((resolve) => setTimeout(resolve, 1500));
+		try {
+			const response = await fetch('/api/contact', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({ email, message })
+			});
 
-		isSubmitting = false;
-		isSuccess = true;
+			const data = await response.json();
 
-		// Reset form
-		name = '';
-		email = '';
-		message = '';
+			if (!response.ok) {
+				throw new Error(data.error || 'Failed to send message');
+			}
 
-		setTimeout(() => {
-			isSuccess = false;
-		}, 3000);
+			isSuccess = true;
+			name = '';
+			email = '';
+			message = '';
+
+			setTimeout(() => {
+				isSuccess = false;
+			}, 3000);
+		} catch (error) {
+			errorMessage = error instanceof Error ? error.message : 'Something went wrong';
+			setTimeout(() => {
+				errorMessage = '';
+			}, 5000);
+		} finally {
+			isSubmitting = false;
+		}
 	};
 </script>
 
@@ -117,6 +136,12 @@
 					Send Message
 				{/if}
 			</button>
+
+			{#if errorMessage}
+				<div class="error-message">
+					{errorMessage}
+				</div>
+			{/if}
 		</form>
 	</div>
 </div>
@@ -239,5 +264,16 @@
 
 	.submit-btn.success {
 		background: var(--color-success-700);
+	}
+
+	.error-message {
+		margin-top: 12px;
+		padding: 10px 12px;
+		background: rgba(239, 68, 68, 0.15);
+		border: 1px solid rgba(239, 68, 68, 0.3);
+		border-radius: 6px;
+		color: #ef4444;
+		font-size: 12px;
+		text-align: center;
 	}
 </style>

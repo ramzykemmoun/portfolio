@@ -287,7 +287,7 @@
 								<div class="ext-info">
 									<div class="ext-name">
 										{theme.name}
-										{#if theme.active}
+										{#if theme.id === config.theme}
 											<span class="active-badge">Active</span>
 										{/if}
 									</div>
