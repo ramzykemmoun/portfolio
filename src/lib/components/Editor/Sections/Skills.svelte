@@ -48,7 +48,7 @@
 			bgGradient: 'linear-gradient(135deg, #052e16 0%, #065f46 50%, #047857 100%)',
 			skills: [
 				{ name: 'PostgreSQL', level: 90, icon: 'psql' },
-				{ name: 'MongoDB', level: 85, icon: 'mongo' },
+				{ name: 'MongoDB', level: 85, icon: 'mongodb' },
 				{ name: 'Redis', level: 88, icon: 'redis' },
 				{ name: 'MySQL', level: 80, icon: 'mysql' },
 				{ name: 'Prisma', level: 92, icon: 'prisma' },
@@ -63,8 +63,8 @@
 			glowColor: '#be123c',
 			bgGradient: 'linear-gradient(135deg, #2d0014 0%, #4c0519 50%, #6d0a27 100%)',
 			skills: [
-				{ name: 'Machine Learning', level: 78, icon: 'ml' },
-				{ name: 'Data Science', level: 78, icon: 'data-science' },
+				{ name: 'Machine Learning', level: 78, icon: 'scikit-learn' },
+				{ name: 'Data Science', level: 78, icon: 'pandas' },
 				{ name: 'TensorFlow', level: 78, icon: 'tensorflow' },
 				{ name: 'LLMs', level: 90, icon: 'llms' },
 				{
@@ -83,25 +83,25 @@
 			id: 'fields',
 			title: 'Expertise Fields',
 			icon: Sparkles,
-			// NOUVEAU: Argent / Acier
 			gradient: 'from-gray-500 via-zinc-400 to-slate-500',
-			glowColor: '#a1a1aa', // Gris Ardoise
+			glowColor: '#a1a1aa',
 			bgGradient: 'linear-gradient(135deg, #27272a 0%, #3f3f46 50%, #52525b 100%)',
 			skills: [
 				{ name: 'Full-Stack Dev', level: 95, icon: 'html' },
-				{ name: 'API Design', level: 92, icon: '🔌' },
-				{
-					name: 'Mobile Dev',
-					level: 95,
-					icon: '📱'
-				},
+				{ name: 'API Design', level: 85, icon: 'graphql' },
+				{ name: 'Artificial Intelligence', level: 85, icon: 'ai-automation' },
 				{
 					name: 'Teaching',
 					level: 95,
-					icon: '🏫'
+					icon: 'teaching'
 				},
-				{ name: 'Content Creation', level: 75, icon: '🤖' },
-				{ name: 'Machine Learning', level: 75, icon: '🤖' }
+				{ name: 'Content Creation', level: 85, icon: 'instagram' },
+
+				{
+					name: 'Mobile Dev',
+					level: 60,
+					icon: 'flutter'
+				}
 			]
 		}
 	];

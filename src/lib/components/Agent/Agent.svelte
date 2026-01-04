@@ -516,14 +516,155 @@
 	/* Responsive: Tablet */
 	@media (max-width: 1024px) {
 		.agent-sidebar.open {
-			width: 280px;
+			width: 300px;
+		}
+
+		.suggestion-btn {
+			padding: 6px 10px;
+			font-size: 10px;
 		}
 	}
 
-	/* Responsive: Mobile */
+	/* Responsive: Mobile - Full screen overlay */
 	@media (max-width: 768px) {
 		.agent-sidebar {
+			position: fixed;
+			bottom: 16px;
+			right: 16px;
+			width: auto;
+			height: auto;
+			background: transparent;
+			border: none;
+			z-index: 1000;
+		}
+
+		.agent-sidebar .toggle-btn {
+			width: 52px;
+			height: 52px;
+			background: linear-gradient(135deg, var(--color-primary-600), var(--color-primary-400));
+			border-radius: 50%;
+			color: white;
+			box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+		}
+
+		.agent-sidebar .toggle-btn:hover {
+			transform: scale(1.05);
+		}
+
+		.agent-sidebar.open {
+			position: fixed;
+			inset: 0;
+			width: 100%;
+			height: 100%;
+			background: rgba(0, 0, 0, 0.5);
+			border: none;
+			display: flex;
+			align-items: flex-end;
+			justify-content: center;
+			padding: 0;
+		}
+
+		.agent-sidebar.open .toggle-btn {
 			display: none;
+		}
+
+		.agent-sidebar.open .agent-panel {
+			width: 100%;
+			max-width: 100%;
+			height: 85vh;
+			max-height: 85vh;
+			border-radius: 16px 16px 0 0;
+			border: none;
+			animation: slideUp 0.3s ease;
+		}
+
+		@keyframes slideUp {
+			from {
+				opacity: 0;
+				transform: translateY(100%);
+			}
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+
+		.agent-header {
+			padding: 14px 16px;
+			border-radius: 16px 16px 0 0;
+		}
+
+		.header-title {
+			font-size: 14px;
+		}
+
+		.header-close {
+			width: 32px;
+			height: 32px;
+		}
+
+		.agent-messages {
+			padding: 16px;
+			gap: 16px;
+		}
+
+		.message-avatar {
+			width: 28px;
+			height: 28px;
+		}
+
+		.message-text {
+			font-size: 14px;
+		}
+
+		.message-role {
+			font-size: 12px;
+		}
+
+		.suggestions {
+			padding: 0 16px 12px;
+			gap: 8px;
+		}
+
+		.suggestion-btn {
+			padding: 8px 14px;
+			font-size: 12px;
+		}
+
+		.agent-input {
+			padding: 12px 16px;
+			padding-bottom: max(12px, env(safe-area-inset-bottom));
+		}
+
+		.agent-input textarea {
+			padding: 12px 14px;
+			font-size: 14px;
+		}
+
+		.send-btn {
+			width: 40px;
+			height: 40px;
+		}
+
+		.action-btn {
+			width: 28px;
+			height: 28px;
+		}
+	}
+
+	/* Extra small mobile */
+	@media (max-width: 380px) {
+		.agent-sidebar.open .agent-panel {
+			height: 90vh;
+		}
+
+		.header-badge {
+			display: none;
+		}
+
+		.suggestion-btn {
+			padding: 6px 10px;
+			font-size: 11px;
 		}
 	}
 </style>

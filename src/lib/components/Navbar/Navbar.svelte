@@ -19,6 +19,7 @@
 	import { terminal } from '$lib/stores/index.svelte';
 
 	let searchDialogOpen = $state<boolean>(false);
+	let mobileMenuOpen = $state<boolean>(false);
 
 	const menuItems = [
 		{ label: 'File', shortcut: '' },
@@ -105,11 +106,23 @@
 	function handleMenuClick(action?: () => void) {
 		if (action) action();
 		activeMenu = null;
+		mobileMenuOpen = false;
 	}
 
 	function handleOutsideClick(e: MouseEvent) {
-		if (activeMenu && !(e.target as Element).closest('.menu-item')) {
+		if (
+			activeMenu &&
+			!(e.target as Element).closest('.menu-item') &&
+			!(e.target as Element).closest('.mobile-menu')
+		) {
 			activeMenu = null;
+		}
+		if (
+			mobileMenuOpen &&
+			!(e.target as Element).closest('.mobile-menu') &&
+			!(e.target as Element).closest('.mobile-menu-btn')
+		) {
+			mobileMenuOpen = false;
 		}
 	}
 </script>
@@ -119,6 +132,15 @@
 {/if}
 
 <header class="vscode-titlebar">
+	<!-- Mobile Menu Button -->
+	<button class="mobile-menu-btn" onclick={() => (mobileMenuOpen = !mobileMenuOpen)}>
+		{#if mobileMenuOpen}
+			<X class="w-4 h-4" />
+		{:else}
+			<Menu class="w-4 h-4" />
+		{/if}
+	</button>
+
 	<div class="app-icon">
 		<img src={rkIcon} alt="RK" />
 	</div>
@@ -133,7 +155,7 @@
 					onclick={() => {
 						if (item.action) {
 							item.action();
-							activeMenu = null; // Close menu if it's a direct action
+							activeMenu = null;
 						} else {
 							activeMenu = activeMenu === item.label ? null : item.label;
 						}
@@ -164,7 +186,7 @@
 	</nav>
 
 	<div class="window-title">
-		<span class="title-text">Ramzy KEMMOUN - Portfolio</span>
+		<span class="title-text">Ramzy KEMMOUN</span>
 		<span class="title-separator">—</span>
 		<span class="title-file">RK IDE</span>
 	</div>
@@ -172,7 +194,7 @@
 	<div class="right-actions">
 		<button class="search-btn" onclick={() => (searchDialogOpen = true)}>
 			<Search class="w-4 h-4" />
-			<span>Search</span>
+			<span class="search-text">Search</span>
 			<span class="shortcut">Ctrl+Shift+F</span>
 		</button>
 
@@ -184,14 +206,14 @@
 					<Play class="w-4 h-4 text-green-400" />
 				{/if}
 			</button>
-			<button class="status-btn" title="Source Control">
+			<button class="status-btn hide-mobile" title="Source Control">
 				<GitBranch class="w-4 h-4" />
 				<span class="badge">3</span>
 			</button>
-			<button class="status-btn" title="Sync Changes">
+			<button class="status-btn hide-mobile" title="Sync Changes">
 				<Cloud class="w-4 h-4" />
 			</button>
-			<button class="status-btn" title="Notifications">
+			<button class="status-btn hide-mobile" title="Notifications">
 				<Bell class="w-4 h-4" />
 			</button>
 			<button class="status-btn" title="Settings">
@@ -212,6 +234,47 @@
 		</button>
 	</div>
 </header>
+
+<!-- Mobile Menu Overlay -->
+{#if mobileMenuOpen}
+	<div class="mobile-menu-overlay" onclick={() => (mobileMenuOpen = false)}></div>
+	<nav class="mobile-menu">
+		<div class="mobile-menu-header">
+			<img src={rkIcon} alt="RK" class="mobile-logo" />
+			<span>RK IDE</span>
+		</div>
+		{#each menuItems as item}
+			<div class="mobile-menu-section">
+				<button
+					class="mobile-menu-item"
+					class:expanded={activeMenu === item.label}
+					onclick={() => {
+						if (item.action) {
+							item.action();
+							mobileMenuOpen = false;
+						} else {
+							activeMenu = activeMenu === item.label ? null : item.label;
+						}
+					}}
+				>
+					{item.label}
+					{#if menuStructure[item.label]}
+						<ChevronDown class={`w-4 h-4 chevron ${activeMenu === item.label ? 'rotated' : ''}`} />
+					{/if}
+				</button>
+				{#if activeMenu === item.label && menuStructure[item.label]}
+					<div class="mobile-submenu">
+						{#each menuStructure[item.label] as subItem}
+							<button class="mobile-submenu-item" onclick={() => handleMenuClick(subItem.action)}>
+								{subItem.label}
+							</button>
+						{/each}
+					</div>
+				{/if}
+			</div>
+		{/each}
+	</nav>
+{/if}
 
 <svelte:window onclick={handleOutsideClick} />
 
@@ -400,17 +463,196 @@
 			display: none;
 		}
 
-		.search-btn span:not(.shortcut) {
+		.search-text {
 			display: none;
 		}
 
-		.shortcut {
+		.search-btn .shortcut {
 			display: none;
 		}
 
 		.window-title {
-			padding-left: 10px;
+			padding-left: 8px;
 		}
+
+		.title-separator,
+		.title-file {
+			display: none;
+		}
+
+		.hide-mobile {
+			display: none;
+		}
+
+		.control-btn {
+			width: 36px;
+		}
+
+		.mobile-menu-btn {
+			display: flex;
+		}
+	}
+
+	@media (max-width: 480px) {
+		.window-title {
+			font-size: 11px;
+		}
+
+		.title-text {
+			max-width: 120px;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+
+		.search-btn {
+			padding: 3px 6px;
+		}
+
+		.status-items {
+			gap: 0;
+		}
+
+		.control-btn {
+			width: 32px;
+		}
+	}
+
+	/* Mobile Menu Button */
+	.mobile-menu-btn {
+		display: none;
+		align-items: center;
+		justify-content: center;
+		width: 38px;
+		height: 100%;
+		background: transparent;
+		border: none;
+		color: var(--color-surface-300);
+		cursor: pointer;
+		transition: all 0.15s ease;
+		-webkit-app-region: no-drag;
+	}
+
+	.mobile-menu-btn:hover {
+		background: var(--color-surface-700);
+		color: var(--color-surface-100);
+	}
+
+	/* Mobile Menu Overlay */
+	.mobile-menu-overlay {
+		position: fixed;
+		inset: 0;
+		background: rgba(0, 0, 0, 0.6);
+		z-index: 999;
+		animation: fadeIn 0.2s ease;
+	}
+
+	@keyframes fadeIn {
+		from {
+			opacity: 0;
+		}
+		to {
+			opacity: 1;
+		}
+	}
+
+	/* Mobile Menu */
+	.mobile-menu {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 280px;
+		max-width: 85vw;
+		height: 100vh;
+		background: #1e1e1e;
+		border-right: 1px solid #3c3c3c;
+		z-index: 1000;
+		overflow-y: auto;
+		animation: slideIn 0.25s ease;
+	}
+
+	@keyframes slideIn {
+		from {
+			transform: translateX(-100%);
+		}
+		to {
+			transform: translateX(0);
+		}
+	}
+
+	.mobile-menu-header {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+		padding: 16px;
+		border-bottom: 1px solid #3c3c3c;
+		font-size: 14px;
+		font-weight: 600;
+		color: var(--color-surface-100);
+	}
+
+	.mobile-logo {
+		width: 28px;
+		height: 28px;
+	}
+
+	.mobile-menu-section {
+		border-bottom: 1px solid #2d2d2d;
+	}
+
+	.mobile-menu-item {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		width: 100%;
+		padding: 14px 16px;
+		background: transparent;
+		border: none;
+		color: var(--color-surface-200);
+		font-size: 13px;
+		cursor: pointer;
+		transition: all 0.15s ease;
+		text-align: left;
+	}
+
+	.mobile-menu-item:hover {
+		background: #2a2d2e;
+		color: var(--color-surface-100);
+	}
+
+	.mobile-menu-item.expanded {
+		background: #2a2d2e;
+		color: var(--color-primary-400);
+	}
+
+	.mobile-menu-item :global(.chevron) {
+		transition: transform 0.2s ease;
+	}
+
+	.mobile-menu-item :global(.chevron.rotated) {
+		transform: rotate(180deg);
+	}
+
+	.mobile-submenu {
+		background: #252526;
+	}
+
+	.mobile-submenu-item {
+		display: block;
+		width: 100%;
+		padding: 12px 16px 12px 32px;
+		background: transparent;
+		border: none;
+		color: var(--color-surface-300);
+		font-size: 12px;
+		cursor: pointer;
+		text-align: left;
+		transition: all 0.15s ease;
+	}
+
+	.mobile-submenu-item:hover {
+		background: #2a2d2e;
+		color: var(--color-surface-100);
 	}
 
 	.menu-wrapper {
@@ -423,8 +665,8 @@
 		top: 100%;
 		left: 0;
 		min-width: 200px;
-		background: var(--color-surface-800);
-		border: 1px solid var(--color-surface-700);
+		background: #1e1e1e;
+		border: 1px solid #3c3c3c;
 		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
 		border-radius: 0 0 4px 4px;
 		padding: 4px 0;

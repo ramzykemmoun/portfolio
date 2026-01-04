@@ -1,7 +1,11 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { browser } from '$app/environment';
 	import { sidebar, config } from '$lib/stores/index.svelte';
-	import { themes as themesData, extensions } from '$lib/data/sections/extensions';
+	import {
+		themes as themesData,
+		extensions as extensionsData
+	} from '$lib/data/sections/extensions';
 
 	import {
 		Puzzle,
@@ -15,6 +19,7 @@
 		RefreshCw
 	} from '@lucide/svelte';
 
+	import Icon from '$lib/components/Icon.svelte';
 	/** @type {{ isResizing: boolean }} */
 	let { isResizing = $bindable() } = $props();
 
@@ -37,13 +42,94 @@
 		}
 	};
 
+	const THEMES_STORAGE_KEY = 'portfolio-installed-themes';
+	const EXTENSIONS_STORAGE_KEY = 'portfolio-installed-extensions';
+
+	function loadInstalledThemes(): typeof themesData {
+		if (!browser) return themesData;
+		try {
+			const saved = localStorage.getItem(THEMES_STORAGE_KEY);
+			if (saved) {
+				const installedIds: string[] = JSON.parse(saved);
+				return themesData.map((t) => ({
+					...t,
+					installed: installedIds.includes(t.id)
+				}));
+			}
+		} catch (e) {
+			console.error('Failed to load themes from localStorage:', e);
+		}
+		return themesData;
+	}
+
+	function loadInstalledExtensions(): typeof extensionsData {
+		if (!browser) return extensionsData;
+		try {
+			const saved = localStorage.getItem(EXTENSIONS_STORAGE_KEY);
+			if (saved) {
+				const installedIds: string[] = JSON.parse(saved);
+				return extensionsData.map((e) => ({
+					...e,
+					installed: installedIds.includes(e.id)
+				}));
+			}
+		} catch (e) {
+			console.error('Failed to load extensions from localStorage:', e);
+		}
+		return extensionsData;
+	}
+
+	// Save installed states to localStorage
+	function saveInstalledThemes(themesState: typeof themesData) {
+		if (!browser) return;
+		try {
+			const installedIds = themesState.filter((t) => t.installed).map((t) => t.id);
+			localStorage.setItem(THEMES_STORAGE_KEY, JSON.stringify(installedIds));
+		} catch (e) {
+			console.error('Failed to save themes to localStorage:', e);
+		}
+	}
+
+	function saveInstalledExtensions(extensionsState: typeof extensionsData) {
+		if (!browser) return;
+		try {
+			const installedIds = extensionsState.filter((e) => e.installed).map((e) => e.id);
+			localStorage.setItem(EXTENSIONS_STORAGE_KEY, JSON.stringify(installedIds));
+		} catch (e) {
+			console.error('Failed to save extensions to localStorage:', e);
+		}
+	}
+
+	let mounted = $state(false);
+
 	onMount(() => {
 		document.addEventListener('mousemove', resize);
 		document.addEventListener('mouseup', stopResize);
+
+		// Load saved states
+		themes = loadInstalledThemes();
+		extensions = loadInstalledExtensions();
+
+		// Mark as mounted after loading
+		mounted = true;
+
 		return () => {
 			document.removeEventListener('mousemove', resize);
 			document.removeEventListener('mouseup', stopResize);
 		};
+	});
+
+	// Save to localStorage when themes/extensions change (only after mounted)
+	$effect(() => {
+		if (browser && mounted) {
+			saveInstalledThemes(themes);
+		}
+	});
+
+	$effect(() => {
+		if (browser && mounted) {
+			saveInstalledExtensions(extensions);
+		}
 	});
 
 	let searchTerm = $state('');
@@ -51,12 +137,13 @@
 	let expandedSections = $state<Set<string>>(new Set(['installed', 'themes']));
 
 	let themes = $state(themesData);
+	let extensions = $state(extensionsData);
 	let installedThemes = $derived(themes.filter((t) => t.installed));
 	let installedExtensions = $derived(extensions.filter((e) => e.installed));
 
 	let filteredThemes = $derived(
 		searchTerm.trim() === ''
-			? themes
+			? [...themes]
 			: themes.filter(
 					(t) =>
 						t.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -66,7 +153,7 @@
 
 	let filteredExtensions = $derived(
 		searchTerm.trim() === ''
-			? extensions
+			? [...extensions]
 			: extensions.filter(
 					(e) =>
 						e.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -90,6 +177,22 @@
 		let stars = '★'.repeat(fullStars);
 		if (hasHalf) stars += '½';
 		return stars;
+	}
+
+	function installTheme(themeId: string) {
+		themes = themes.map((t) => (t.id === themeId ? { ...t, installed: true } : t));
+	}
+
+	function uninstallTheme(themeId: string) {
+		themes = themes.map((t) => (t.id === themeId ? { ...t, installed: false } : t));
+	}
+
+	function installExtension(extId: string) {
+		extensions = extensions.map((e) => (e.id === extId ? { ...e, installed: true } : e));
+	}
+
+	function uninstallExtension(extId: string) {
+		extensions = extensions.map((e) => (e.id === extId ? { ...e, installed: false } : e));
 	}
 </script>
 
@@ -174,11 +277,12 @@
 								class="ext-card"
 								class:active={theme.id === config.theme}
 								onclick={() => {
+									localStorage.setItem('theme', theme.id);
 									config.theme = theme.id;
 								}}
 							>
 								<div class="ext-icon" style="background: {theme.color};">
-									{theme.icon}
+									<Icon icon={theme.icon} />
 								</div>
 								<div class="ext-info">
 									<div class="ext-name">
@@ -215,13 +319,13 @@
 						{#each installedExtensions as ext}
 							<div class="ext-card">
 								<div class="ext-icon" style="background: {ext.color};">
-									{ext.icon}
+									<Icon icon={ext.icon} />
 								</div>
 								<div class="ext-info">
 									<div class="ext-name">{ext.name}</div>
 									<div class="ext-author">{ext.author}</div>
 								</div>
-								<button class="ext-action installed">
+								<button class="ext-action installed" onclick={() => uninstallExtension(ext.id)}>
 									<Check class="w-3 h-3" />
 								</button>
 							</div>
@@ -238,7 +342,7 @@
 				{#each filteredThemes as theme}
 					<div class="ext-card detailed" class:active={theme.id === config.theme}>
 						<div class="ext-icon large" style="background: {theme.color};">
-							{theme.icon}
+							<Icon icon={theme.icon} />
 						</div>
 						<div class="ext-details">
 							<div class="ext-name">{theme.name}</div>
@@ -259,8 +363,10 @@
 							class="ext-action"
 							class:installed={theme.installed}
 							onclick={() => {
-								if (!theme.installed) {
-									themes = themes.map((t) => (t.id === theme.id ? { ...t, installed: true } : t));
+								if (theme.installed) {
+									uninstallTheme(theme.id);
+								} else {
+									installTheme(theme.id);
 								}
 							}}
 						>
@@ -282,7 +388,7 @@
 				{#each filteredExtensions as ext}
 					<div class="ext-card detailed">
 						<div class="ext-icon large" style="background: {ext.color};">
-							{ext.icon}
+							<Icon icon={ext.icon} />
 						</div>
 						<div class="ext-details">
 							<div class="ext-name">{ext.name}</div>
@@ -299,7 +405,17 @@
 								</span>
 							</div>
 						</div>
-						<button class="ext-action" class:installed={ext.installed}>
+						<button
+							class="ext-action"
+							class:installed={ext.installed}
+							onclick={() => {
+								if (ext.installed) {
+									uninstallExtension(ext.id);
+								} else {
+									installExtension(ext.id);
+								}
+							}}
+						>
 							{#if ext.installed}
 								<Check class="w-4 h-4" />
 							{:else}

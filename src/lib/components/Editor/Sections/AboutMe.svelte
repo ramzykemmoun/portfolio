@@ -72,6 +72,7 @@
 		const drops: number[] = Array(columns).fill(1);
 
 		const draw = () => {
+			if (!ctx) return;
 			ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
 			ctx.fillRect(0, 0, matrixCanvas.width, matrixCanvas.height);
 

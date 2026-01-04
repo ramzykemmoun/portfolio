@@ -1,12 +1,11 @@
 <script lang="ts">
-	import { Puzzle, Mail, Folder, Search, GitBranch } from '@lucide/svelte';
+	import { Puzzle, Mail, Folder, Search, GitBranch, X } from '@lucide/svelte';
 	import Explorer from './Explorer.svelte';
 	import Contact from './Contact.svelte';
 	import SearchPanel from './Search.svelte';
 	import Extensions from './Extensions.svelte';
 	import Git from './Git.svelte';
 	import { sidebar } from '$lib/stores/index.svelte';
-	import { Portal, Tooltip } from '@skeletonlabs/skeleton-svelte';
 
 	let isResizing = $state(false);
 
@@ -22,6 +21,10 @@
 			sidebar.open = true;
 			sidebar.section = section;
 		}
+	};
+
+	const closeSidebar = () => {
+		sidebar.open = false;
 	};
 
 	export const sections = {
@@ -49,64 +52,59 @@
 	};
 </script>
 
-<div class="vscode-sidebar bg-surface-950">
+<!-- Mobile Overlay -->
+{#if sidebar.open}
+	<div class="mobile-overlay" onclick={closeSidebar}></div>
+{/if}
+
+<div class="vscode-sidebar bg-surface-950" class:panel-open={sidebar.open}>
 	<div class="activity-bar bg-surface-900">
 		{#each Object.entries(sections) as [key, section]}
-			<Tooltip positioning={{ placement: 'top' }}>
-				<Tooltip.Trigger>
-					<button
-						type="button"
-						class="activity-item"
-						class:active={sidebar.section === key && sidebar.open}
-						onclick={() => changeSection(key)}
-						title={section.title}
-					>
-						<section.icon class="w-6 h-6" />
-						{#if sidebar.section === key && sidebar.open}
-							<div class="active-indicator"></div>
-						{/if}
-					</button>
-				</Tooltip.Trigger>
-				<Portal>
-					<Tooltip.Positioner>
-						<Tooltip.Content class="card p-2 preset-filled-surface-950-50">
-							<span>{section.title}</span>
-							<Tooltip.Arrow
-								class="[--arrow-size:--spacing(2)] [--arrow-background:var(--color-surface-950-50)]"
-							>
-								<Tooltip.ArrowTip />
-							</Tooltip.Arrow>
-						</Tooltip.Content>
-					</Tooltip.Positioner>
-				</Portal>
-			</Tooltip>
+			<button
+				type="button"
+				class="activity-item"
+				class:active={sidebar.section === key && sidebar.open}
+				onclick={() => changeSection(key)}
+				title={section.title}
+			>
+				<section.icon class="w-6 h-6" />
+				{#if sidebar.section === key && sidebar.open}
+					<div class="active-indicator"></div>
+				{/if}
+			</button>
 		{/each}
 	</div>
 
 	{#if sidebar.open}
-		{#if sidebar.section === 'explorer'}
-			<Explorer bind:isResizing />
-		{/if}
-		{#if sidebar.section === 'contact'}
-			<Contact bind:isResizing />
-		{/if}
-		{#if sidebar.section === 'git'}
-			<Git bind:isResizing />
-		{/if}
-		{#if sidebar.section === 'extensions'}
-			<Extensions bind:isResizing />
-		{/if}
-		{#if sidebar.section === 'search'}
-			<SearchPanel bind:isResizing />
-		{/if}
+		<div class="sidebar-panel-wrapper">
+			<button class="mobile-close-btn" onclick={closeSidebar}>
+				<X class="w-5 h-5" />
+			</button>
 
-		<div
-			role="button"
-			tabindex="0"
-			aria-label="Resize sidebar"
-			onmousedown={startResize}
-			class="resize-handle"
-		></div>
+			{#if sidebar.section === 'explorer'}
+				<Explorer bind:isResizing />
+			{/if}
+			{#if sidebar.section === 'contact'}
+				<Contact bind:isResizing />
+			{/if}
+			{#if sidebar.section === 'git'}
+				<Git bind:isResizing />
+			{/if}
+			{#if sidebar.section === 'extensions'}
+				<Extensions bind:isResizing />
+			{/if}
+			{#if sidebar.section === 'search'}
+				<SearchPanel bind:isResizing />
+			{/if}
+
+			<div
+				role="button"
+				tabindex="0"
+				aria-label="Resize sidebar"
+				onmousedown={startResize}
+				class="resize-handle"
+			></div>
+		</div>
 	{/if}
 </div>
 
@@ -163,15 +161,20 @@
 		border-radius: 0 2px 2px 0;
 	}
 
-	/* Sidebar Panel */
-	.sidebar-panel {
+	/* Sidebar Panel Wrapper */
+	.sidebar-panel-wrapper {
 		display: flex;
-		flex-direction: column;
-		min-width: 0;
-		height: 100%;
-		border-right: 1px solid var(--color-surface-800);
-		overflow: hidden;
-		background: var(--color-surface-800);
+		position: relative;
+	}
+
+	/* Mobile close button - hidden on desktop */
+	.mobile-close-btn {
+		display: none;
+	}
+
+	/* Mobile Overlay - hidden on desktop */
+	.mobile-overlay {
+		display: none;
 	}
 
 	/* Resize Handle */
@@ -190,36 +193,63 @@
 
 	/* Responsive: Tablet */
 	@media (max-width: 1024px) {
-		.vscode-sidebar {
-			/* Auto-collapse sidebar panel on tablet */
+		.activity-bar {
+			width: 44px;
+		}
+
+		.activity-item {
+			width: 44px;
+			height: 44px;
 		}
 	}
 
 	/* Responsive: Mobile */
 	@media (max-width: 768px) {
+		/* Mobile overlay backdrop */
+		.mobile-overlay {
+			display: block;
+			position: fixed;
+			inset: 0;
+			background: rgba(0, 0, 0, 0.5);
+			z-index: 998;
+			animation: fadeIn 0.2s ease;
+		}
+
+		@keyframes fadeIn {
+			from {
+				opacity: 0;
+			}
+			to {
+				opacity: 1;
+			}
+		}
+
+		/* Activity bar becomes bottom navigation */
 		.vscode-sidebar {
 			position: fixed;
 			bottom: 0;
 			left: 0;
 			right: 0;
-			height: 48px;
-			z-index: 100;
-			flex-direction: row;
+			height: auto;
+			z-index: 999;
+			flex-direction: column-reverse;
 			border-left: none;
-			border-top: 1px solid var(--color-surface-800);
 		}
 
 		.activity-bar {
 			flex-direction: row;
 			width: 100%;
-			height: 48px;
+			height: 56px;
 			border-right: none;
+			border-top: 1px solid var(--color-surface-800);
 			justify-content: space-around;
+			padding: 0 8px;
+			padding-bottom: env(safe-area-inset-bottom);
 		}
 
 		.activity-item {
-			width: 48px;
-			height: 48px;
+			width: 52px;
+			height: 52px;
 		}
 
 		.active-indicator {
@@ -232,10 +262,88 @@
 			border-radius: 0 0 2px 2px;
 		}
 
-		/* Hide sidebar panel and resize handle on mobile */
-		.resize-handle,
-		.sidebar-panel {
+		/* Sidebar panel as slide-up modal */
+		.sidebar-panel-wrapper {
+			position: fixed;
+			left: 0;
+			right: 0;
+			bottom: 56px;
+			bottom: calc(56px + env(safe-area-inset-bottom));
+			height: 60vh;
+			max-height: 60vh;
+			background: var(--color-surface-900);
+			border-radius: 16px 16px 0 0;
+			flex-direction: column;
+			animation: slideUp 0.3s ease;
+			overflow: hidden;
+		}
+
+		@keyframes slideUp {
+			from {
+				opacity: 0;
+				transform: translateY(100%);
+			}
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+
+		/* Mobile close button */
+		.mobile-close-btn {
+			display: flex;
+			position: absolute;
+			top: 8px;
+			right: 8px;
+			z-index: 10;
+			align-items: center;
+			justify-content: center;
+			width: 32px;
+			height: 32px;
+			background: var(--color-surface-800);
+			border: none;
+			border-radius: 8px;
+			color: var(--color-surface-400);
+			cursor: pointer;
+		}
+
+		.mobile-close-btn:hover {
+			background: var(--color-surface-700);
+			color: var(--color-surface-100);
+		}
+
+		/* Override child panel styles */
+		.sidebar-panel-wrapper :global(.explorer-panel),
+		.sidebar-panel-wrapper :global(.contact-panel),
+		.sidebar-panel-wrapper :global(.extensions-panel),
+		.sidebar-panel-wrapper :global(.search-panel),
+		.sidebar-panel-wrapper :global(.git-panel) {
+			width: 100% !important;
+			height: 100% !important;
+			border-radius: 16px 16px 0 0;
+		}
+
+		/* Hide resize handle on mobile */
+		.resize-handle {
 			display: none;
+		}
+	}
+
+	/* Extra small mobile */
+	@media (max-width: 380px) {
+		.activity-bar {
+			height: 52px;
+			padding: 0 4px;
+		}
+
+		.activity-item {
+			width: 48px;
+			height: 48px;
+		}
+
+		.sidebar-panel-wrapper {
+			height: 70vh;
+			max-height: 70vh;
 		}
 	}
 </style>
