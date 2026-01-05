@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { browser } from '$app/environment';
-	import { X, Sparkles, Terminal, Command, MousePointerClick } from '@lucide/svelte';
+	import { X, Sparkles, Terminal, Sun, MousePointerClick } from '@lucide/svelte';
 
 	let isOpen = $state(false);
 
@@ -91,11 +91,11 @@
 
 					<div class="feature">
 						<div class="feature-icon">
-							<Command class="w-4 h-4" />
+							<Sun class="w-4 h-4" />
 						</div>
 						<div class="feature-text">
-							<strong>Use Shortcuts</strong>
-							<span>Press <kbd>Ctrl</kbd> + <kbd>P</kbd> to quick search</span>
+							<strong>Change Theme</strong>
+							<span>Change themes using the toggle button</span>
 						</div>
 					</div>
 
@@ -349,7 +349,7 @@
 	.feature-text strong {
 		font-size: 0.85rem;
 		font-weight: 600;
-		color: var(--color-surface-100);
+		color: var(--color-primary-100);
 	}
 
 	.feature-text span {
@@ -363,7 +363,7 @@
 		border-radius: 4px;
 		font-family: 'Fira Code', monospace;
 		font-size: 0.75rem;
-		color: var(--color-primary-300);
+		color: var(--color-primary-200);
 	}
 
 	.feature-text kbd {
@@ -374,7 +374,7 @@
 		border-radius: 4px;
 		font-family: inherit;
 		font-size: 0.7rem;
-		color: var(--color-surface-200);
+		color: var(--color-primary-200);
 	}
 
 	.hint-text {
