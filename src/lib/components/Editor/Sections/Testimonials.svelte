@@ -128,8 +128,7 @@
 								<div class="author-info">
 									<h4 class="author-name">{testimonial.name}</h4>
 									<p class="author-role">
-										{testimonial.role} <span class="at">@</span>
-										{testimonial.company}
+										{testimonial.role}<span class="at">@</span>{testimonial.company}
 									</p>
 								</div>
 							</div>
