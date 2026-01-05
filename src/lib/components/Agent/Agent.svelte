@@ -100,7 +100,6 @@
 
 	{#if agent.open}
 		<div class="agent-panel">
-			<!-- Header -->
 			<div class="agent-header">
 				<div class="header-title">
 					<div class="header-icon">
@@ -256,7 +255,6 @@
 		}
 	}
 
-	/* Header */
 	.agent-header {
 		display: flex;
 		align-items: center;
@@ -314,7 +312,6 @@
 		color: var(--color-surface-50);
 	}
 
-	/* Messages */
 	.agent-messages {
 		flex: 1;
 		overflow-y: auto;
@@ -379,7 +376,6 @@
 		color: var(--color-primary-200);
 	}
 
-	/* Markdown Styles */
 	.markdown-content :global(p) {
 		margin: 0 0 0.5em 0;
 	}
@@ -499,7 +495,6 @@
 		color: var(--color-surface-200);
 	}
 
-	/* Typing Indicator */
 	.typing-indicator {
 		display: flex;
 		gap: 4px;
@@ -534,7 +529,6 @@
 		}
 	}
 
-	/* Suggestions */
 	.suggestions {
 		display: flex;
 		flex-wrap: wrap;
@@ -616,7 +610,6 @@
 		cursor: not-allowed;
 	}
 
-	/* Responsive: Tablet */
 	@media (max-width: 1024px) {
 		.agent-sidebar.open {
 			width: 300px;
@@ -628,7 +621,6 @@
 		}
 	}
 
-	/* Responsive: Mobile - Full screen overlay */
 	@media (max-width: 768px) {
 		.agent-sidebar {
 			position: fixed;
@@ -755,7 +747,6 @@
 		}
 	}
 
-	/* Extra small mobile */
 	@media (max-width: 380px) {
 		.agent-sidebar.open .agent-panel {
 			height: 90vh;

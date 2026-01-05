@@ -29,16 +29,6 @@ export const testimonialsData: Testimonial[] = [
 		rating: 5,
 		date: '2024-10'
 	},
-	// {
-	// 	id: 3,
-	// 	name: 'Mohamed Achraf Saidi',
-	// 	role: 'Fullstack Developer',
-	// 	company: 'VDC Engineering',
-	// 	avatar: 'https://i.pravatar.cc/150?img=5',
-	// 	content: '',
-	// 	rating: 5,
-	// 	date: '2024-09'
-	// },
 	{
 		id: 3,
 		name: 'Massinissa Mouhoub',
@@ -49,26 +39,6 @@ export const testimonialsData: Testimonial[] = [
 		rating: 5,
 		date: '2025-05'
 	}
-	// {
-	// 	id: 5,
-	// 	name: 'Mehdi Djahraoui',
-	// 	role: 'Fullstack Developer',
-	// 	company: '',
-	// 	avatar: 'https://i.pravatar.cc/150?img=9',
-	// 	content: '',
-	// 	rating: 5,
-	// 	date: '2024-07'
-	// },
-	// {
-	// 	id: 6,
-	// 	name: '',
-	// 	role: '',
-	// 	company: '',
-	// 	avatar: '',
-	// 	content: '',
-	// 	rating: 5,
-	// 	date: '2025-12'
-	// }
 ];
 
 export const testimonialsCode = `export interface Testimonial {

@@ -35,9 +35,8 @@ export const skillsCode = `	const skillCategories = [
 			id: 'databases',
 			title: 'Databases',
 			icon: Database,
-			// NOUVEAU: Émeraude / Jad
 			gradient: 'from-green-700 via-emerald-600 to-teal-500',
-			glowColor: '#059669', // Vert Émeraude
+			glowColor: '#059669',
 			bgGradient: 'linear-gradient(135deg, #052e16 0%, #065f46 50%, #047857 100%)',
 			skills: [
 				{ name: 'PostgreSQL', level: 90, icon: 'psql' },

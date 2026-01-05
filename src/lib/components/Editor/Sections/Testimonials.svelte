@@ -62,14 +62,11 @@
 </script>
 
 <div class="testimonials-container relative" class:mounted onmousemove={handleMouseMove}>
-	<!-- Animated Background -->
 	<div class="bg-pattern">
 		<div class="gradient-orb orb-1"></div>
 		<div class="gradient-orb orb-2"></div>
 		<div class="gradient-orb orb-3"></div>
 	</div>
-
-	<!-- Floating Particles -->
 	<div class="particles">
 		{#each Array(20) as _, i}
 			<div
@@ -81,7 +78,6 @@
 	</div>
 
 	<div class="content-wrapper">
-		<!-- Header -->
 		<header class="section-header">
 			<div class="header-badge">
 				<Sparkles class="w-4 h-4" />
@@ -94,8 +90,6 @@
 				Feedback from clients and colleagues I've had the pleasure to work with
 			</p>
 		</header>
-
-		<!-- Main Testimonial Card -->
 		<div class="testimonial-showcase">
 			<button class="nav-button prev" onclick={prevTestimonial} aria-label="Previous testimonial">
 				<ChevronLeft class="w-6 h-6" />
@@ -113,15 +107,10 @@
 					>
 						<div class="card-glow"></div>
 						<div class="card-content">
-							<!-- Quote Icon -->
 							<div class="quote-icon">
 								<Quote class="w-8 h-8" />
 							</div>
-
-							<!-- Content -->
 							<p class="testimonial-text">{testimonial.content}</p>
-
-							<!-- Rating -->
 							<div class="rating">
 								{#each Array(5) as _, starIndex}
 									<Star
@@ -130,8 +119,6 @@
 									/>
 								{/each}
 							</div>
-
-							<!-- Author -->
 							<div class="author-section">
 								<div class="avatar-container">
 									<img src={avatars[testimonial.id - 1]} alt={testimonial.name} class="avatar" />
@@ -154,8 +141,6 @@
 				<ChevronRight class="w-6 h-6" />
 			</button>
 		</div>
-
-		<!-- Dots Navigation -->
 		<div class="dots-navigation">
 			{#each testimonials as _, i}
 				<button
@@ -168,8 +153,6 @@
 				</button>
 			{/each}
 		</div>
-
-		<!-- Mini Cards Preview -->
 		<div class="preview-grid">
 			{#each testimonials as testimonial, i}
 				<button
@@ -198,7 +181,6 @@
 		font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
 	}
 
-	/* Background Effects */
 	.bg-pattern {
 		position: absolute;
 		inset: 0;
@@ -257,7 +239,6 @@
 		}
 	}
 
-	/* Particles */
 	.particles {
 		position: fixed;
 		inset: 0;
@@ -295,7 +276,6 @@
 		}
 	}
 
-	/* Content */
 	.content-wrapper {
 		position: relative;
 		z-index: 10;
@@ -312,7 +292,6 @@
 		transform: translateY(0);
 	}
 
-	/* Header */
 	.section-header {
 		text-align: center;
 		margin-bottom: 3rem;
@@ -376,7 +355,6 @@
 		margin: 0 auto;
 	}
 
-	/* Testimonial Showcase */
 	.testimonial-showcase {
 		display: flex;
 		align-items: center;
@@ -588,7 +566,6 @@
 		font-weight: 600;
 	}
 
-	/* Dots Navigation */
 	.dots-navigation {
 		display: flex;
 		justify-content: center;
@@ -640,7 +617,6 @@
 		}
 	}
 
-	/* Preview Grid */
 	.preview-grid {
 		display: flex;
 		justify-content: center;
@@ -696,7 +672,6 @@
 		font-size: 0.7rem;
 	}
 
-	/* Responsive */
 	@media (max-width: 768px) {
 		.content-wrapper {
 			padding: 2rem 1rem;

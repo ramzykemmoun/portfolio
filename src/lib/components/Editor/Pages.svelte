@@ -136,7 +136,6 @@
 		background: var(--color-surface-950);
 	}
 
-	/* Responsive: Mobile */
 	@media (max-width: 768px) {
 		.tab {
 			padding: 0 8px;

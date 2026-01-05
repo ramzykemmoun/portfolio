@@ -256,7 +256,6 @@
 		transform: scaleX(1);
 	}
 
-	/* Submit Button */
 	.submit-btn {
 		margin-top: 1rem;
 		padding: 1rem;
@@ -311,7 +310,6 @@
 		transform: translateX(3px) translateY(-3px);
 	}
 
-	/* Success State */
 	.success-message {
 		display: flex;
 		flex-direction: column;
@@ -366,7 +364,6 @@
 		opacity: 0.2;
 	}
 
-	/* Responsiveness */
 	@media (max-width: 600px) {
 		.glass-card {
 			padding: 1.5rem;

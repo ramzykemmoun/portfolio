@@ -190,16 +190,12 @@
 			<span>PR</span>
 		</button>
 	</div>
-
-	<!-- Commit Input -->
 	<div class="commit-input-section">
 		<input type="text" placeholder="Message (Ctrl+Enter to commit)" class="commit-input" />
 		<button class="commit-btn">
 			<Check class="w-4 h-4" />
 		</button>
 	</div>
-
-	<!-- Changes Section -->
 	<div class="changes-section">
 		<div class="section-header">
 			<span>Changes</span>
@@ -210,8 +206,6 @@
 			<span>No changes to commit</span>
 		</div>
 	</div>
-
-	<!-- Git Graph Section -->
 	<div class="graph-section">
 		<div class="section-header">
 			<span>Commit History</span>
@@ -221,7 +215,6 @@
 		<div class="commit-graph">
 			{#each commits as commit, i}
 				<div class="commit-row">
-					<!-- Graph Line -->
 					<div class="graph-line">
 						<div class="line-segment" style="background: {commit.color};">
 							{#if i > 0}
@@ -243,8 +236,6 @@
 							{/if}
 						</div>
 					</div>
-
-					<!-- Commit Info -->
 					<div class="commit-info">
 						<div class="commit-header">
 							<span class="commit-hash">{commit.hash}</span>
@@ -631,7 +622,6 @@
 		color: var(--color-surface-400);
 	}
 
-	/* Scrollbar */
 	.graph-section::-webkit-scrollbar {
 		width: 8px;
 	}

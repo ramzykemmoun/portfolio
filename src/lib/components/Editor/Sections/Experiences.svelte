@@ -164,9 +164,9 @@
 </div>
 
 <style>
-	/* ---------------------------------------------------------------------- */
-	/* VARIABLES DE COULEUR (Or et Vert Foncé - Remplacement du Bleu et du Rouge) */
-	/* ---------------------------------------------------------------------- */
+
+
+
 	:root {
 		--color-background-dark: #101c10; /* Vert presque noir */
 		--color-background-mid: #1a2d1a; /* Vert très foncé */
@@ -192,7 +192,6 @@
 		padding: 3rem 2rem;
 	}
 
-	/* Japanese Pattern Background */
 	.bg-pattern {
 		position: absolute;
 		inset: 0;
@@ -215,7 +214,6 @@
 		pointer-events: none;
 	}
 
-	/* Fog Effects */
 	.fog {
 		position: absolute;
 		width: 100%;
@@ -234,7 +232,6 @@
 		background: linear-gradient(0deg, var(--color-fog) 0%, transparent 100%);
 	}
 
-	/* Ink Splatters */
 	.ink-splatter {
 		position: absolute;
 		width: 300px;
@@ -257,7 +254,6 @@
 		background: radial-gradient(circle, var(--color-accent-amber) 0%, transparent 70%);
 	}
 
-	/* Header */
 	.header {
 		position: relative;
 		z-index: 10;
@@ -321,7 +317,6 @@
 		background: linear-gradient(90deg, transparent, rgba(251, 191, 36, 0.5), transparent);
 	}
 
-	/* Timeline */
 	.timeline {
 		position: relative;
 		z-index: 10;
@@ -361,7 +356,6 @@
 		filter: blur(10px);
 	}
 
-	/* Experience Card */
 	.experience-card {
 		position: relative;
 		display: flex;
@@ -393,7 +387,6 @@
 		padding-left: calc(50% + 40px);
 	}
 
-	/* Timeline Node */
 	.timeline-node {
 		position: absolute;
 		left: 50%;
@@ -454,7 +447,6 @@
 		}
 	}
 
-	/* Card */
 	.card {
 		position: relative;
 		flex: 1;
@@ -474,7 +466,6 @@
 			0 0 40px rgba(251, 191, 36, 0.2);
 	}
 
-	/* Japanese Frame */
 	.card-frame {
 		position: absolute;
 		inset: 8px;
@@ -510,7 +501,6 @@
 		border-width: 0 2px 2px 0;
 	}
 
-	/* Rank Badge */
 	.rank-badge {
 		position: absolute;
 		top: -12px;
@@ -531,7 +521,6 @@
 		letter-spacing: 0.05em;
 	}
 
-	/* Card Header */
 	.card-header {
 		margin-bottom: 1rem;
 	}
@@ -552,7 +541,6 @@
 		font-weight: 500;
 	}
 
-	/* Meta */
 	.card-meta {
 		display: flex;
 		flex-wrap: wrap;
@@ -612,7 +600,6 @@
 		margin-top: 2px;
 	}
 
-	/* Technologies */
 	.tech-stack {
 		display: flex;
 		flex-wrap: wrap;
@@ -630,7 +617,6 @@
 		letter-spacing: 0.02em;
 	}
 
-	/* Decorative Seal (L'ancien rouge est remplacé par Or/Sépia) */
 	.card-seal {
 		position: absolute;
 		bottom: 15px;
@@ -649,7 +635,6 @@
 		opacity: 0.8;
 	}
 
-	/* Responsive */
 	@media (max-width: 900px) {
 		.timeline-line {
 			left: 30px;

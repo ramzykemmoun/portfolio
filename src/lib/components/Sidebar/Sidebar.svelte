@@ -51,8 +51,6 @@
 		}
 	};
 </script>
-
-<!-- Mobile Overlay -->
 {#if sidebar.open}
 	<div class="mobile-overlay" onclick={closeSidebar}></div>
 {/if}
@@ -116,7 +114,6 @@
 		flex-shrink: 0;
 	}
 
-	/* Activity Bar */
 	.activity-bar {
 		display: flex;
 		flex-direction: column;
@@ -149,7 +146,6 @@
 		color: var(--color-surface-50);
 	}
 
-	/* Active indicator (white bar on left) */
 	.active-indicator {
 		position: absolute;
 		left: 0;
@@ -161,23 +157,19 @@
 		border-radius: 0 2px 2px 0;
 	}
 
-	/* Sidebar Panel Wrapper */
 	.sidebar-panel-wrapper {
 		display: flex;
 		position: relative;
 	}
 
-	/* Mobile close button - hidden on desktop */
 	.mobile-close-btn {
 		display: none;
 	}
 
-	/* Mobile Overlay - hidden on desktop */
 	.mobile-overlay {
 		display: none;
 	}
 
-	/* Resize Handle */
 	.resize-handle {
 		width: 4px;
 		height: 100%;
@@ -191,7 +183,6 @@
 		background: var(--color-primary-500);
 	}
 
-	/* Responsive: Tablet */
 	@media (max-width: 1024px) {
 		.activity-bar {
 			width: 44px;
@@ -203,9 +194,8 @@
 		}
 	}
 
-	/* Responsive: Mobile */
 	@media (max-width: 768px) {
-		/* Mobile overlay backdrop */
+
 		.mobile-overlay {
 			display: block;
 			position: fixed;
@@ -224,7 +214,6 @@
 			}
 		}
 
-		/* Activity bar becomes bottom navigation */
 		.vscode-sidebar {
 			position: fixed;
 			bottom: 0;
@@ -262,7 +251,6 @@
 			border-radius: 0 0 2px 2px;
 		}
 
-		/* Sidebar panel as slide-up modal */
 		.sidebar-panel-wrapper {
 			position: fixed;
 			left: 0;
@@ -289,7 +277,6 @@
 			}
 		}
 
-		/* Mobile close button */
 		.mobile-close-btn {
 			display: flex;
 			position: absolute;
@@ -312,7 +299,6 @@
 			color: var(--color-surface-100);
 		}
 
-		/* Override child panel styles */
 		.sidebar-panel-wrapper :global(.explorer-panel),
 		.sidebar-panel-wrapper :global(.contact-panel),
 		.sidebar-panel-wrapper :global(.extensions-panel),
@@ -323,13 +309,11 @@
 			border-radius: 16px 16px 0 0;
 		}
 
-		/* Hide resize handle on mobile */
 		.resize-handle {
 			display: none;
 		}
 	}
 
-	/* Extra small mobile */
 	@media (max-width: 380px) {
 		.activity-bar {
 			height: 52px;

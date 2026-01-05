@@ -83,7 +83,6 @@
 		flex-shrink: 0;
 	}
 
-	/* Responsive: Mobile */
 	@media (max-width: 768px) {
 		.vscode-breadcrumb {
 			padding: 4px 8px;
@@ -96,7 +95,7 @@
 	}
 
 	@media (max-width: 480px) {
-		/* Hide intermediate breadcrumb items, show only last */
+
 		.breadcrumb-item:not(:last-child),
 		.breadcrumb-separator:not(:last-of-type) {
 			display: none;

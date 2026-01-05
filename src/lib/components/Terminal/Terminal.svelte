@@ -265,7 +265,6 @@
 </script>
 
 <div class="terminal-container">
-	<!-- Terminal Header -->
 	<div class="terminal-header">
 		<div class="header-tabs">
 			<button class="tab active">
@@ -426,7 +425,6 @@
 		color: white;
 	}
 
-	/* Terminal Body */
 	.terminal-body {
 		flex: 1;
 		min-height: 0;
@@ -446,7 +444,6 @@
 		border-radius: 4px;
 	}
 
-	/* Terminal Lines */
 	.terminal-line {
 		display: flex;
 		align-items: center;

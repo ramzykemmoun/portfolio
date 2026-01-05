@@ -99,7 +99,6 @@
 </script>
 
 <div class="about-container relative">
-	<!-- Matrix Background -->
 	<canvas bind:this={matrixCanvas} class="matrix-bg"></canvas>
 
 	<div class="scanlines"></div>
@@ -169,8 +168,6 @@
 				</div>
 			</div>
 		</header>
-
-		<!-- Terminal Section -->
 		<section class="terminal-section">
 			<div class="terminal-header">
 				<div class="terminal-buttons">
@@ -189,8 +186,6 @@
 					></pre>
 			</div>
 		</section>
-
-		<!-- Stats Grid -->
 		<section class="stats-grid">
 			{#each aboutMeData.stats as stat, i}
 				<div class="stat-card" style="--delay: {i * 100}ms">
@@ -237,7 +232,6 @@
 		font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
 	}
 
-	/* Matrix Background */
 	.matrix-bg {
 		position: absolute;
 		inset: 0;
@@ -245,7 +239,6 @@
 		pointer-events: none;
 	}
 
-	/* Scanlines */
 	.scanlines {
 		position: absolute;
 		inset: 0;
@@ -260,7 +253,6 @@
 		z-index: 1;
 	}
 
-	/* Glitch overlay */
 	.glitch-overlay {
 		position: fixed;
 		inset: 0;
@@ -306,7 +298,6 @@
 		}
 	}
 
-	/* Content */
 	.content-wrapper {
 		position: relative;
 		z-index: 10;
@@ -323,7 +314,6 @@
 		transform: translateY(0);
 	}
 
-	/* Header Section */
 	.header-section {
 		display: flex;
 		gap: 2rem;
@@ -334,7 +324,6 @@
 		border-radius: 4px;
 	}
 
-	/* Photo */
 	.photo-container {
 		flex-shrink: 0;
 		display: flex;
@@ -462,7 +451,6 @@
 		}
 	}
 
-	/* Info Section */
 	.info-section {
 		flex: 1;
 		display: flex;
@@ -534,7 +522,6 @@
 		color: #0f0;
 	}
 
-	/* Terminal */
 	.terminal-section {
 		background: #0d0d0d;
 		border: 1px solid #333;
@@ -603,7 +590,6 @@
 		opacity: 1;
 	}
 
-	/* Stats */
 	.stats-grid {
 		display: grid;
 		grid-template-columns: repeat(4, 1fr);
@@ -664,7 +650,6 @@
 		opacity: 1;
 	}
 
-	/* Bio Section */
 	.bio-section,
 	.interests-section {
 		margin-bottom: 1.5rem;
@@ -697,7 +682,6 @@
 		white-space: pre-wrap;
 	}
 
-	/* Interests */
 	.interests-grid {
 		display: flex;
 		flex-wrap: wrap;

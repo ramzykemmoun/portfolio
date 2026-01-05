@@ -197,7 +197,6 @@
 </script>
 
 <div class="extensions-panel" style="width: {sidebar.width}px;">
-	<!-- Header -->
 	<div class="ext-header">
 		<div class="header-title">
 			<Puzzle class="w-4 h-4" />
@@ -212,8 +211,6 @@
 			</button>
 		</div>
 	</div>
-
-	<!-- Search -->
 	<div class="search-section">
 		<div class="search-wrapper">
 			<Search class="w-4 h-4 search-icon" />
@@ -225,8 +222,6 @@
 			/>
 		</div>
 	</div>
-
-	<!-- Tabs -->
 	<div class="tabs">
 		<button
 			class="tab"
@@ -253,11 +248,8 @@
 			Extensions
 		</button>
 	</div>
-
-	<!-- Content -->
 	<div class="content">
 		{#if activeTab === 'installed'}
-			<!-- Installed Themes -->
 			<div class="section">
 				<button class="section-header" onclick={() => toggleSection('installed-themes')}>
 					{#if expandedSections.has('installed-themes')}
@@ -301,8 +293,6 @@
 					</div>
 				{/if}
 			</div>
-
-			<!-- Installed Extensions -->
 			<div class="section">
 				<button class="section-header" onclick={() => toggleSection('installed-ext')}>
 					{#if expandedSections.has('installed-ext')}
@@ -334,7 +324,6 @@
 				{/if}
 			</div>
 		{:else if activeTab === 'themes'}
-			<!-- All Themes -->
 			<div class="marketplace-header">
 				<span>Popular Themes</span>
 			</div>
@@ -380,7 +369,6 @@
 				{/each}
 			</div>
 		{:else if activeTab === 'extensions'}
-			<!-- All Extensions -->
 			<div class="marketplace-header">
 				<span>Popular Extensions</span>
 			</div>
@@ -761,7 +749,6 @@
 		color: #ef4444;
 	}
 
-	/* Scrollbar */
 	.content::-webkit-scrollbar {
 		width: 8px;
 	}

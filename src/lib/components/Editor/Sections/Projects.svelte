@@ -204,17 +204,16 @@
 </div>
 
 <style>
-	/* New Blue Accent Color: #007BFF (RGB: 0, 123, 255) */
+
 	.projectsData-container {
 		position: relative;
 		min-height: 100%;
-		/* Adjusted background to a dark blue/black theme */
+
 		background: linear-gradient(135deg, #00001a 0%, #00052a 50%, #00000f 100%);
 		overflow: hidden;
 		padding: 2rem;
 	}
 
-	/* Background Effects */
 	.bg-effects {
 		position: absolute;
 		inset: 0;
@@ -229,7 +228,7 @@
 		right: -50%;
 		height: 200%;
 		background-image:
-            /* Changed grid lines to a blue tone */
+
 			linear-gradient(rgba(0, 123, 255, 0.1) 1px, transparent 1px),
 			linear-gradient(90deg, rgba(0, 123, 255, 0.1) 1px, transparent 1px);
 		background-size: 60px 60px;
@@ -254,7 +253,7 @@
 		transform: translateX(-50%);
 		width: 800px;
 		height: 600px;
-		/* Changed glow to blue */
+
 		background: radial-gradient(ellipse, rgba(0, 123, 255, 0.15) 0%, transparent 60%);
 		filter: blur(60px);
 		animation: glowPulse 6s ease-in-out infinite;
@@ -283,7 +282,7 @@
 		top: calc(var(--y) * 1%);
 		width: calc(var(--size) * 1px);
 		height: calc(var(--size) * 1px);
-		/* Changed particle color to blue */
+
 		background: #007bff;
 		border-radius: 50%;
 		box-shadow:
@@ -319,7 +318,7 @@
 		left: 0;
 		right: 0;
 		height: 4px;
-		/* Changed scan line color to blue */
+
 		background: linear-gradient(90deg, transparent, rgba(0, 123, 255, 0.8), transparent);
 		animation: scanMove 3s linear infinite;
 	}
@@ -333,7 +332,6 @@
 		}
 	}
 
-	/* Header */
 	.header {
 		position: relative;
 		z-index: 10;
@@ -354,7 +352,7 @@
 		align-items: center;
 		gap: 0.5rem;
 		padding: 0.5rem 1rem;
-		/* Changed badge colors to blue */
+
 		background: rgba(0, 123, 255, 0.1);
 		border: 1px solid rgba(0, 123, 255, 0.3);
 		color: #66aaff;
@@ -371,7 +369,7 @@
 	}
 
 	.title-accent {
-		/* Changed accent text color to blue */
+
 		color: #007bff;
 		text-shadow: 0 0 30px rgba(0, 123, 255, 0.5);
 	}
@@ -381,7 +379,6 @@
 		font-size: 0.95rem;
 	}
 
-	/* Carousel */
 	.carousel-wrapper {
 		position: relative;
 		z-index: 10;
@@ -410,13 +407,12 @@
 		transform-style: preserve-3d;
 	}
 
-	/* Project Card */
 	.project-card {
 		position: absolute;
 		width: 320px;
-		/* Adjusted card background to a dark blue tone */
+
 		background: rgba(0, 5, 20, 0.9);
-		/* Changed border color to blue */
+
 		border: 1px solid rgba(0, 123, 255, 0.2);
 		border-radius: 20px;
 		overflow: hidden;
@@ -425,20 +421,19 @@
 	}
 
 	.project-card.hovered {
-		/* Changed hover border color to blue */
+
 		border-color: rgba(0, 123, 255, 0.6);
 	}
 
 	.project-card.active {
-		/* Changed active border color to blue */
+
 		border-color: rgba(0, 123, 255, 0.4);
 	}
 
-	/* Card Glow */
 	.card-glow {
 		position: absolute;
 		inset: -2px;
-		/* Changed card glow to blue */
+
 		background: linear-gradient(
 			135deg,
 			rgba(0, 123, 255, 0.4),
@@ -456,13 +451,12 @@
 		opacity: 1;
 	}
 
-	/* Card Border Animation */
 	.card-border {
 		position: absolute;
 		inset: 0;
 		border-radius: 20px;
 		padding: 2px;
-		/* Changed border animation gradient to blue tones */
+
 		background: linear-gradient(135deg, #007bff, #44aaff, #007bff, #3366ff);
 		background-size: 300% 300%;
 		-webkit-mask:
@@ -491,11 +485,10 @@
 		}
 	}
 
-	/* Card Image */
 	.card-image {
 		position: relative;
 		height: 180px;
-		/* Adjusted image background to a dark blue tone */
+
 		background: linear-gradient(135deg, #0a0a1a 0%, #1a1a2a 100%);
 		overflow: hidden;
 	}
@@ -508,7 +501,7 @@
 		align-items: center;
 		justify-content: center;
 		gap: 0.5rem;
-		/* Changed placeholder icon color to blue */
+
 		color: rgba(0, 123, 255, 0.3);
 		font-size: 0.9rem;
 		font-weight: 600;
@@ -517,7 +510,7 @@
 	.image-overlay {
 		position: absolute;
 		inset: 0;
-		/* Adjusted image overlay gradient to dark blue */
+
 		background: linear-gradient(180deg, transparent 0%, rgba(0, 5, 20, 0.9) 100%);
 	}
 
@@ -529,7 +522,7 @@
 		align-items: center;
 		gap: 0.3rem;
 		padding: 0.3rem 0.6rem;
-		/* Changed featured badge background and shadow to blue */
+
 		background: linear-gradient(135deg, #007bff, #3366ff);
 		border-radius: 100px;
 		color: white;
@@ -540,7 +533,6 @@
 		box-shadow: 0 4px 15px rgba(0, 123, 255, 0.4);
 	}
 
-	/* Card Content */
 	.card-content {
 		padding: 1.25rem;
 	}
@@ -563,7 +555,6 @@
 		overflow: hidden;
 	}
 
-	/* Tags */
 	.card-tags {
 		display: flex;
 		flex-wrap: wrap;
@@ -573,7 +564,7 @@
 
 	.tag {
 		padding: 0.25rem 0.6rem;
-		/* Changed tag colors to blue */
+
 		background: rgba(0, 123, 255, 0.1);
 		border: 1px solid rgba(0, 123, 255, 0.2);
 		border-radius: 4px;
@@ -582,7 +573,6 @@
 		font-weight: 500;
 	}
 
-	/* Links */
 	.card-links {
 		display: flex;
 		gap: 0.75rem;
@@ -608,7 +598,7 @@
 	}
 
 	.card-link.primary {
-		/* Changed primary link button to blue */
+
 		background: linear-gradient(135deg, rgba(0, 123, 255, 0.3), rgba(50, 150, 255, 0.2));
 		border-color: rgba(0, 123, 255, 0.3);
 		color: #66aaff;
@@ -620,7 +610,6 @@
 		box-shadow: 0 5px 20px rgba(0, 123, 255, 0.3);
 	}
 
-	/* Card Shine */
 	.card-shine {
 		position: absolute;
 		inset: 0;
@@ -647,7 +636,6 @@
 		}
 	}
 
-	/* Card Particles */
 	.card-particles {
 		position: absolute;
 		inset: 0;
@@ -659,7 +647,7 @@
 		position: absolute;
 		width: 4px;
 		height: 4px;
-		/* Changed card particle color to blue */
+
 		background: #007bff;
 		border-radius: 50%;
 		opacity: 0;
@@ -711,14 +699,13 @@
 		}
 	}
 
-	/* Navigation */
 	.nav-btn {
 		position: absolute;
 		top: 50%;
 		transform: translateY(-50%);
 		width: 50px;
 		height: 50px;
-		/* Changed nav button colors to blue */
+
 		background: rgba(0, 123, 255, 0.1);
 		border: 1px solid rgba(0, 123, 255, 0.3);
 		color: #66aaff;
@@ -731,7 +718,7 @@
 	}
 
 	.nav-btn:hover {
-		/* Changed nav button hover to blue */
+
 		background: rgba(0, 123, 255, 0.2);
 		border-color: #007bff;
 		color: white;
@@ -746,7 +733,6 @@
 		right: 20px;
 	}
 
-	/* Indicators */
 	.indicators {
 		position: absolute;
 		bottom: -40px;
@@ -771,7 +757,7 @@
 	}
 
 	.indicator.active {
-		/* Changed active indicator background to blue */
+
 		background: rgba(0, 123, 255, 0.3);
 	}
 
@@ -779,7 +765,7 @@
 		display: block;
 		width: 0;
 		height: 100%;
-		/* Changed indicator fill gradient to blue */
+
 		background: linear-gradient(90deg, #007bff, #3366ff);
 		border-radius: 2px;
 		transition: width 0.3s ease;
@@ -799,7 +785,6 @@
 		}
 	}
 
-	/* Counter */
 	.counter {
 		position: absolute;
 		bottom: 2rem;
@@ -821,7 +806,7 @@
 	.current {
 		font-size: 3rem;
 		font-weight: 700;
-		/* Changed current number color to blue */
+
 		color: #007bff;
 		text-shadow: 0 0 20px rgba(0, 123, 255, 0.5);
 	}
@@ -837,7 +822,6 @@
 		color: rgba(255, 255, 255, 0.5);
 	}
 
-	/* Responsive - no color changes needed here */
 	@media (max-width: 1024px) {
 		.carousel-wrapper {
 			height: 450px;

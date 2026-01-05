@@ -132,7 +132,6 @@
 {/if}
 
 <header class="vscode-titlebar">
-	<!-- Mobile Menu Button -->
 	<button class="mobile-menu-btn" onclick={() => (mobileMenuOpen = !mobileMenuOpen)}>
 		{#if mobileMenuOpen}
 			<X class="w-4 h-4" />
@@ -234,8 +233,6 @@
 		</button>
 	</div>
 </header>
-
-<!-- Mobile Menu Overlay -->
 {#if mobileMenuOpen}
 	<div class="mobile-menu-overlay" onclick={() => (mobileMenuOpen = false)}></div>
 	<nav class="mobile-menu">
@@ -353,7 +350,6 @@
 		opacity: 0.6;
 	}
 
-	/* Right Actions */
 	.right-actions {
 		display: flex;
 		align-items: center;
@@ -428,7 +424,6 @@
 		text-align: center;
 	}
 
-	/* Window Controls */
 	.window-controls {
 		display: flex;
 		align-items: center;
@@ -483,7 +478,6 @@
 		}
 	}
 
-	/* Mobile Menu Button */
 	.mobile-menu-btn {
 		display: none;
 		align-items: center;
@@ -503,7 +497,6 @@
 		color: var(--color-surface-100);
 	}
 
-	/* Mobile Menu Overlay */
 	.mobile-menu-overlay {
 		position: fixed;
 		inset: 0;
@@ -521,7 +514,6 @@
 		}
 	}
 
-	/* Mobile Menu */
 	.mobile-menu {
 		position: fixed;
 		top: 0;

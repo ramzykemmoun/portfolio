@@ -21,3 +21,5 @@ declare module '*.jfif' {
 	const value: string;
 	export default value;
 }
+
+declare module '@vercel/analytics/sveltekit';

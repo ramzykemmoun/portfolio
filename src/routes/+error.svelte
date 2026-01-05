@@ -4,9 +4,7 @@
 </script>
 
 <div class="error-container">
-	<!-- IDE-style Error Panel -->
 	<div class="error-panel">
-		<!-- Panel Header -->
 		<div class="panel-header">
 			<div class="header-left">
 				<TriangleAlert class="w-4 h-4 text-warning" />
@@ -20,7 +18,6 @@
 			</div>
 		</div>
 
-		<!-- Error Content -->
 		<div class="panel-content">
 			<div class="error-line">
 				<MailWarning class="w-4 h-4 error-icon" />
@@ -40,7 +37,6 @@
 				</div>
 			</div>
 
-			<!-- Code Preview -->
 			<div class="code-preview">
 				<div class="line-numbers">
 					<span>1</span>
@@ -71,7 +67,6 @@
 				</div>
 			</div>
 
-			<!-- Suggestions -->
 			<div class="suggestions">
 				<div class="suggestion-header">
 					<span class="lightbulb">💡</span>
@@ -90,7 +85,6 @@
 			</div>
 		</div>
 
-		<!-- Status Bar -->
 		<div class="status-bar">
 			<div class="status-left">
 				<span class="status-item error">
@@ -128,7 +122,6 @@
 		box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
 	}
 
-	/* Panel Header */
 	.panel-header {
 		display: flex;
 		align-items: center;
@@ -188,7 +181,6 @@
 		color: var(--color-surface-100);
 	}
 
-	/* Panel Content */
 	.panel-content {
 		padding: 1rem;
 	}
@@ -259,7 +251,6 @@
 		color: #81c784;
 	}
 
-	/* Code Preview */
 	.code-preview {
 		display: flex;
 		background: var(--color-surface-950);
@@ -321,7 +312,6 @@
 		font-style: italic;
 	}
 
-	/* Suggestions */
 	.suggestions {
 		background: var(--color-surface-800);
 		border-radius: 6px;
@@ -380,7 +370,6 @@
 		background: var(--color-surface-600);
 	}
 
-	/* Status Bar */
 	.status-bar {
 		display: flex;
 		justify-content: space-between;
@@ -408,7 +397,6 @@
 		color: #e53935;
 	}
 
-	/* Responsive */
 	@media (max-width: 640px) {
 		.error-container {
 			padding: 1rem;

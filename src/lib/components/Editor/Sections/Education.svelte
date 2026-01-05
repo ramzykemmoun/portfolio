@@ -91,20 +91,14 @@
 				onmousemove={(e) => handleMouseMove(e, edu.id)}
 				onmouseleave={handleMouseLeave}
 			>
-				<!-- Timeline Node -->
 				<div class="timeline-node">
 					<div class="node-dot bg-linear-to-br {getIconColor(edu.icon)}">
 						<div class="node-pulse"></div>
 					</div>
 					<div class="node-connector"></div>
 				</div>
-
-				<!-- Card Content -->
 				<div class="card-content">
-					<!-- Shine Effect -->
 					<div class="card-shine"></div>
-
-					<!-- Card Header -->
 					<div class="card-header">
 						<div class="degree-badge bg-linear-to-r {getIconColor(edu.icon)}">
 							<GraduationCap class="w-5 h-5" />
@@ -115,8 +109,6 @@
 							<span>{edu.startDate} - {edu.endDate}</span>
 						</div>
 					</div>
-
-					<!-- Field & Institution -->
 					<h3 class="field-title">{edu.field}</h3>
 					<div class="institution-info">
 						<BookOpen class="w-4 h-4" />
@@ -155,8 +147,6 @@
 							</div>
 						</div>
 					</div>
-
-					<!-- 3D Floating Elements -->
 					<div class="floating-elements">
 						<div class="float-element float-1">✨</div>
 						<div class="float-element float-2">🎓</div>
@@ -177,7 +167,6 @@
 		display: 'flex';
 	}
 
-	/* Background Effects */
 	.background-effects {
 		position: absolute;
 		inset: 0;
@@ -255,7 +244,6 @@
 		}
 	}
 
-	/* Header */
 	.education-header {
 		position: relative;
 		text-align: center;
@@ -316,7 +304,6 @@
 		margin: 0 auto;
 	}
 
-	/* Timeline */
 	.timeline {
 		position: relative;
 		max-width: 900px;
@@ -340,7 +327,6 @@
 		box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
 	}
 
-	/* Education Card */
 	.education-card {
 		position: relative;
 		display: flex;
@@ -360,7 +346,6 @@
 		transform: translateX(0);
 	}
 
-	/* Timeline Node */
 	.timeline-node {
 		position: relative;
 		flex-shrink: 0;
@@ -409,7 +394,6 @@
 		background: linear-gradient(180deg, var(--glow-color), transparent);
 	}
 
-	/* Card Content */
 	.card-content {
 		position: relative;
 		flex: 1;
@@ -451,7 +435,6 @@
 		transform: translateX(100%);
 	}
 
-	/* Card Header */
 	.card-header {
 		display: flex;
 		flex-wrap: wrap;
@@ -482,7 +465,6 @@
 		font-size: 0.85rem;
 	}
 
-	/* Field & Institution */
 	.field-title {
 		font-size: 1.4rem;
 		font-weight: 700;
@@ -500,7 +482,6 @@
 		margin-bottom: 0.5rem;
 	}
 
-	/* Description */
 	.description {
 		color: rgba(255, 255, 255, 0.6);
 		font-size: 0.95rem;
@@ -512,7 +493,6 @@
 		border-left: 3px solid var(--glow-color);
 	}
 
-	/* Achievements */
 	.achievements {
 		margin-top: 1rem;
 	}
@@ -618,7 +598,6 @@
 		}
 	}
 
-	/* Responsive */
 	@media (max-width: 768px) {
 		.education-container {
 			padding: 1rem;

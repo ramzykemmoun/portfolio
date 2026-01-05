@@ -207,18 +207,17 @@
 </div>
 
 <style>
-	/* Main Container - NOUVEAU FOND NOIR PROFOND/ROYAL */
+
 	.skills-container {
 		position: relative;
 		min-height: 100%;
 		padding: 2rem;
-		/* Fond noir avec un dégradé subtil de bleu et d'or */
+
 		background: linear-gradient(135deg, #0a0a0a 0%, #15151e 50%, #0a0a0a 100%);
 		overflow-y: auto;
 		overflow-x: hidden;
 	}
 
-	/* Background Effects */
 	.bg-effects {
 		position: absolute;
 		inset: 0;
@@ -226,7 +225,6 @@
 		z-index: 1;
 	}
 
-	/* Mesh Gradient - NOUVEAU: Or, Saphir, Émeraude */
 	.mesh-gradient {
 		position: absolute;
 		inset: 0;
@@ -243,7 +241,6 @@
 		background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
 	}
 
-	/* Header */
 	.skills-header {
 		position: relative;
 		z-index: 10;
@@ -273,7 +270,6 @@
 		font-weight: 300;
 	}
 
-	/* Title Highlight - NOUVEAU: Dégradé Or Royal */
 	.title-highlight {
 		background: linear-gradient(135deg, #fff 0%, #ca8a04 40%, #facc15 70%, #d4d4d4 100%);
 		-webkit-background-clip: text;
@@ -298,7 +294,6 @@
 		font-size: 0.95rem;
 	}
 
-	/* Category Navigation */
 	.category-nav {
 		position: relative;
 		z-index: 10;
@@ -354,7 +349,7 @@
 	.category-btn.active {
 		border-color: var(--glow);
 		color: white;
-		/* Ombre lumineuse, même sur fond sombre */
+
 		box-shadow: 0 0 30px color-mix(in srgb, var(--glow) 40%, transparent);
 	}
 
@@ -363,7 +358,6 @@
 		opacity: 0.2;
 	}
 
-	/* Skills Display */
 	.skills-display {
 		position: relative;
 		z-index: 10;
@@ -409,12 +403,11 @@
 		content: '';
 		position: absolute;
 		inset: 0;
-		/* Motif d'héritage subtil */
+
 		background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, transparent 50%);
 		pointer-events: none;
 	}
 
-	/* Panel Header */
 	.panel-header {
 		display: flex;
 		align-items: center;
@@ -445,7 +438,6 @@
 		font-size: 0.9rem;
 	}
 
-	/* Skills Grid */
 	.skills-grid {
 		display: grid;
 		grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -547,7 +539,6 @@
 		opacity: 0.3;
 	}
 
-	/* Floating Particles */
 	.floating-particles {
 		position: absolute;
 		inset: 0;
@@ -566,7 +557,6 @@
 		animation-delay: calc(var(--i) * 1.25s);
 	}
 
-	/* Positions des particules (gardées de l'original) */
 	.particle:nth-child(1) {
 		top: 10%;
 		left: 10%;
@@ -620,7 +610,6 @@
 		}
 	}
 
-	/* Stats Section (Non utilisé dans ce composant mais gardé pour complétude) */
 	.stats-section {
 		position: relative;
 		z-index: 10;
@@ -665,7 +654,7 @@
 	.stat-value {
 		font-size: 1.75rem;
 		font-weight: 800;
-		/* NOUVEAU: Or */
+
 		background: linear-gradient(135deg, #fff, #ca8a04);
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
@@ -678,7 +667,6 @@
 		text-align: center;
 	}
 
-	/* Responsive */
 	@media (max-width: 768px) {
 		.skills-container {
 			padding: 1rem;

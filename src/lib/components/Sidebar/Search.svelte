@@ -149,7 +149,6 @@
 </script>
 
 <div class="search-panel" style="width: {sidebar.width}px;">
-	<!-- Header -->
 	<div class="search-header">
 		<div class="header-title">
 			<Search class="w-4 h-4" />
@@ -171,10 +170,7 @@
 			</button>
 		</div>
 	</div>
-
-	<!-- Search Input Section -->
 	<div class="search-inputs">
-		<!-- Search Row -->
 		<div class="input-row">
 			<button class="toggle-replace" onclick={() => (showReplace = !showReplace)}>
 				{#if showReplace}
@@ -213,8 +209,6 @@
 				</div>
 			</div>
 		</div>
-
-		<!-- Replace Row -->
 		{#if showReplace}
 			<div class="input-row replace-row">
 				<div class="spacer"></div>
@@ -231,8 +225,6 @@
 				</div>
 			</div>
 		{/if}
-
-		<!-- Files Filter Toggle -->
 		<button class="filter-toggle" onclick={() => (showFilters = !showFilters)}>
 			<Filter class="w-3 h-3" />
 			<span>files to include/exclude</span>
@@ -242,8 +234,6 @@
 				<ChevronRight class="w-3 h-3" />
 			{/if}
 		</button>
-
-		<!-- File Filters -->
 		{#if showFilters}
 			<div class="file-filters">
 				<input
@@ -261,8 +251,6 @@
 			</div>
 		{/if}
 	</div>
-
-	<!-- Results Section -->
 	<div class="results-section">
 		{#if searchTerm.trim() === ''}
 			<div class="no-search">
@@ -275,16 +263,12 @@
 				<span>No results found for "{searchTerm}"</span>
 			</div>
 		{:else}
-			<!-- Results Header -->
 			<div class="results-header">
 				<span>{totalMatches} results in {searchResults.length} files</span>
 			</div>
-
-			<!-- Results List -->
 			<div class="results-list">
 				{#each searchResults as result}
 					<div class="result-file">
-						<!-- File Header -->
 						<button class="file-header" onclick={() => toggleFile(result.fileName)}>
 							{#if expandedFiles.has(result.fileName)}
 								<ChevronDown class="w-4 h-4 chevron" />
@@ -296,8 +280,6 @@
 							<span class="file-path">{result.filePath}</span>
 							<span class="match-count">{result.matches.length}</span>
 						</button>
-
-						<!-- File Matches -->
 						{#if expandedFiles.has(result.fileName)}
 							<div class="file-matches">
 								{#each result.matches as match}

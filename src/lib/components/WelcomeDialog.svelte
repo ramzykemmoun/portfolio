@@ -112,8 +112,6 @@
 
 				<p class="hint-text">💡 Pro tip: The more you explore, the more you'll discover!</p>
 			</div>
-
-			<!-- Footer -->
 			<div class="dialog-footer">
 				<button class="start-btn" onclick={closeDialog}>
 					<Sparkles class="w-4 h-4" />
@@ -240,7 +238,6 @@
 		}
 	}
 
-	/* Header */
 	.dialog-header {
 		display: flex;
 		align-items: center;
@@ -288,7 +285,6 @@
 		color: var(--color-surface-50);
 	}
 
-	/* Content */
 	.dialog-content {
 		padding: 1.5rem;
 	}
@@ -366,17 +362,6 @@
 		color: var(--color-primary-200);
 	}
 
-	.feature-text kbd {
-		display: inline-block;
-		padding: 0.1rem 0.4rem;
-		background: var(--color-surface-700);
-		border: 1px solid var(--color-surface-600);
-		border-radius: 4px;
-		font-family: inherit;
-		font-size: 0.7rem;
-		color: var(--color-primary-200);
-	}
-
 	.hint-text {
 		font-size: 0.85rem;
 		color: var(--color-surface-400);
@@ -387,7 +372,6 @@
 		border-radius: 8px;
 	}
 
-	/* Footer */
 	.dialog-footer {
 		padding: 1rem 1.5rem 1.5rem;
 	}
@@ -418,7 +402,6 @@
 		transform: translateY(0);
 	}
 
-	/* Responsive */
 	@media (max-width: 480px) {
 		.dialog-container {
 			max-width: 100%;

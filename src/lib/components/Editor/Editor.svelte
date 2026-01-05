@@ -43,7 +43,6 @@
 </script>
 
 <div class="editor-container" bind:this={containerRef}>
-	<!-- Editor Section -->
 	<div class="editor-section" style="height: {terminal.open ? editorHeight + '%' : '100%'}">
 		<Pages />
 		<Routes />
@@ -143,10 +142,9 @@
 		color: var(--color-surface-200);
 	}
 
-	/* Responsive: Mobile */
 	@media (max-width: 768px) {
 		.editor-container {
-			/* Add bottom padding for fixed bottom nav */
+
 			padding-bottom: 48px;
 		}
 

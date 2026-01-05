@@ -249,13 +249,8 @@
 		return text.replace(regex, '<mark class="highlight">$1</mark>');
 	}
 </script>
-
-<!-- Backdrop overlay -->
 <div class="search-backdrop" onclick={() => (searchDialogOpen = false)}></div>
-
-<!-- Command Palette -->
 <div bind:this={commandPalette} class="command-palette">
-	<!-- Search Input -->
 	<div class="search-input-wrapper">
 		<svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
 			<circle cx="11" cy="11" r="8" />
@@ -277,10 +272,7 @@
 			</button>
 		{/if}
 	</div>
-
-	<!-- Results Container -->
 	<div class="results-container">
-		<!-- Commands Section -->
 		{#if filteredCommands.length > 0}
 			<div class="section-header">
 				<span class="section-icon">⌘</span>
@@ -305,8 +297,6 @@
 				</div>
 			{/each}
 		{/if}
-
-		<!-- Files Section -->
 		{#if filteredFiles.length > 0}
 			<div class="section-header">
 				<span class="section-icon">📁</span>
@@ -331,8 +321,6 @@
 				</div>
 			{/each}
 		{/if}
-
-		<!-- No Results -->
 		{#if allItems.length === 0}
 			<div class="no-results">
 				<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -344,8 +332,6 @@
 			</div>
 		{/if}
 	</div>
-
-	<!-- Footer -->
 	<div class="palette-footer">
 		<div class="footer-hint">
 			<kbd>↑↓</kbd> navigate
