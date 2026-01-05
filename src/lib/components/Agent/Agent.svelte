@@ -1,20 +1,20 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { browser } from '$app/environment';
-	import {
-		X,
-		Send,
-		Bot,
-		User,
-		Copy,
-		RotateCcw,
-		MessageSquare,
-		Zap,
-	} from '@lucide/svelte';
-
+	import { X, Send, Bot, User, Copy, RotateCcw, MessageSquare, Zap } from '@lucide/svelte';
+	import { marked } from 'marked';
 
 	import { agent } from '$lib/stores/index.svelte';
 	import { generateMessage } from '$lib/ai/services/chat';
+
+	marked.setOptions({
+		breaks: true,
+		gfm: true
+	});
+
+	const parseMarkdown = (content: string): string => {
+		return marked.parse(content) as string;
+	};
 
 	let inputValue = $state('');
 	let isTyping = $state(false);
@@ -28,7 +28,6 @@
 
 	let messages = $state<Message[]>([]);
 
-	// Close agent on mobile by default
 	onMount(() => {
 		if (browser && window.innerWidth < 768) {
 			agent.open = false;
@@ -138,7 +137,9 @@
 							<div class="message-header">
 								<span class="message-role">{message.role === 'assistant' ? 'Ramzy' : 'You'}</span>
 							</div>
-							<div class="message-text">{message.content}</div>
+							<div class="message-text markdown-content">
+								{@html parseMarkdown(message.content)}
+							</div>
 							{#if message.role === 'assistant'}
 								<div class="message-actions">
 									<button class="action-btn" title="Copy">
@@ -376,6 +377,101 @@
 		font-size: 12px;
 		line-height: 1.5;
 		color: var(--color-primary-200);
+	}
+
+	/* Markdown Styles */
+	.markdown-content :global(p) {
+		margin: 0 0 0.5em 0;
+	}
+
+	.markdown-content :global(p:last-child) {
+		margin-bottom: 0;
+	}
+
+	.markdown-content :global(strong) {
+		font-weight: 600;
+		color: var(--color-primary-100);
+	}
+
+	.markdown-content :global(em) {
+		font-style: italic;
+	}
+
+	.markdown-content :global(code) {
+		background: var(--color-surface-800);
+		padding: 0.15em 0.4em;
+		border-radius: 4px;
+		font-family: 'Fira Code', 'Consolas', monospace;
+		font-size: 0.9em;
+		color: var(--color-primary-300);
+	}
+
+	.markdown-content :global(pre) {
+		background: var(--color-surface-950);
+		padding: 0.75em;
+		border-radius: 6px;
+		overflow-x: auto;
+		margin: 0.5em 0;
+		border: 1px solid var(--color-surface-800);
+	}
+
+	.markdown-content :global(pre code) {
+		background: transparent;
+		padding: 0;
+		font-size: 0.85em;
+	}
+
+	.markdown-content :global(ul),
+	.markdown-content :global(ol) {
+		margin: 0.5em 0;
+		padding-left: 1.5em;
+	}
+
+	.markdown-content :global(li) {
+		margin: 0.25em 0;
+	}
+
+	.markdown-content :global(a) {
+		color: var(--color-primary-400);
+		text-decoration: underline;
+	}
+
+	.markdown-content :global(a:hover) {
+		color: var(--color-primary-300);
+	}
+
+	.markdown-content :global(blockquote) {
+		border-left: 3px solid var(--color-primary-500);
+		padding-left: 0.75em;
+		margin: 0.5em 0;
+		color: var(--color-surface-400);
+		font-style: italic;
+	}
+
+	.markdown-content :global(h1),
+	.markdown-content :global(h2),
+	.markdown-content :global(h3) {
+		font-weight: 600;
+		margin: 0.75em 0 0.25em 0;
+		color: var(--color-primary-100);
+	}
+
+	.markdown-content :global(h1) {
+		font-size: 1.2em;
+	}
+
+	.markdown-content :global(h2) {
+		font-size: 1.1em;
+	}
+
+	.markdown-content :global(h3) {
+		font-size: 1em;
+	}
+
+	.markdown-content :global(hr) {
+		border: none;
+		border-top: 1px solid var(--color-surface-700);
+		margin: 0.75em 0;
 	}
 
 	.message-actions {

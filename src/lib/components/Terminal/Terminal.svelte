@@ -75,7 +75,7 @@
 		skills: () => [
 			'Technical Skills:',
 			'├── Languages',
-			'│   └── TypeScript, Python, JavaScript, Go, Rust',
+			'│   └── TypeScript, Python, JavaScript, Go, Java',
 			'├── Frontend',
 			'│   └── Svelte, React, Next.js, Vue, Tailwind',
 			'├── Backend',

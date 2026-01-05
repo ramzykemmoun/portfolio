@@ -16,7 +16,7 @@ const FALLBACK_RESPONSES = [
 	"I'm currently in Beta, just like some of the best software out there. Constantly improving.",
 	"Why not ask 'What is your tech stack?' to see what tools Ramzy uses?",
 	"I can help you navigate to specific projects or tell you more about Ramzy's experience.",
-	"Ramzy is always learning new technologies. I think he's looking into Rust and AI agents heavily these days.",
+	"Ramzy is always learning new technologies. I think he's looking into Python and AI agents heavily these days.",
 	'Web development is constantly changing, and Ramzy stays ahead of the curve.',
 	"I am a reflection of Ramzy's interest in AI and automation.",
 	'Sorry, I seem to be having trouble connecting to my brain (the server). But I can still chat!',

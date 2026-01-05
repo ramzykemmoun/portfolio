@@ -128,7 +128,7 @@
 
 					<div class="card-image">
 						{#if project.imageSrc}
-							<img src={project.imageSrc} alt={project.title} class="h-full" />
+							<img src={project.imageSrc} alt={project.title} class="h-full w-full" />
 						{:else}
 							<div class="image-placeholder">
 								<Zap class="w-12 h-12" />
