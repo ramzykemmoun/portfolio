@@ -94,7 +94,7 @@
 			'📧 Email:    kemmounramzy93@gmail.com',
 			'🔗 GitHub:   github.com/ramzykemmoun',
 			'💼 LinkedIn: linkedin.com/in/ramzy-kemmoun-1a3725237',
-			'📸 Instagram: instagram.com/ramzy.kemmoun',
+			'📸 Instagram: instagram.com/ramzy.coding',
 			'',
 			'Type "contact" in sidebar to send a message!',
 			''

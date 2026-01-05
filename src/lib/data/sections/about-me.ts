@@ -5,7 +5,7 @@ export const aboutMeData = {
 	email: 'kemmounramzy93@gmail.com',
 	github: 'https://github.com/ramzykemmoun',
 	linkedin: 'https://www.linkedin.com/in/ramzy-kemmoun-1a3725237/',
-	instagram: 'https://www.instagram.com/ramzy.kemmoun/',
+	instagram: 'https://www.instagram.com/ramzy.coding/',
 	profilePicture: 'https://avatars.githubusercontent.com/u/96486453?v=4',
 	stats: [
 		{ label: 'Years Coding', value: '5+' },
@@ -37,7 +37,7 @@ export const aboutMeData = {
     email: 'kemmounramzy93@gmail.com',
     github: 'https://github.com/ramzykemmoun',
     linkedin: 'https://www.linkedin.com/in/ramzy-kemmoun-1a3725237/',
-    instagram: 'https://www.instagram.com/ramzy.kemmoun/',
+    instagram: 'https://www.instagram.com/ramzy.coding/',
     profilePicture: 'https://avatars.githubusercontent.com/u/96486453?v=4',
     stats: [
         { label: 'Years Coding', value: '5+' },

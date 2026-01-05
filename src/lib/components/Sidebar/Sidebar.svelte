@@ -51,6 +51,7 @@
 		}
 	};
 </script>
+
 {#if sidebar.open}
 	<div class="mobile-overlay" onclick={closeSidebar}></div>
 {/if}
@@ -195,7 +196,6 @@
 	}
 
 	@media (max-width: 768px) {
-
 		.mobile-overlay {
 			display: block;
 			position: fixed;
@@ -307,6 +307,9 @@
 			width: 100% !important;
 			height: 100% !important;
 			border-radius: 16px 16px 0 0;
+			overflow-y: auto !important;
+			overflow-x: hidden !important;
+			-webkit-overflow-scrolling: touch;
 		}
 
 		.resize-handle {

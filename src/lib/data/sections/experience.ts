@@ -16,7 +16,7 @@ export const experiencesData = [
 		id: 2,
 		title: 'Back-end Developer',
 		company: 'SlickPay',
-		location: 'Marseille, France',
+		location: 'Delly Brahim, Algiers, Algeria',
 		period: 'Apr 2025 - May 2025',
 		achievements: [
 			'Built scalable Node.js APIs with WebSocket/WebRTCsupport',
@@ -110,7 +110,7 @@ export const experiencesCode = `export const experiencesData = [
 		id: 2,
 		title: 'Back-end Developer',
 		company: 'SlickPay',
-		location: 'Marseille, France',
+		location: 'Delly Brahim, Algiers, Algeria',
 		period: 'Apr 2025 - May 2025',
 		achievements: [
 			'Built scalable Node.js APIs with WebSocket/WebRTCsupport',

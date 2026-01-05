@@ -6,8 +6,9 @@
 	import younesfdj from '$lib/assets/testimonials/younesfdj.png';
 	import mouhoub from '$lib/assets/testimonials/mouhoub.png';
 	import beroual from '$lib/assets/testimonials/beroual.png';
+	import assem from '$lib/assets/testimonials/assem.jfif';
 
-	const avatars = [beroual, younesfdj, mouhoub];
+	const avatars = [beroual, assem, younesfdj, mouhoub];
 
 	let mounted = $state(false);
 	let currentIndex = $state(0);
@@ -674,33 +675,229 @@
 
 	@media (max-width: 768px) {
 		.content-wrapper {
-			padding: 2rem 1rem;
+			padding: 1.5rem 0.75rem;
+		}
+
+		.section-header {
+			margin-bottom: 1.5rem;
+		}
+
+		.header-badge {
+			padding: 0.4rem 0.75rem;
+			font-size: 0.75rem;
 		}
 
 		.main-title {
-			font-size: 1.75rem;
+			font-size: 1.5rem;
 		}
 
-		.card-container {
-			height: 420px;
+		.subtitle {
+			font-size: 0.85rem;
+			padding: 0 0.5rem;
 		}
 
-		.testimonial-card.prev,
-		.testimonial-card.next {
-			opacity: 0;
+		.testimonial-showcase {
+			flex-direction: column;
+			gap: 0.75rem;
+			margin-bottom: 1.5rem;
 		}
 
 		.nav-button {
+			display: none;
+		}
+
+		.card-container {
+			width: 100%;
+			height: auto;
+			min-height: 380px;
+			position: relative;
+		}
+
+		.testimonial-card {
+			position: relative;
+			transform: none !important;
+			opacity: 0;
+			display: none;
+			border-radius: 16px;
+		}
+
+		.testimonials-container.mounted .testimonial-card.active {
+			display: block;
+			opacity: 1;
+			transform: none !important;
+		}
+
+		.testimonials-container.mounted .testimonial-card.prev,
+		.testimonials-container.mounted .testimonial-card.next {
+			display: none;
+			opacity: 0;
+		}
+
+		.card-content {
+			padding: 1.25rem;
+		}
+
+		.quote-icon {
+			top: 1rem;
+			right: 1rem;
+		}
+
+		.quote-icon :global(svg) {
+			width: 24px;
+			height: 24px;
+		}
+
+		.testimonial-text {
+			font-size: 0.9rem;
+			line-height: 1.7;
+			margin-bottom: 1rem;
+			padding-right: 1.5rem;
+		}
+
+		.rating {
+			margin-bottom: 1rem;
+		}
+
+		.rating :global(.star) {
+			width: 16px;
+			height: 16px;
+		}
+
+		.author-section {
+			gap: 0.75rem;
+		}
+
+		.avatar-container {
+			width: 44px;
+			height: 44px;
+		}
+
+		.author-name {
+			font-size: 0.95rem;
+		}
+
+		.author-role {
+			font-size: 0.8rem;
+		}
+
+		.dots-navigation {
+			margin-bottom: 1.5rem;
+			gap: 0.5rem;
+		}
+
+		.dot {
+			width: 24px;
+			height: 3px;
+		}
+
+		.dot.active {
+			width: 36px;
+		}
+
+		.preview-grid {
+			display: flex;
+			gap: 0.5rem;
+			padding: 0 0.25rem;
+			overflow-x: auto;
+			justify-content: flex-start;
+			scrollbar-width: none;
+			-ms-overflow-style: none;
+			padding-bottom: 0.5rem;
+		}
+
+		.preview-grid::-webkit-scrollbar {
+			display: none;
+		}
+
+		.preview-card {
+			flex-shrink: 0;
+			padding: 0.4rem 0.75rem 0.4rem 0.4rem;
+		}
+
+		.preview-avatar {
+			width: 28px;
+			height: 28px;
+		}
+
+		.preview-name {
+			font-size: 0.75rem;
+		}
+
+		.preview-company {
+			font-size: 0.65rem;
+		}
+
+		.gradient-orb {
+			filter: blur(60px);
+			opacity: 0.25;
+		}
+
+		.orb-1 {
+			width: 200px;
+			height: 200px;
+		}
+
+		.orb-2 {
+			width: 150px;
+			height: 150px;
+		}
+
+		.orb-3 {
+			width: 180px;
+			height: 180px;
+		}
+	}
+
+	@media (max-width: 480px) {
+		.content-wrapper {
+			padding: 1rem 0.5rem;
+		}
+
+		.main-title {
+			font-size: 1.25rem;
+		}
+
+		.subtitle {
+			font-size: 0.8rem;
+		}
+
+		.card-container {
+			min-height: 340px;
+		}
+
+		.card-content {
+			padding: 1rem;
+		}
+
+		.testimonial-text {
+			font-size: 0.85rem;
+			line-height: 1.6;
+		}
+
+		.avatar-container {
 			width: 40px;
 			height: 40px;
 		}
 
-		.preview-grid {
+		.author-name {
+			font-size: 0.9rem;
+		}
+
+		.author-role {
+			font-size: 0.75rem;
+		}
+
+		.preview-info {
 			display: none;
 		}
 
-		.testimonial-text {
-			font-size: 1rem;
+		.preview-card {
+			padding: 0.3rem;
+		}
+
+		.preview-avatar {
+			width: 36px;
+			height: 36px;
 		}
 	}
 </style>
