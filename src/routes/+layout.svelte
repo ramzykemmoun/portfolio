@@ -1,6 +1,7 @@
 <script lang="ts">
 	import './layout.css';
 	import icon from '$lib/assets/logos/rk-icon.png';
+	import og from '$lib/assets/logos/og.png';
 
 	let { children } = $props();
 
@@ -33,7 +34,7 @@
 		property="og:description"
 		content="Full-Stack Developer passionate about building modern web applications with TypeScript, Svelte, React, Node.js, Python and AI. Check out my projects!"
 	/>
-	<meta property="og:image" content="https://avatars.githubusercontent.com/u/96486453?v=4" />
+	<meta property="og:image" content={og} />
 	<meta property="og:image:alt" content="Ramzy KEMMOUN - Full-Stack Developer" />
 	<meta property="og:site_name" content="Ramzy KEMMOUN Portfolio" />
 	<meta property="og:locale" content="en_US" />
@@ -45,7 +46,7 @@
 		property="twitter:description"
 		content="Full-Stack Developer passionate about building modern web applications with TypeScript, Svelte, React, Node.js, Python and AI."
 	/>
-	<meta property="twitter:image" content="https://avatars.githubusercontent.com/u/96486453?v=4" />
+	<meta property="twitter:image" content={og} />
 
 	<meta name="theme-color" content="#007BFF" />
 	<link rel="canonical" href="https://ramzykemmoun.vercel.app/" />
