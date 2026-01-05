@@ -458,42 +458,7 @@
 		color: white;
 	}
 
-	@media (max-width: 800px) {
-		.menu-bar {
-			display: none;
-		}
-
-		.search-text {
-			display: none;
-		}
-
-		.search-btn .shortcut {
-			display: none;
-		}
-
-		.window-title {
-			padding-left: 8px;
-		}
-
-		.title-separator,
-		.title-file {
-			display: none;
-		}
-
-		.hide-mobile {
-			display: none;
-		}
-
-		.control-btn {
-			width: 36px;
-		}
-
-		.mobile-menu-btn {
-			display: flex;
-		}
-	}
-
-	@media (max-width: 480px) {
+	@media (max-width: 900px) {
 		.window-title {
 			font-size: 11px;
 		}

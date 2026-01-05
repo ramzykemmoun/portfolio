@@ -83,7 +83,7 @@ export const rootNode = {
 					]
 				},
 
-				{ id: 'src/global.css', name: 'global.css', icon: 'css' }
+				{ id: 'src/global.css', name: 'global.css', icon: 'css', isClickable: true }
 			]
 		},
 		{ id: 'env', name: '.env', icon: 'env', isClickable: true },

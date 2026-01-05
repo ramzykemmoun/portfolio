@@ -7,7 +7,6 @@
 		config.theme;
 
 		const mode = localStorage.getItem('theme') || config.theme;
-		console.log({ mode });
 
 		document.documentElement.setAttribute('data-theme', mode);
 	});

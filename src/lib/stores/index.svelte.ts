@@ -20,5 +20,5 @@ export const agent = $state({
 });
 
 export const config = $state({
-	theme: 'tokyo-night'
+	theme: 'github-theme'
 });

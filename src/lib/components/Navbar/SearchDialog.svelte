@@ -92,6 +92,7 @@
 			path: 'src/styles/',
 			icon: 'css',
 			action: () => {
+				file.section = 'src/global.css';
 				searchDialogOpen = false;
 			}
 		},
@@ -101,6 +102,7 @@
 			path: '',
 			action: () => {
 				searchDialogOpen = false;
+				file.section = 'packageJson';
 			}
 		},
 		{

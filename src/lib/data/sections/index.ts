@@ -13,7 +13,8 @@ import {
 	tsconfigJson,
 	tailwindConfig,
 	postcssConfig,
-	gitignore
+	gitignore,
+	globalCss
 } from '../codes';
 
 export const sectionCodes = {
@@ -31,5 +32,6 @@ export const sectionCodes = {
 	tsconfigJson,
 	tailwindConfig,
 	postcssConfig,
-	gitignore
+	gitignore,
+	'src/global.css': globalCss
 };

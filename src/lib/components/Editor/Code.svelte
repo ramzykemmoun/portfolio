@@ -25,6 +25,8 @@
 			case 'tailwindConfig':
 			case 'postcssConfig':
 				return 'javascript';
+			case 'src/global.css':
+				return 'css';
 			default:
 				return 'typescript';
 		}
