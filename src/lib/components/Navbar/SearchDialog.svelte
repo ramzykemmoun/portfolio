@@ -111,6 +111,7 @@
 			path: '',
 			action: () => {
 				searchDialogOpen = false;
+				file.section = 'tsconfigJson';
 			}
 		},
 		{
@@ -119,6 +120,7 @@
 			path: '',
 			action: () => {
 				searchDialogOpen = false;
+				file.section = 'readme';
 			}
 		},
 		{
@@ -127,6 +129,7 @@
 			path: '',
 			action: () => {
 				searchDialogOpen = false;
+				file.section = 'tailwindConfig';
 			}
 		},
 		{
@@ -135,6 +138,7 @@
 			path: '',
 			action: () => {
 				searchDialogOpen = false;
+				file.section = 'packageLockJson';
 			}
 		},
 		{
@@ -143,6 +147,7 @@
 			path: '',
 			action: () => {
 				searchDialogOpen = false;
+				file.section = 'gitignore';
 			}
 		},
 		{
@@ -151,6 +156,7 @@
 			path: '',
 			action: () => {
 				searchDialogOpen = false;
+				file.section = 'nextConfig';
 			}
 		},
 		{
@@ -159,6 +165,7 @@
 			path: '',
 			action: () => {
 				searchDialogOpen = false;
+				file.section = 'postcssConfig';
 			}
 		}
 	];
