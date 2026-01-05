@@ -286,6 +286,14 @@
 		font-size: 12px;
 		user-select: none;
 		-webkit-app-region: drag;
+		overflow-x: auto;
+		overflow-y: hidden;
+		scrollbar-width: none;
+		-ms-overflow-style: none;
+	}
+
+	.vscode-titlebar::-webkit-scrollbar {
+		display: none;
 	}
 
 	.app-icon {
@@ -295,13 +303,7 @@
 		width: 28px;
 		height: 28px;
 		padding-left: 4px;
-	}
-
-	.icon-text {
-		font-size: 11px;
-		font-weight: 700;
-		color: var(--color-primary-300);
-		letter-spacing: -0.5px;
+		flex-shrink: 0;
 	}
 
 	.menu-bar {
@@ -356,6 +358,7 @@
 		gap: 4px;
 		padding-right: 8px;
 		-webkit-app-region: no-drag;
+		flex-shrink: 0;
 	}
 
 	.search-btn {
@@ -429,6 +432,7 @@
 		align-items: center;
 		height: 100%;
 		-webkit-app-region: no-drag;
+		flex-shrink: 0;
 	}
 
 	.control-btn {
