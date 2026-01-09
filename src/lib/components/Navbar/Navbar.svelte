@@ -132,7 +132,13 @@
 {/if}
 
 <header class="vscode-titlebar">
-	<button class="mobile-menu-btn" onclick={() => (mobileMenuOpen = !mobileMenuOpen)}>
+	<button
+		class="mobile-menu-btn"
+		onclick={(e) => {
+			e.stopPropagation();
+			mobileMenuOpen = !mobileMenuOpen;
+		}}
+	>
 		{#if mobileMenuOpen}
 			<X class="w-4 h-4" />
 		{:else}
@@ -286,14 +292,6 @@
 		font-size: 12px;
 		user-select: none;
 		-webkit-app-region: drag;
-		overflow-x: auto;
-		overflow-y: hidden;
-		scrollbar-width: none;
-		-ms-overflow-style: none;
-	}
-
-	.vscode-titlebar::-webkit-scrollbar {
-		display: none;
 	}
 
 	.app-icon {
@@ -303,7 +301,13 @@
 		width: 28px;
 		height: 28px;
 		padding-left: 4px;
-		flex-shrink: 0;
+	}
+
+	.icon-text {
+		font-size: 11px;
+		font-weight: 700;
+		color: var(--color-primary-300);
+		letter-spacing: -0.5px;
 	}
 
 	.menu-bar {
@@ -358,7 +362,6 @@
 		gap: 4px;
 		padding-right: 8px;
 		-webkit-app-region: no-drag;
-		flex-shrink: 0;
 	}
 
 	.search-btn {
@@ -432,7 +435,6 @@
 		align-items: center;
 		height: 100%;
 		-webkit-app-region: no-drag;
-		flex-shrink: 0;
 	}
 
 	.control-btn {
@@ -501,6 +503,20 @@
 		color: var(--color-surface-100);
 	}
 
+	@media (max-width: 768px) {
+		.mobile-menu-btn {
+			display: flex;
+		}
+
+		.menu-bar {
+			display: none;
+		}
+
+		.window-title {
+			display: none;
+		}
+	}
+
 	.mobile-menu-overlay {
 		position: fixed;
 		inset: 0;
@@ -549,7 +565,7 @@
 		border-bottom: 1px solid #3c3c3c;
 		font-size: 14px;
 		font-weight: 600;
-		color: var(--color-surface-100);
+		color: var(--color-primary-100);
 	}
 
 	.mobile-logo {
@@ -569,7 +585,7 @@
 		padding: 14px 16px;
 		background: transparent;
 		border: none;
-		color: var(--color-surface-200);
+		color: var(--color-primary-200);
 		font-size: 13px;
 		cursor: pointer;
 		transition: all 0.15s ease;
@@ -578,7 +594,7 @@
 
 	.mobile-menu-item:hover {
 		background: #2a2d2e;
-		color: var(--color-surface-100);
+		color: var(--color-primary-100);
 	}
 
 	.mobile-menu-item.expanded {
@@ -626,6 +642,8 @@
 		top: 100%;
 		left: 0;
 		min-width: 200px;
+		max-height: 400px;
+		overflow-y: auto;
 		background: #1e1e1e;
 		border: 1px solid #3c3c3c;
 		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
@@ -634,6 +652,73 @@
 		z-index: 1000;
 		display: flex;
 		flex-direction: column;
+	}
+
+	.dropdown-menu::-webkit-scrollbar {
+		width: 6px;
+	}
+
+	.dropdown-menu::-webkit-scrollbar-track {
+		background: transparent;
+	}
+
+	.dropdown-menu::-webkit-scrollbar-thumb {
+		background: var(--color-surface-600);
+		border-radius: 3px;
+	}
+
+	.dropdown-menu::-webkit-scrollbar-thumb:hover {
+		background: var(--color-surface-500);
+	}
+
+	@media (max-width: 1024px) {
+		.dropdown-menu {
+			max-height: 350px;
+			min-width: 180px;
+		}
+
+		.dropdown-item {
+			padding: 5px 14px;
+			font-size: 11px;
+		}
+	}
+
+	@media (max-width: 768px) {
+		.dropdown-menu {
+			max-height: 300px;
+			min-width: 160px;
+		}
+
+		.dropdown-item {
+			padding: 4px 12px;
+			font-size: 11px;
+		}
+
+		.dropdown-item .shortcut {
+			margin-left: 10px;
+			font-size: 9px;
+		}
+	}
+
+	@media (max-width: 480px) {
+		.dropdown-menu {
+			max-height: 250px;
+			min-width: 140px;
+		}
+
+		.dropdown-item {
+			padding: 3px 10px;
+			font-size: 10px;
+		}
+
+		.dropdown-item .shortcut {
+			display: none;
+		}
+
+		.menu-item {
+			padding: 0 6px;
+			font-size: 11px;
+		}
 	}
 
 	.dropdown-item {
