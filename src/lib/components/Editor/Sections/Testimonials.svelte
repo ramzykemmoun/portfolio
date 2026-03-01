@@ -123,7 +123,7 @@
 							</div>
 							<div class="author-section">
 								<div class="avatar-container">
-									<img src={avatars[testimonial.id - 1]} alt={testimonial.name} class="avatar" />
+									<img src={avatars[testimonial.id]} alt={testimonial.name} class="avatar" />
 									<div class="avatar-ring"></div>
 								</div>
 								<div class="author-info">
