@@ -6,9 +6,10 @@
 	import younesfdj from '$lib/assets/testimonials/younesfdj.png';
 	import mouhoub from '$lib/assets/testimonials/mouhoub.png';
 	import beroual from '$lib/assets/testimonials/beroual.png';
-	import assem from '$lib/assets/testimonials/assem.jfif';
+	import assem from '$lib/assets/testimonials/assem.png';
+	import saidi from '$lib/assets/testimonials/saidi.png';
 
-	const avatars = [beroual, assem, younesfdj, mouhoub];
+	const avatars = [saidi, beroual, assem, younesfdj, mouhoub];
 
 	let mounted = $state(false);
 	let currentIndex = $state(0);
