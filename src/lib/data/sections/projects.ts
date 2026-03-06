@@ -6,6 +6,8 @@ import zappicon from '$lib/assets/projects/zappicon.png';
 import mcloader from '$lib/assets/projects/mcloader.png';
 import mywkfl from '$lib/assets/projects/mywkfl.png';
 import artistCalendar from '$lib/assets/projects/artist-calendar.png';
+import crazyFoot from '$lib/assets/projects/crazyfoot.png';
+import novalisAI from '$lib/assets/projects/novalisai.png';
 
 export const projectsData = [
 	{
@@ -104,6 +106,26 @@ export const projectsData = [
 		priority: false,
 		gradientFrom: '#1f2937',
 		gradientTo: '#8b5cf6'
+	},
+	{
+		title: 'Crazy Foot',
+		subtitle: 'High-performance e-commerce platform for football enthusiasts',
+		imageSrc: crazyFoot,
+		tags: ['React', 'PayPal API', 'Tailwind CSS'],
+		priority: true,
+		gradientFrom: '#ef4444',
+		gradientTo: '#1e3a8a',
+		href: 'https://ecom-website-foot.vercel.app/'
+	},
+	{
+		title: 'Novalis AI',
+		subtitle: 'Creative agency specializing in AI-driven development and design',
+		imageSrc: novalisAI,
+		tags: ['Next.js', 'Framer Motion'],
+		priority: true,
+		gradientFrom: '#000000',
+		gradientTo: '#0ea5e9',
+		href: 'https://www.novalisai.com/'
 	}
 ];
 
