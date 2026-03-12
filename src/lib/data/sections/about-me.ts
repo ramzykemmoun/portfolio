@@ -16,7 +16,7 @@ export const aboutMeData = {
 	bio: `> Passionate developer who turns coffee into code.
 > Building the future, one commit at a time.
 > "First, solve the problem. Then, write the code."`,
-	interests: ['Contribution', 'OpenSource', 'Dev', 'AI', 'History'],
+	interests: ['Contribution', 'OpenSource', 'Dev', 'AI', 'Religion', 'History'],
 	terminalLines: [
 		'$ whoami',
 		'ramzy@dev:~$ Ramzy KEMMOUN',
@@ -55,6 +55,7 @@ export const aboutMeData = {
         'OpenSource',
         'Dev',
         'AI',
+        'Religion,
         'History'
     ],
     terminalLines: [
